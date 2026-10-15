@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>اليابان — الخريطة الشاملة | سافر مع جولاي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#F1F8FC; --cream-2:#E4F1FA; --yellow:#F3D98B; --sky:var(--color-brand); --sage:var(--color-explore);
+    --peach:var(--color-plan); --coral:var(--color-discover); --coral-deep:#E8737A; --ink:var(--color-text); --ink-soft:var(--color-text-secondary);
+    --paper:#FFFFFF; --radius-lg:28px; --radius-md:18px; --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive; --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body); color:var(--ink);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 30%, var(--cream) 62%, var(--cream) 100%);
+    background-attachment:fixed; line-height:1.75; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .narrow{max-width:760px;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--coral-deep); font-weight:700; display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;}
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--coral); display:inline-block; border-radius:2px;}
+  h1,h2,h3,h4{font-family:var(--ff-display); font-weight:700; line-height:1.25; color:var(--color-brand);}
+  h1{font-size:clamp(30px,6vw,52px);}
+  h2{font-size:clamp(24px,4.2vw,36px);}
+  h3{font-size:clamp(18px,3vw,22px);}
+  p{color:var(--ink-soft);}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--coral); color:var(--paper); box-shadow:0 10px 24px rgba(255,173,173,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--peach); color:var(--peach); background:transparent;}
+  .btn-outline:hover{background:var(--peach); color:var(--paper);}
+  .breadcrumb{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap;}
+  .breadcrumb a{font-weight:600; color:var(--coral-deep);}
+  .breadcrumb span{opacity:.5;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(241,248,252,.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(51,66,74,.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .logo .dot{width:9px; height:9px; border-radius:50%; background:var(--coral);}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(51,66,74,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+  .mobile-menu{max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper); border-bottom:1px solid rgba(51,66,74,.08);}
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(51,66,74,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+  @media (min-width:900px){
+    .nav-links{display:flex;} .nav-cta{display:inline-flex;} .burger{display:none;} .mobile-menu{display:none;}
+  }
+
+  section{padding:52px 0;}
+  .section-head{max-width:640px; margin-bottom:40px;}
+
+  /* Polaroid photo component */
+  @keyframes polaroidIn{
+    0%{opacity:0; transform:translateY(28px) scale(.9) rotate(calc(var(--rot,0deg) - 5deg));}
+    65%{opacity:1; transform:translateY(-5px) scale(1.02) rotate(var(--rot,0deg));}
+    100%{opacity:1; transform:translateY(0) scale(1) rotate(var(--rot,0deg));}
+  }
+  @media (prefers-reduced-motion: reduce){ * { animation:none !important; } }
+  .polaroid{
+    --rot:0deg; background:var(--paper); border-radius:6px; padding:10px 10px 16px; box-shadow:var(--shadow-soft);
+    display:flex; flex-direction:column; gap:10px; position:relative; transform:rotate(var(--rot));
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .polaroid .img{ border-radius:3px; overflow:hidden; min-height:150px; }
+  .polaroid .img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .polaroid .cap{font-family:var(--ff-display); font-weight:600; font-size:15px; text-align:center; color:var(--ink);}
+  .tape{position:absolute; width:60px; height:22px; opacity:.9; box-shadow:0 3px 8px rgba(59,50,38,.12);
+    background:repeating-linear-gradient(45deg, var(--peach), var(--peach) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.blue{background:repeating-linear-gradient(45deg, var(--sky), var(--sky) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.sage{background:repeating-linear-gradient(45deg, var(--sage), var(--sage) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.coral{background:repeating-linear-gradient(45deg, var(--coral), var(--coral) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+
+  .stamp{position:relative; display:inline-flex; align-items:center; justify-content:center; width:74px; height:74px;
+    border:2px dashed var(--ink); border-radius:50%; transform:rotate(-9deg); font-family:var(--ff-display); font-size:10.5px;
+    text-align:center; color:var(--ink); background:var(--paper);}
+
+  .chip{display:inline-flex; padding:9px 18px; border-radius:999px; font-size:13.5px; font-weight:600; background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35);}
+  .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px;}
+
+  footer{padding:50px 0 36px; border-top:1px solid rgba(51,66,74,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:24px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
+  .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
+</style>
+<style>
+.badge-pro{display:inline-block; background:var(--coral); color:var(--paper); font-size:12.5px; font-weight:700; padding:6px 14px; border-radius:999px;}
+.cover-shot{border-radius:20px; overflow:hidden; box-shadow:var(--shadow-soft); height:340px;}
+.cover-shot img{width:100%; height:100%; object-fit:cover;}
+.layers-grid{display:grid; grid-template-columns:1fr; gap:18px;}
+@media (min-width:640px){.layers-grid{grid-template-columns:1fr 1fr;}}
+@media (min-width:1000px){.layers-grid{grid-template-columns:repeat(4,1fr);}}
+.layer-card{background:var(--paper); border-radius:14px; padding:20px; box-shadow:var(--shadow-soft);}
+.layer-icon{font-size:26px; display:block; margin-bottom:10px;}
+.layer-card h3{font-size:15.5px; margin-bottom:6px;}
+.layer-card p{font-size:13.5px; line-height:1.7;}
+.who-for{margin-top:40px; background:var(--cream-2); border-radius:22px; padding:30px 26px;}
+.who-for h2{margin-bottom:10px;}
+.buy-box{margin-top:36px; background:var(--paper); border-radius:20px; box-shadow:var(--shadow-soft); padding:26px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+.price-tag{font-family:var(--ff-display); font-size:30px; color:var(--coral-deep);}
+.salla-note{text-align:center; margin-top:14px; font-size:13px; color:var(--ink-soft);}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+    <nav class="nav-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="maps-all.html">خرائط تفاعلية</a>
+      <a href="plan.html">خطط رحلتك</a>
+    </nav>
+    <a href="plan.html" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="all-articles.html">دليل السفر</a></li>
+      <li><a href="maps-all.html">خرائط تفاعلية</a></li>
+      <li><a href="plan.html">خطط رحلتك</a></li>
+      <a href="plan.html" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-top:36px; padding-bottom:10px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">الرئيسية</a><span>/</span><a href="maps-all.html">خرائط تفاعلية</a><span>/</span>اليابان — الخريطة الشاملة</div>
+    <span class="badge-pro">منتج رقمي</span>
+    <h1 style="margin-top:12px;">🇯🇵 اليابان — الخريطة الشاملة</h1>
+    <p class="narrow" style="margin-top:14px; font-size:16.5px;">دليل وجهة تفاعلي شامل داخل خريطة واحدة، مو مجرد Google Map فيها مجموعة أماكن. كل طبقة مرتبة عشان تلقين اللي تحتاجونه بثانية.</p>
+  </div>
+</section>
+
+<section style="padding-top:10px;">
+  <div class="container">
+    <div class="cover-shot">
+      <img src="https://picsum.photos/seed/japan-map-cover/1100/620" alt="خريطة اليابان الشاملة">
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <h2 style="margin-bottom:8px;">وش تحتوي الخريطة؟</h2>
+    <p style="margin-bottom:26px;">8 طبقات مرتبة، تفعّلينها وتوقفينها حسب اللي تحتاجونه في كل لحظة من رحلتك.</p>
+    <div class="layers-grid">
+      
+      <div class="layer-card">
+        <span class="layer-icon">🗺️</span>
+        <h3>الأماكن والتجارب</h3>
+        <p>أهم المعالم السياحية، الأنشطة والفعاليات، أماكن التصوير، والأحياء المهمة.</p>
+      </div>
+
+      <div class="layer-card">
+        <span class="layer-icon">🚆</span>
+        <h3>المواصلات</h3>
+        <p>محطات القطارات والمترو والترام، محطات النقل المهمة، والمطارات.</p>
+      </div>
+
+      <div class="layer-card">
+        <span class="layer-icon">🍜</span>
+        <h3>المطاعم والمقاهي</h3>
+        <p>مطاعم ومقاهي وأماكن أكل مهمة مع معلومات مختصرة عند توفرها.</p>
+      </div>
+
+      <div class="layer-card">
+        <span class="layer-icon">🏨</span>
+        <h3>الإقامة</h3>
+        <p>فنادق ومناطق مناسبة للسكن، خيارات مختلفة حسب الميزانية.</p>
+      </div>
+
+      <div class="layer-card">
+        <span class="layer-icon">💰</span>
+        <h3>الأسعار</h3>
+        <p>أسعار تقريبية للفعاليات، رسوم الدخول، وأسعار المطاعم.</p>
+      </div>
+
+      <div class="layer-card">
+        <span class="layer-icon">🚑</span>
+        <h3>الطوارئ</h3>
+        <p>المستشفيات، العيادات، مراكز الشرطة، والصيدليات.</p>
+      </div>
+
+      <div class="layer-card">
+        <span class="layer-icon">🛒</span>
+        <h3>الاحتياجات اليومية</h3>
+        <p>السوبرماركت، مراكز التسوق، والصرافات.</p>
+      </div>
+
+      <div class="layer-card">
+        <span class="layer-icon">🇸🇦</span>
+        <h3>المسافر الخليجي</h3>
+        <p>مواقع سفارات وقنصليات دول الخليج ومعلومات التواصل.</p>
+      </div>
+    </div>
+
+    <div class="who-for">
+      <h2>لمن تناسب؟</h2>
+      <p>لكل مسافرة تبي تخطط رحلتها بنفسها بدون ما تضيع وقت بالبحث من الصفر، ومحتاجة كل التفاصيل (من السياحة للطوارئ) في مكان واحد يفتح على جوالها بدون نت حتى.</p>
+    </div>
+
+    <div class="buy-box">
+      <div>
+        <span class="price-tag">149 ريال</span>
+        <p style="margin-top:4px;">دفعة وحدة، وصول مدى الحياة للخريطة وتحديثاتها.</p>
+      </div>
+      <a href="#" class="btn btn-primary" style="font-size:16px; padding:16px 34px;">احصل على الخريطة</a>
+    </div>
+    <p class="salla-note">سيتم تحويلك إلى متجرنا على سلة لإتمام عملية الدفع بأمان.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+      <p style="margin-top:8px; font-size:14px;">أسافر، أستكشف، أحكي</p>
+    </div>
+    <div class="foot-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="maps-all.html">خرائط تفاعلية</a>
+      <a href="plan.html">خطط رحلتك</a>
+      <a href="about.html">عن جولاي</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+</footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+</script>
+</body>
+</html>

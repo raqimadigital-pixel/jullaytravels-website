@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سافر مع جولاي | أسافر، أستكشف، أحكي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#EAF4F7;
+    --cream-2:#DCEBF0;
+    --yellow:#F3D98B;
+    --sky:var(--color-brand);
+    --sage:var(--color-explore);
+    --peach:var(--color-plan);
+    --coral:var(--color-discover);
+    --coral-deep:#E8737A;
+    --ink:var(--color-text);
+    --ink-soft:#667783;
+    --paper:#FFFFFF;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive;
+    --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body);
+    color:var(--color-text);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 45%, var(--color-background) 100%);
+    background-attachment:fixed;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  .cloud{position:absolute; border-radius:50%; background:#ffffff; filter:blur(18px); opacity:.55; pointer-events:none; z-index:0;}
+  .cloud.c1{width:220px; height:80px; top:6%; right:8%; animation:drift 34s linear infinite alternate;}
+  .cloud.c2{width:160px; height:60px; top:16%; left:4%; animation:driftBack 26s linear infinite alternate;}
+  .cloud.c3{width:130px; height:50px; top:2%; left:38%; animation:drift 40s linear infinite alternate;}
+  @keyframes drift{from{transform:translate3d(0,0,0);} to{transform:translate3d(-8%,4px,0);}}
+  @keyframes driftBack{from{transform:translate3d(0,0,0);} to{transform:translate3d(7%,-4px,0);}}
+  @media (prefers-reduced-motion: reduce){ .cloud{animation:none !important;} }
+  /* Washi tape signature accent */
+  .tape{
+    position:absolute; width:64px; height:24px; opacity:.9; pointer-events:none;
+    box-shadow:0 3px 8px rgba(59,50,38,.12);
+    background:repeating-linear-gradient(45deg, var(--peach), var(--peach) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);
+  }
+  .tape.blue{background:repeating-linear-gradient(45deg, var(--sky), var(--sky) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.sage{background:repeating-linear-gradient(45deg, var(--sage), var(--sage) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.coral{background:repeating-linear-gradient(45deg, var(--coral), var(--coral) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .paper-caption{
+    font-family:var(--ff-display); font-weight:600; font-size:16px; color:var(--ink);
+    text-align:center;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .eyebrow{
+    font-size:13px; letter-spacing:.14em; color:var(--coral-deep);
+    font-weight:700; display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;
+  }
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--coral); display:inline-block; border-radius:2px;}
+  h1,h2,h3{font-family:var(--ff-display); font-weight:700; line-height:1.2; letter-spacing:-.01em; color:var(--color-brand);}
+  h1{font-size:clamp(34px,7vw,64px); font-weight:700;}
+  h2{font-size:clamp(28px,5vw,42px);}
+  h3{font-size:clamp(19px,3vw,24px);}
+  p{color:var(--ink-soft);}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; padding:15px 30px;
+    border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent;
+    cursor:pointer; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--color-discover); color:var(--paper); box-shadow:0 10px 24px rgba(255,159,163,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--color-plan); color:var(--color-plan); background:transparent;}
+  .btn-outline:hover{background:var(--color-plan); color:var(--paper);}
+  .btn-green{background:var(--color-explore); color:#fff; box-shadow:0 10px 24px rgba(153,172,255,.4);}
+  .btn-green:hover{background:#6683ff;}
+  .btn-ghost{border-color:rgba(59,50,38,.25); color:var(--ink);}
+
+  /* Reveal on scroll */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* Passport stamp signature element */
+  .stamp{
+    position:relative; display:inline-flex; align-items:center; justify-content:center;
+    width:84px; height:84px; border:2px dashed var(--ink); border-radius:50%;
+    transform:rotate(-9deg); flex-shrink:0; font-family:var(--ff-display);
+    font-size:11px; text-align:center; color:var(--ink); background:var(--paper);
+  }
+  .stamp span{display:block; line-height:1.3;}
+  .stamp.sm{width:56px; height:56px; font-size:9px; border-width:1.5px;}
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:50; background:transparent;
+    backdrop-filter:blur(6px); border-bottom:none;
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .logo .dot{width:9px; height:9px; border-radius:50%; background:var(--coral);}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-links a{position:relative; padding:4px 0;}
+  .nav-links a::after{content:""; position:absolute; bottom:-2px; right:0; width:0; height:2px; background:var(--coral); transition:width .3s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(59,50,38,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+
+  .mobile-menu{
+    max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper);
+    border-bottom:1px solid rgba(59,50,38,.08);
+  }
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(59,50,38,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+
+  @media (min-width:900px){
+    .nav-links{display:flex;}
+    .nav-cta{display:inline-flex;}
+    .burger{display:none;}
+    .mobile-menu{display:none;}
+  }
+
+  /* ===== HERO ===== */
+  .hero{padding:52px 0 70px; position:relative;}
+  .hero-grid{display:grid; gap:34px;}
+  .hero-copy{}
+  .hero-copy p.lead{font-size:18px; max-width:480px; margin:20px 0 30px;}
+  .hero-actions{display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch;}
+  .hero-actions .btn{padding:12px 18px; font-size:13.5px; white-space:nowrap; flex:0 0 auto;}
+  @media (min-width:640px){ .hero-actions .btn{padding:14px 28px; font-size:15px;} }
+  .btn-purple-solid{background:var(--color-plan); color:#fff; box-shadow:0 10px 24px rgba(212,155,232,.4);}
+  .btn-purple-solid:hover{background:#cf8ce6;}
+  .hero-visual{position:relative; display:flex; justify-content:center;}
+  .hero-grid-v2{display:flex; flex-direction:column; gap:34px; align-items:center;}
+  .photo-block{
+    --rot:0deg;
+    border-radius:6px; background:var(--paper);
+    position:relative; overflow:visible; box-shadow:var(--shadow-soft);
+    padding:10px 10px 16px; min-height:220px; display:flex; flex-direction:column; gap:10px;
+    transform:rotate(var(--rot)); animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .photo-block .img{
+    flex:1; border-radius:3px; min-height:150px; overflow:hidden;
+  }
+  .photo-block .img img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .photo-block.b .img{background:linear-gradient(155deg,var(--peach),var(--yellow));}
+  .photo-block.c .img{background:linear-gradient(155deg,var(--yellow),var(--coral) 120%);}
+  .photo-block.c{min-height:150px;}
+  .photo-block.a{--rot:-2deg; animation-delay:.1s;}
+  .photo-block.b{--rot:2deg; animation-delay:.3s;}
+  .photo-block.c{--rot:-1.5deg; animation-delay:.5s;}
+  .photo-block .cap{font-family:var(--ff-display); font-weight:600; font-size:15px; color:var(--ink); text-align:center;}
+  .hero-stamp{position:absolute; top:-18px; left:-6px; z-index:2;}
+  .hero-frame{
+    position:relative; border-radius:16px; background:var(--paper); box-shadow:var(--shadow-soft);
+    padding:10px; overflow:hidden; height:420px; width:100%; max-width:460px;
+  }
+  .hero-frame-viewport{ width:100%; height:100%; border-radius:10px; overflow:hidden; position:relative; }
+  .hero-frame-track{ display:flex; width:100%; height:100%; transition:transform .6s cubic-bezier(.65,0,.35,1); }
+  .hero-frame-slide{ flex:0 0 100%; height:100%; position:relative; }
+  .hero-frame-slide .img{ width:100%; height:100%; }
+  .hero-frame-slide .img img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .hero-frame-slide .cap{
+    position:absolute; bottom:0; right:0; left:0; padding:14px 18px 12px;
+    background:linear-gradient(0deg, rgba(51,66,74,.62), rgba(51,66,74,0));
+    color:#fff; font-family:var(--ff-display); font-weight:600; font-size:16px; text-align:center;
+  }
+  @media (max-width:899px){ .hero-frame{height:320px;} }
+  @media (min-width:900px){
+    .hero-grid{grid-template-columns:1fr 1.05fr; align-items:center;}
+  }
+
+  /* ===== SECTION shells ===== */
+  section{padding:74px 0;}
+  .section-head{max-width:640px; margin-bottom:46px;}
+  .section-head p{font-size:16.5px;}
+
+  /* Polaroid load-in animation */
+  @keyframes polaroidIn{
+    0%{opacity:0; transform:translateY(28px) scale(.9) rotate(calc(var(--rot,0deg) - 5deg));}
+    65%{opacity:1; transform:translateY(-5px) scale(1.02) rotate(var(--rot,0deg));}
+    100%{opacity:1; transform:translateY(0) scale(1) rotate(var(--rot,0deg));}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .photo-block, .about-photo, .spot-card, .map-product, .cat-polaroid{ animation:none !important; }
+  }
+
+  /* ===== GUIDE / CATEGORIES ===== */
+  /* Category polaroids */
+  .cat-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:38px 22px; padding:24px 6px 14px;
+  }
+  @media (min-width:700px){
+    .cat-grid{ grid-template-columns:repeat(3,1fr); gap:50px 34px; }
+  }
+  .cat-polaroid{
+    --rot:0deg;
+    background:var(--paper); border-radius:6px; padding:10px 10px 16px; box-shadow:var(--shadow-soft);
+    display:flex; flex-direction:column; gap:10px; position:relative;
+    transform:rotate(var(--rot)); transition:box-shadow .3s ease;
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .cat-polaroid:hover{ box-shadow:0 20px 34px rgba(51,66,74,.2); }
+  .cat-polaroid .img{ aspect-ratio:1/1; border-radius:3px; }
+  .cat-polaroid .cap{ font-family:var(--ff-display); font-weight:600; font-size:15px; text-align:center; color:var(--ink); }
+  .cat-polaroid.r1{--rot:-3deg; animation-delay:.05s;} .cat-polaroid.r2{--rot:2deg; animation-delay:.15s;} .cat-polaroid.r3{--rot:-1.5deg; animation-delay:.25s;}
+  .cat-polaroid.r4{--rot:3deg; animation-delay:.35s;} .cat-polaroid.r5{--rot:-2deg; animation-delay:.45s;} .cat-polaroid.r6{--rot:1.5deg; animation-delay:.55s;}
+  .cat-polaroid .img.c1{background:linear-gradient(150deg,var(--sky),#4E9BB6);}
+  .cat-polaroid .img.c2{background:linear-gradient(150deg,var(--yellow),var(--peach));}
+  .cat-polaroid .img.c3{background:linear-gradient(150deg,var(--peach),var(--coral));}
+  .cat-polaroid .img.c4{background:linear-gradient(150deg,var(--sage),#6E9A66);}
+  .cat-polaroid .img.c5{background:linear-gradient(150deg,var(--coral),var(--coral-deep));}
+  .cat-polaroid .img.c6{background:linear-gradient(150deg,var(--cream-2),var(--sky));}
+
+  /* ===== DESTINATION SPOTLIGHT (Japan) ===== */
+  .spotlight{background:var(--cream-2); border-radius:36px; padding:44px 24px;}
+  .spotlight-head{display:flex; align-items:center; gap:16px; margin-bottom:34px; flex-wrap:wrap;}
+  .split-2{display:grid; grid-template-columns:1fr; gap:22px;}
+  @media (min-width:800px){.split-2{grid-template-columns:1fr 1fr;}}
+  .spot-card{--rot:0deg; background:var(--paper); border-radius:10px; padding:26px; box-shadow:var(--shadow-soft); transform:rotate(var(--rot)); animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both; display:block;}
+  .spot-card:nth-child(1){--rot:-1.2deg; animation-delay:.2s;}
+  .spot-card:nth-child(2){--rot:1.2deg; animation-delay:.4s;}
+  .spot-card .thumb{height:150px; border-radius:4px; margin-bottom:18px; background:linear-gradient(135deg,var(--sky),var(--peach));}
+  .spot-card .kicker{font-size:12.5px; font-weight:700; color:var(--ink-soft); margin-bottom:6px;}
+
+  /* itinerary days */
+  .days{display:grid; gap:14px; margin:26px 0;}
+  .day-row{
+    display:grid; grid-template-columns:56px 1fr; gap:16px; background:var(--paper);
+    border-radius:16px; padding:16px 18px; box-shadow:0 6px 16px rgba(59,50,38,.06); align-items:start;
+  }
+  .day-num{
+    width:44px; height:44px; border-radius:50%; background:var(--sage); color:var(--paper);
+    display:flex; align-items:center; justify-content:center; font-family:var(--ff-display); font-size:16px;
+  }
+  .day-row:nth-child(2n) .day-num{background:var(--coral);}
+  .day-row:nth-child(3n) .day-num{background:var(--sky); color:var(--ink);}
+  .day-row h4{font-family:var(--ff-body); font-weight:700; font-size:15.5px; margin-bottom:4px;}
+  .day-row span{font-size:13.5px; color:var(--ink-soft);}
+
+  /* free map */
+  .map-panel{
+    border-radius:22px; overflow:hidden; background:var(--paper); box-shadow:var(--shadow-soft); margin-top:10px;
+  }
+  .map-fake{
+    height:230px; background:
+      radial-gradient(circle at 20% 30%, rgba(226,131,107,.35), transparent 40%),
+      radial-gradient(circle at 70% 60%, rgba(166,190,156,.4), transparent 45%),
+      linear-gradient(160deg,var(--sky),var(--cream-2));
+    position:relative;
+  }
+  .pin{
+    position:absolute; width:14px; height:14px; background:var(--coral); border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg); box-shadow:0 3px 8px rgba(0,0,0,.2);
+  }
+  .map-panel .chips{display:flex; flex-wrap:wrap; gap:8px; padding:18px;}
+  .map-panel .chips span{background:var(--cream); border-radius:999px; padding:7px 14px; font-size:13px; font-weight:600;}
+
+  .cta-strip{
+    margin-top:40px; text-align:center; background:var(--ink); color:var(--paper); border-radius:28px;
+    padding:44px 24px;
+  }
+  .cta-strip h3{color:var(--paper); margin-bottom:10px;}
+  .cta-strip p{color:rgba(255,253,248,.75); max-width:480px; margin:0 auto 26px;}
+
+  /* ===== MAPS SECTION ===== */
+  .maps-grid{display:grid; grid-template-columns:1fr; gap:26px;}
+  @media (min-width:860px){.maps-grid{grid-template-columns:1fr 1fr;}}
+  .map-product{
+    --rot:0deg;
+    background:var(--paper); border-radius:10px; box-shadow:var(--shadow-soft); overflow:visible;
+    display:flex; flex-direction:column; position:relative; transform:rotate(var(--rot));
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both; animation-delay:.2s;
+  }
+  .map-product .cover{height:200px; border-radius:8px 8px 0 0; overflow:hidden; background:linear-gradient(150deg,var(--sky),var(--sage));}
+  .map-product.pro{--rot:-1deg; animation-delay:.4s;}
+  .map-product.pro .cover{background:linear-gradient(150deg,var(--coral),var(--peach));}
+  .map-product .content{padding:26px 26px 28px; display:flex; flex-direction:column; gap:14px; flex:1;}
+  .badge-free{align-self:flex-start; background:var(--sage); color:var(--paper); font-size:12.5px; font-weight:700; padding:6px 14px; border-radius:999px;}
+  .badge-pro{align-self:flex-start; background:var(--coral); color:var(--paper); font-size:12.5px; font-weight:700; padding:6px 14px; border-radius:999px;}
+  .price-tag{font-family:var(--ff-display); font-size:26px; color:var(--coral-deep);}
+  .layer-list{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 4px;}
+  .layer-list span{font-size:12.5px; background:var(--cream); padding:6px 12px; border-radius:999px; font-weight:600;}
+
+  /* ===== PLAN SERVICE ===== */
+  .plan-wrap{background:linear-gradient(180deg,var(--cream-2),var(--cream)); border-radius:36px; padding:48px 24px; position:relative;}
+  .steps{display:grid; grid-template-columns:1fr; gap:20px; margin-top:40px;}
+  @media (min-width:900px){.steps{grid-template-columns:repeat(4,1fr);}}
+  .step{background:var(--paper); border-radius:20px; padding:26px 22px; box-shadow:var(--shadow-soft); position:relative;}
+  .step .num{font-family:var(--ff-display); font-size:34px; color:var(--peach); -webkit-text-stroke:1.4px var(--coral-deep); margin-bottom:12px; display:block;}
+  .step h4{font-size:16px; font-weight:700; margin-bottom:8px;}
+  .step p{font-size:14px;}
+
+  .plan-compare{display:grid; grid-template-columns:1fr; gap:16px; margin-top:34px;}
+  @media (min-width:700px){.plan-compare{grid-template-columns:1fr 1fr;}}
+  .compare-card{border:1.5px dashed rgba(59,50,38,.25); border-radius:18px; padding:22px;}
+  .compare-card h4{margin-bottom:6px;}
+
+  /* ===== ABOUT ===== */
+  .about{display:grid; grid-template-columns:1fr; gap:30px; align-items:center;}
+  @media (min-width:820px){.about{grid-template-columns:.85fr 1.15fr;}}
+  .about-photo{
+    --rot:-2deg;
+    border-radius:6px; height:320px; background:linear-gradient(160deg,var(--peach),var(--sky));
+    position:relative; box-shadow:var(--shadow-soft); transform:rotate(var(--rot));
+    padding:10px; border:10px solid var(--paper); border-bottom-width:36px;
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both; animation-delay:.15s;
+  }
+  .about-photo .stamp{position:absolute; bottom:-16px; right:-10px;}
+
+  /* ===== FINAL CTA ===== */
+  .final-cta{
+    background:linear-gradient(135deg,var(--coral),var(--coral-deep));
+    border-radius:36px; padding:56px 24px; text-align:center; color:var(--paper); position:relative; overflow:hidden;
+  }
+  .final-cta h2{color:var(--paper);}
+  .final-cta p{color:rgba(255,253,248,.85); max-width:460px; margin:14px auto 30px;}
+  .final-cta .btn-primary{background:var(--paper); color:var(--coral-deep);}
+  .final-cta .btn-primary:hover{background:var(--cream);}
+  .final-cta .btn-outline{border-color:rgba(255,253,248,.6); color:var(--paper);}
+  .final-cta .btn-outline:hover{background:var(--paper); color:var(--coral-deep);}
+
+  /* ===== FOOTER ===== */
+  footer{padding:56px 0 40px; border-top:1px solid rgba(59,50,38,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:28px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:22px; font-weight:600; font-size:14.5px;}
+  .socials{display:flex; gap:12px; margin-top:16px;}
+  .socials a{width:38px; height:38px; border-radius:50%; border:1.5px solid rgba(59,50,38,.2); display:flex; align-items:center; justify-content:center; font-size:13px;}
+  .foot-bottom{margin-top:34px; font-size:13px; color:var(--ink-soft); text-align:center;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة">
+      <span></span>
+    </button>
+    <nav class="nav-links">
+      <a href="#guide">دليل السفر</a>
+      <a href="#maps">خرائط تفاعلية</a>
+      <a href="#plan">خطط رحلتك</a>
+    </nav>
+    <a href="#plan" class="btn btn-primary nav-cta">خطط رحلتك</a>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#guide">دليل السفر</a></li>
+      <li><a href="#maps">خرائط تفاعلية</a></li>
+      <li><a href="#plan">خطط رحلتك</a></li>
+      <li><a href="#about">عن جولاي</a></li>
+      <a href="#plan" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="cloud c1"></span>
+  <span class="cloud c2"></span>
+  <span class="cloud c3"></span>
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <div class="hero-logo" style="margin:14px 0 4px; display:flex;">
+        <img src="img/julaylogo.svg" alt="سافر مع جولاي" style="width:100%; max-width:520px; height:auto; display:block;">
+      </div>
+      <p class="lead">رحلات ووجهات وتجارب أشاركها بطريقتي، مع جداول وأدوات تساعدك تخطط رحلتك من الألف إلى الياء.</p>
+      <div class="hero-actions">
+        <a href="pages/all-articles.html" class="btn btn-primary">اكتشف دليل السفر</a>
+        <a href="#plan" class="btn btn-purple-solid">خطط رحلتك</a>
+        <a href="#maps" class="btn btn-green">خرائط تفاعلية</a>
+</div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-frame">
+        <div class="hero-frame-viewport">
+          <div class="hero-frame-track" id="heroSlideTrack">
+            <div class="hero-frame-slide">
+              <div class="img"><img src="img/zanzibar.jpg" alt="زنجبار، تنزانيا"></div>
+              <span class="cap">زنجبار، تنزانيا</span>
+            </div>
+            <div class="hero-frame-slide">
+              <div class="img"><img src="img/wadirum.jpeg" alt="وادي رم، الأردن"></div>
+              <span class="cap">وادي رم، الأردن</span>
+            </div>
+            <div class="hero-frame-slide">
+              <div class="img"><img src="img/aurora.jpeg" alt="مورمانسك، روسيا"></div>
+              <span class="cap">مورمانسك، روسيا</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE -->
+<section id="guide" style="position:relative;">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>دليل السفر</h2>
+      <p>أكتشف الوجهات، أجربها، وأحكي لك عنها بطريقة تساعدك تعرف أين تذهب وكيف تخطط لرحلتك.</p>
+    </div>
+
+    <div class="cat-grid reveal">
+      <a href="pages/all-articles.html" class="cat-polaroid r1">
+        <span class="tape blue" style="top:-10px; right:16px; transform:rotate(-5deg);"></span>
+        <div class="img c1"><img src="img/winter.jpg" alt="وجهات شتوية" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات شتوية</span>
+      </a>
+      <a href="pages/all-articles.html" class="cat-polaroid r2">
+        <span class="tape" style="top:-10px; left:16px; transform:rotate(4deg);"></span>
+        <div class="img c2"><img src="img/summer.jpg" alt="وجهات صيفية" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات صيفية</span>
+      </a>
+      <a href="pages/all-articles.html" class="cat-polaroid r3">
+        <span class="tape coral" style="top:-10px; right:20px; transform:rotate(3deg);"></span>
+        <div class="img c3"><img src="img/spring.jpg" alt="وجهات الربيع" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات الربيع</span>
+      </a>
+      <a href="pages/all-articles.html" class="cat-polaroid r4">
+        <span class="tape sage" style="top:-10px; left:20px; transform:rotate(-4deg);"></span>
+        <div class="img c4"><img src="img/autumn.jpg" alt="وجهات الخريف" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات الخريف</span>
+      </a>
+      <a href="pages/all-articles.html" class="cat-polaroid r5">
+        <span class="tape coral" style="top:-10px; right:14px; transform:rotate(5deg);"></span>
+        <div class="img c5"><img src="img/family.jpg" alt="وجهات عائلية" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات عائلية</span>
+      </a>
+      <a href="pages/all-articles.html" class="cat-polaroid r6">
+        <span class="tape blue" style="top:-10px; left:14px; transform:rotate(-3deg);"></span>
+        <div class="img c6"><img src="img/economy.jpg" alt="وجهات اقتصادية" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات اقتصادية</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MAPS -->
+<section id="maps" style="position:relative;">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>خرائط تفاعلية</h2>
+      <p>رحلتك على الخارطة، كل ما تحتاجه في وجهتك، مرتبًا في مكان واحد.</p>
+    </div>
+
+    <div class="maps-grid reveal">
+      <div class="map-product">
+        <div class="cover"><img src="https://jullay-almaty-map.netlify.app/img/cover.jpg" alt="خريطة ألماتي" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="content">
+          <span class="badge-free">مجانية</span>
+          <h3>🇰🇿 ألماتي</h3>
+          <p>المدينة، البحيرات، والجبال، مع أفضل مسارات ألوان الخريف.</p>
+          <a href="https://jullay-almaty-map.netlify.app/" target="_blank" class="btn btn-outline" style="margin-top:auto;">استكشف الخريطة</a>
+        </div>
+      </div>
+
+      <div class="map-product pro">
+        <span class="tape coral" style="top:-10px; left:24px; transform:rotate(-5deg); z-index:2;"></span>
+        <div class="cover"><img src="https://picsum.photos/seed/moscow-map-pro/560/380" alt="خريطة موسكو" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="content">
+          <span class="badge-pro">منتج رقمي</span>
+          <h3>🇷🇺 موسكو — الخريطة الشاملة</h3>
+          <p>دليل وجهة تفاعلي كامل داخل خريطة واحدة، مبني على طبقات:</p>
+          <div class="layer-list">
+            <span>🗺️ أماكن وتجارب</span><span>🚆 مواصلات</span><span>🍜 مطاعم ومقاهي</span>
+            <span>🏨 إقامة</span><span>💰 أسعار</span><span>🚑 طوارئ</span><span>🛒 احتياجات يومية</span><span>🇸🇦 المسافر الخليجي</span>
+          </div>
+          <div style="margin-top:auto;">
+            <span class="btn btn-primary" style="pointer-events:none;">قريبًا</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:34px;">
+      <a href="pages/maps-all.html" class="btn btn-outline">مشاهدة كل الخرائط</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <div class="container">
+    <div class="plan-wrap reveal">
+      <div class="section-head" style="margin-bottom:8px; position:relative;">
+        <h2>خطط رحلتك</h2>
+        <p style="margin-top:10px;">أساعدك تصمم رحلتك من اختيار الوجهة وحتى يوم العودة. خدمة نخطط فيها رحلتك من A إلى Z حسب تفضيلاتك وميزانيتك ومدة رحلتك وأسلوب سفرك.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step"><span class="num">01</span><h4>أرسل تفاصيل رحلتك</h4><p>الشهر، الوجهة إن كانت محددة، عدد الأيام، الميزانية، اهتماماتك وأسلوب سفرك.</p></div>
+        <div class="step"><span class="num">02</span><h4>نصمم لك الخطة</h4><p>نتواصل معك لفهم رغباتك، ثم نرتب لك الرحلة يومًا بيوم بطريقة عملية.</p></div>
+        <div class="step"><span class="num">03</span><h4>استلم جدولك وخريطتك</h4><p>تحصل على جدول السفر والخريطة التفاعلية وكل التفاصيل المتفق عليها.</p></div>
+        <div class="step"><span class="num">04</span><h4>سافر بدون وجع رأس</h4><p>كل شيء مرتب أمامك، وأنت عليك الاستمتاع بالرحلة.</p></div>
+      </div>
+
+      <div style="text-align:center; margin-top:38px;">
+        <a href="pages/plan.html" class="btn btn-primary">ابدأ تخطيط رحلتي</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="position:relative;">
+  <div class="container about reveal">
+<div class="about-photo">
+      <img src="img/zanzibar.jpg" alt="زنجبار، تنزانيا" style="width:100%; height:100%; object-fit:cover; border-radius:2px; display:block;">
+      <span class="tape sage" style="top:-10px; left:36%; transform:rotate(-3deg);"></span>
+    </div>
+    <div>
+      
+      <h2>أنا جولاي</h2>
+      <p style="margin:16px 0 10px; font-size:16.5px; max-width:520px;">مسافرة وصانعة محتوى سفر أبحث دائمًا عن أفضل طريقة لاكتشاف أي وجهة؛ من اختيار المكان والتوقيت، إلى السكن والتنقل والتجارب.</p>
+      <p style="margin:0 0 10px; font-size:16.5px; max-width:520px;">أؤمن أن الرحلة الرائعة لا تحتاج ميزانية ضخمة، بقدر ما تحتاج تخطيطًا ذكيًا ومعرفة جيدة بالمكان.</p>
+      <p style="margin:0 0 10px; font-size:16.5px; max-width:520px;">من خلال منصة سافر مع جولاي أشاركك تجاربي وأبني لك خطط سفر وخرائط تفاعلية مصممة حسب وجهتك وميزانيتك وطريقة سفرك، لتختصر وقت البحث وتستمتع برحلة مرتبة، عملية، ومليئة بالتجارب التي تستحق فعلًا.</p>
+      <p style="margin:0; font-size:16.5px; max-width:520px;">أسافر، أستكشف، أحكي. 🌍</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="container">
+    <div class="final-cta reveal">
+      <h2>جاهز لرحلتك القادمة؟</h2>
+      <p>اكتشف وجهتك، أو خل التخطيط عليّ.</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="#guide" class="btn btn-primary">دليل السفر</a>
+        <a href="#plan" class="btn btn-outline">خطط رحلتك</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="position:relative;">
+<div class="container foot-grid">
+    <div>
+      <div class="logo"><img src="img/julaylogo.svg" alt="سافر مع جولاي" style="height:34px; width:auto; display:block;"></div>
+      <p style="margin-top:8px; font-size:14.5px;">أسافر، أستكشف، أحكي</p>
+      <div class="socials">
+        <a href="#" aria-label="انستقرام">IG</a>
+        <a href="https://www.tiktok.com/@jullay.92" target="_blank" aria-label="تيك توك">TT</a>
+        <a href="#" aria-label="بينترست">PIN</a>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="#guide">دليل السفر</a>
+      <a href="#maps">خرائط تفاعلية</a>
+      <a href="#plan">خطط رحلتك</a>
+      <a href="#about">عن جولاي</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  const chips = document.querySelectorAll('.chip');
+  chips.forEach(chip => chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+  }));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  revealEls.forEach(el => io.observe(el));
+
+  const heroTrack = document.getElementById('heroSlideTrack');
+  if(heroTrack){
+    const slideCount = heroTrack.children.length;
+    let slideIndex = 0;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const goToSlide = (i) => {
+      slideIndex = i;
+      heroTrack.style.transform = 'translateX(' + (slideIndex * 100) + '%)';
+    };
+    if(!reduceMotion){
+      setInterval(() => {
+        slideIndex = (slideIndex + 1) % slideCount;
+        goToSlide(slideIndex);
+      }, 3500);
+    }
+  }
+</script>
+
+</body>
+</html>

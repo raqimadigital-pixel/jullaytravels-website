@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>خدمات تصميم وتخطيط الرحلات | سافر مع جولاي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#F1F8FC; --cream-2:#E4F1FA; --yellow:#F3D98B; --sky:var(--color-brand); --sage:var(--color-explore);
+    --peach:var(--color-plan); --coral:var(--color-discover); --coral-deep:#E8737A; --ink:var(--color-text); --ink-soft:var(--color-text-secondary);
+    --paper:#FFFFFF; --radius-lg:28px; --radius-md:18px; --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive; --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body); color:var(--ink);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 30%, var(--cream) 62%, var(--cream) 100%);
+    background-attachment:fixed; line-height:1.75; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .narrow{max-width:760px;}
+  h1,h2,h3,h4{font-family:var(--ff-display); font-weight:700; line-height:1.25; color:var(--color-brand);}
+  h1{font-size:clamp(30px,6vw,48px);}
+  h2{font-size:clamp(22px,4vw,30px);}
+  h3{font-size:clamp(18px,3vw,22px);}
+  p{color:var(--ink-soft);}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--coral); color:var(--paper); box-shadow:0 10px 24px rgba(255,173,173,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--peach); color:var(--peach); background:transparent;}
+  .btn-outline:hover{background:var(--peach); color:var(--paper);}
+  .breadcrumb{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap;}
+  .breadcrumb a{font-weight:600; color:var(--coral-deep);}
+  .breadcrumb span{opacity:.5;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(241,248,252,.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(51,66,74,.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(51,66,74,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+  .mobile-menu{max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper); border-bottom:1px solid rgba(51,66,74,.08);}
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(51,66,74,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+  @media (min-width:900px){
+    .nav-links{display:flex;} .nav-cta{display:inline-flex;} .burger{display:none;} .mobile-menu{display:none;}
+  }
+
+  section{padding:50px 0;}
+
+  footer{padding:50px 0 36px; border-top:1px solid rgba(51,66,74,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:24px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
+  .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
+
+  /* service cards */
+  .services-grid{display:flex; flex-direction:column; gap:22px; margin-top:10px;}
+  .service-card{background:var(--paper); border-radius:22px; padding:28px; box-shadow:var(--shadow-soft); display:flex; flex-direction:column; gap:16px;}
+  .service-card.featured{border:2.5px solid var(--coral); position:relative;}
+  .service-card.featured::before{content:"⭐ الأكثر طلبًا"; position:absolute; top:-14px; right:24px; background:var(--coral); color:var(--paper); font-size:12.5px; font-weight:700; padding:5px 14px; border-radius:999px;}
+  .service-head{display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:space-between;}
+  .service-title{display:flex; align-items:center; gap:10px;}
+  .service-title .icon{font-size:26px;}
+  .price-box{background:var(--cream-2); border-radius:14px; padding:10px 18px; text-align:center; min-width:150px;}
+  .price-box .amount{font-family:var(--ff-display); font-size:22px; color:var(--coral-deep); display:block;}
+  .price-box .unit{font-size:11.5px; color:var(--ink-soft);}
+  .price-box .extra{font-size:11.5px; color:var(--ink-soft); margin-top:4px; display:block;}
+  .feature-list{display:grid; grid-template-columns:1fr; gap:8px;}
+  @media (min-width:700px){.feature-list{grid-template-columns:1fr 1fr;}}
+  .feature-list li{font-size:14px; color:var(--ink-soft); display:flex; gap:8px; align-items:flex-start;}
+  .feature-list li::before{content:"✓"; color:var(--coral-deep); font-weight:700; flex-shrink:0;}
+  .fit-line{font-size:13.5px; background:var(--cream); border-radius:10px; padding:10px 14px;}
+  .fit-line strong{color:var(--ink);}
+  .steps-mini{display:flex; flex-direction:column; gap:8px; margin-top:4px;}
+  .steps-mini li{font-size:14px; color:var(--ink-soft);}
+  .steps-mini li strong{color:var(--ink);}
+  .note-line{font-size:12.5px; background:#FFF3E0; border-radius:10px; padding:9px 14px; color:#9a6a1a;}
+  .summary-table{width:100%; border-collapse:collapse; margin-top:16px; background:var(--paper); border-radius:14px; overflow:hidden; box-shadow:var(--shadow-soft);}
+  .summary-table th, .summary-table td{padding:12px 14px; text-align:right; font-size:13.5px; border-bottom:1px solid rgba(51,66,74,.08);}
+  .summary-table th{background:var(--cream-2); font-weight:700; color:var(--ink);}
+  .summary-table td{color:var(--ink-soft);}
+  .summary-table tr:last-child td{border-bottom:none;}
+  .summary-table td:last-child, .summary-table th:last-child{text-align:left; font-weight:700; color:var(--coral-deep);}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+    <nav class="nav-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="plan.html">خطط رحلتك</a>
+    </nav>
+    <a href="plan.html" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="all-articles.html">دليل السفر</a></li>
+      <li><a href="../index.html#maps">خرائط تفاعلية</a></li>
+      <li><a href="plan.html">خطط رحلتك</a></li>
+      <a href="plan.html" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-top:36px; padding-bottom:16px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">الرئيسية</a><span>/</span><a href="plan.html">خطط رحلتك</a><span>/</span>خدماتنا</div>
+    <h1>خدمات تصميم وتخطيط الرحلات</h1>
+    <p class="narrow" style="margin-top:14px; font-size:16.5px;">بدلًا من قضاء ساعات طويلة في البحث بين الوجهات والفنادق والأنشطة والمطاعم ووسائل النقل، يتم إعداد خطة سفر متكاملة وفق تفاصيل رحلتك وتفضيلاتك. يتم اختيار وترتيب الخيارات بعناية، بحيث تكون الخطة واضحة وعملية وسهلة التطبيق أثناء السفر.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-head">
+          <div class="service-title"><span class="icon">🗓️</span><h3>الجدول السياحي المخصص</h3></div>
+          <div class="price-box"><span class="amount">249 ريال</span><span class="unit">حتى 7 أيام</span><span class="extra">+30 ريال لكل يوم إضافي</span></div>
+        </div>
+        <p>خطة يومية مصممة خصيصًا لرحلتك. يتم إعداد برنامج سياحي يومي بناءً على الوجهة، مدة الرحلة، الميزانية، الاهتمامات، وطريقة السفر، مع ترتيب الأماكن والأنشطة بصورة عملية تساعد على الاستفادة من وقت الرحلة وتقليل التنقلات غير الضرورية.</p>
+        <ul class="feature-list">
+          <li>إعداد جدول سياحي مخصص يومًا بيوم</li>
+          <li>توزيع المعالم والأنشطة على أيام الرحلة</li>
+          <li>ترتيب الزيارات وفق الموقع الجغرافي وسهولة التنقل</li>
+          <li>اقتراح الأنشطة والتجارب المناسبة</li>
+          <li>ترشيح المطاعم والكافيهات المناسبة لمسار الرحلة</li>
+          <li>مراعاة الميزانية والتفضيلات الشخصية</li>
+          <li>تقدير تكاليف الأنشطة والمواصلات ضمن الخطة</li>
+          <li>إضافة المعلومات الأساسية التي يحتاجها المسافر أثناء الرحلة</li>
+        </ul>
+        <p class="fit-line"><strong>مناسبة لمن:</strong> يرغب في الحصول على خطة واضحة ومخصصة للرحلة، مع تولي الحجوزات بشكل مستقل.</p>
+        <a href="https://salla.sa/jullay-travel/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%AC%D8%AF%D9%88%D9%84-%D8%B1%D8%AD%D9%84%D8%A9-%D9%85%D8%AE%D8%B5%D8%B5/p230378573" target="_blank" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-head">
+          <div class="service-title"><span class="icon">🗺️</span><h3>الخريطة التفاعلية</h3></div>
+          <div class="price-box"><span class="amount">149 ريال</span><span class="unit">حتى 7 أيام</span><span class="extra">+20 ريال لكل يوم إضافي</span></div>
+        </div>
+        <p>جميع أماكن الرحلة في خريطة واحدة. خريطة تفاعلية مخصصة تساعد على الوصول إلى الأماكن المقترحة في الرحلة، وفهم توزيعها الجغرافي، وتسهيل التنقل بينها أثناء السفر.</p>
+        <ul class="feature-list">
+          <li>إنشاء خريطة تفاعلية مخصصة للرحلة</li>
+          <li>إضافة الأماكن والمعالم الموجودة في البرنامج</li>
+          <li>إضافة المطاعم والكافيهات المقترحة</li>
+          <li>إضافة الأنشطة والتجارب</li>
+          <li>إضافة الفنادق ومواقع الإقامة</li>
+          <li>تنظيم المواقع بطريقة تسهّل الوصول إليها</li>
+          <li>ربط الخريطة بخطة الرحلة لتسهيل معرفة أماكن الزيارة اليومية</li>
+        </ul>
+        <p class="fit-line"><strong>مناسبة لمن:</strong> لديه برنامج أو خطة سفر ويرغب في تنظيم جميع المواقع على خريطة تفاعلية سهلة الاستخدام.</p>
+        <a href="https://salla.sa/jullay-travel/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%AE%D8%B1%D9%8A%D8%B7%D8%A9-%D8%AA%D9%81%D8%A7%D8%B9%D9%84%D9%8A%D8%A9/p1045020092" target="_blank" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
+      </div>
+
+      <div class="service-card featured">
+        <div class="service-head">
+          <div class="service-title"><span class="icon">⭐</span><h3>باقة الجدول السياحي + الخريطة التفاعلية</h3></div>
+          <div class="price-box"><span class="amount">349 ريال</span><span class="unit">حتى 7 أيام</span><span class="extra">الأيام الإضافية حسب الخدمة المطلوبة</span></div>
+        </div>
+        <p>التخطيط الكامل للرحلة في خدمة واحدة. لمن يرغب في الحصول على خطة يومية متكاملة بالإضافة إلى خريطة تفاعلية تجمع جميع المواقع والخيارات المتعلقة بالرحلة.</p>
+        <ul class="feature-list">
+          <li>جدول سياحي مخصص يومًا بيوم</li>
+          <li>ترتيب المعالم والأنشطة</li>
+          <li>اقتراح المطاعم والكافيهات</li>
+          <li>تنظيم الزيارات وفق الموقع الجغرافي</li>
+          <li>تقدير تكاليف الأنشطة والمواصلات</li>
+          <li>خريطة تفاعلية مخصصة</li>
+          <li>إضافة الفنادق والمطاعم والأنشطة والمعالم إلى الخريطة</li>
+          <li>تنظيم الخريطة بما يتوافق مع برنامج الرحلة</li>
+        </ul>
+        <p class="fit-line"><strong>الخيار الأنسب لمن:</strong> يرغب في تجربة تخطيط متكاملة، تبدأ من إعداد البرنامج اليومي وتنتهي بخريطة عملية يمكن استخدامها أثناء الرحلة.</p>
+        <a href="https://salla.sa/jullay-travel/%D8%AA%D8%AE%D8%B7%D9%8A%D8%B7-%D8%A7%D9%84%D8%AC%D8%AF%D9%88%D9%84-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%A7%D9%84%D8%AE%D8%B1%D9%8A%D8%B7%D8%A9-%D8%A7%D9%84%D8%AA%D9%81%D8%A7%D8%B9%D9%84%D9%8A%D8%A9/p973358116" target="_blank" class="btn btn-primary" style="align-self:flex-start;">اطلب الباقة</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-head">
+          <div class="service-title"><span class="icon">🏨</span><h3>اختيار وحجز الفندق</h3></div>
+          <div class="price-box"><span class="amount">99 ريال</span><span class="unit">لكل حجز</span></div>
+        </div>
+        <p>ثلاثة خيارات مختارة بدلًا من عشرات النتائج. اختيار الفندق المناسب لا يعتمد على السعر فقط، لذلك يتم البحث وفق احتياجات الرحلة وتفضيلات العميل، ثم اختصار الخيارات في أفضل 3 فنادق مناسبة.</p>
+        <ol class="steps-mini">
+          <li><strong>1. دراسة الاحتياج</strong> — تحديد الميزانية، الموقع المفضل، مستوى الفندق، وأهم التفضيلات.</li>
+          <li><strong>2. البحث والمقارنة</strong> — من حيث الموقع، المستوى، التقييمات، والسعر مقابل القيمة.</li>
+          <li><strong>3. ترشيح أفضل 3 خيارات</strong> — مع توضيح أبرز الفروقات والمزايا لكل خيار.</li>
+          <li><strong>4. اختيار الفندق</strong> — يختار العميل الخيار الأنسب من بين الترشيحات.</li>
+          <li><strong>5. تنفيذ الحجز</strong> — بعد اعتماد الخيار المختار.</li>
+        </ol>
+        <p class="note-line">الرسوم تشمل البحث والترشيح وتنفيذ الحجز، ولا تشمل قيمة الإقامة.</p>
+        <a href="https://salla.sa/jullay-travel/%D8%AD%D8%AC%D9%88%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%AF%D9%82/p1410743216" target="_blank" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-head">
+          <div class="service-title"><span class="icon">✈️</span><h3>اختيار وحجز الطيران</h3></div>
+          <div class="price-box"><span class="amount">99 ريال</span><span class="unit">لكل حجز</span></div>
+        </div>
+        <p>أفضل 3 خيارات بناءً على احتياجات الرحلة. بدلًا من عرض عدد كبير من الرحلات وترك مهمة المقارنة للعميل، يتم البحث عن الخيارات المناسبة واختصارها في أفضل 3 خيارات وفق السعر، أوقات الرحلات، مدة السفر، الترانزيت، الأمتعة وغيرها من العوامل المهمة.</p>
+        <ol class="steps-mini">
+          <li><strong>1. تحديد متطلبات الرحلة</strong> — مواعيد السفر، الوجهة، الميزانية، الأمتعة وأي تفضيلات أخرى.</li>
+          <li><strong>2. البحث والمقارنة</strong> — بين الرحلات والمسارات وشركات الطيران المتاحة.</li>
+          <li><strong>3. ترشيح أفضل 3 خيارات</strong> — مع توضيح الفروقات الرئيسية بينها.</li>
+          <li><strong>4. اختيار الرحلة</strong> — يختار العميل الخيار الأنسب لاحتياجاته.</li>
+          <li><strong>5. تنفيذ الحجز</strong> — بعد اعتماد الخيار المختار.</li>
+        </ol>
+        <p class="note-line">الرسوم تشمل البحث والترشيح وتنفيذ الحجز، ولا تشمل قيمة تذكرة الطيران.</p>
+        <a href="https://salla.sa/jullay-travel/%D8%AD%D8%AC%D9%88%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B7%D9%8A%D8%B1%D8%A7%D9%86/p1105992146" target="_blank" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
+      </div>
+
+    </div>
+
+    <h2 style="margin-top:48px;">اختر الخدمة المناسبة لرحلتك</h2>
+    <div style="overflow-x:auto;">
+      <table class="summary-table">
+        <thead><tr><th>الخدمة</th><th>السعر</th></tr></thead>
+        <tbody>
+          <tr><td>الجدول السياحي المخصص — حتى 7 أيام</td><td>249 ريال</td></tr>
+          <tr><td>يوم إضافي للجدول</td><td>30 ريال</td></tr>
+          <tr><td>الخريطة التفاعلية — حتى 7 أيام</td><td>149 ريال</td></tr>
+          <tr><td>يوم إضافي للخريطة</td><td>20 ريال</td></tr>
+          <tr><td>الجدول + الخريطة — حتى 7 أيام</td><td>349 ريال</td></tr>
+          <tr><td>اختيار وحجز الفندق</td><td>99 ريال / حجز</td></tr>
+          <tr><td>اختيار وحجز الطيران</td><td>99 ريال / حجز</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <h2 style="margin-bottom:10px;">رحلة مرتبة تبدأ قبل المغادرة</h2>
+      <p class="narrow" style="margin:0 auto;">يتم تصميم الخطة وفق تفاصيل الرحلة الفعلية، من اختيار الأماكن وترتيب الأيام، إلى ترشيح الإقامة والطيران عند الحاجة، بحيث يصل المسافر إلى وجهته وهو يعرف أين سيذهب، وماذا سيفعل، وكيف يستفيد من وقته وميزانيته.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+      <p style="margin-top:8px; font-size:14px;">أسافر، أستكشف، أحكي</p>
+    </div>
+    <div class="foot-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="plan.html">خطط رحلتك</a>
+      <a href="../index.html#about">عن جولاي</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+</footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+</script>
+</body>
+</html>

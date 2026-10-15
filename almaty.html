@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>ألماتي: مدينة التفاح | سافر مع جولاي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#F1F8FC; --cream-2:#E4F1FA; --yellow:#F3D98B; --sky:var(--color-brand); --sage:var(--color-explore);
+    --peach:var(--color-plan); --coral:var(--color-discover); --coral-deep:#E8737A; --ink:var(--color-text); --ink-soft:var(--color-text-secondary);
+    --paper:#FFFFFF; --radius-lg:28px; --radius-md:18px; --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive; --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body); color:var(--ink);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 30%, var(--cream) 62%, var(--cream) 100%);
+    background-attachment:fixed; line-height:1.75; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .narrow{max-width:760px;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--coral-deep); font-weight:700; display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;}
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--coral); display:inline-block; border-radius:2px;}
+  h1,h2,h3,h4{font-family:var(--ff-display); font-weight:700; line-height:1.25; color:var(--color-brand);}
+  h1{font-size:clamp(30px,6vw,52px);}
+  h2{font-size:clamp(24px,4.2vw,36px);}
+  h3{font-size:clamp(18px,3vw,22px);}
+  p{color:var(--ink-soft);}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--coral); color:var(--paper); box-shadow:0 10px 24px rgba(255,173,173,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--peach); color:var(--peach); background:transparent;}
+  .btn-outline:hover{background:var(--peach); color:var(--paper);}
+  .breadcrumb{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap;}
+  .breadcrumb a{font-weight:600; color:var(--coral-deep);}
+  .breadcrumb span{opacity:.5;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(241,248,252,.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(51,66,74,.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .logo .dot{width:9px; height:9px; border-radius:50%; background:var(--coral);}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(51,66,74,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+  .mobile-menu{max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper); border-bottom:1px solid rgba(51,66,74,.08);}
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(51,66,74,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+  @media (min-width:900px){
+    .nav-links{display:flex;} .nav-cta{display:inline-flex;} .burger{display:none;} .mobile-menu{display:none;}
+  }
+
+  section{padding:52px 0;}
+  .section-head{max-width:640px; margin-bottom:40px;}
+
+  /* Polaroid photo component */
+  @keyframes polaroidIn{
+    0%{opacity:0; transform:translateY(28px) scale(.9) rotate(calc(var(--rot,0deg) - 5deg));}
+    65%{opacity:1; transform:translateY(-5px) scale(1.02) rotate(var(--rot,0deg));}
+    100%{opacity:1; transform:translateY(0) scale(1) rotate(var(--rot,0deg));}
+  }
+  @media (prefers-reduced-motion: reduce){ * { animation:none !important; } }
+  .polaroid{
+    --rot:0deg; background:var(--paper); border-radius:6px; padding:10px 10px 16px; box-shadow:var(--shadow-soft);
+    display:flex; flex-direction:column; gap:10px; position:relative; transform:rotate(var(--rot));
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .polaroid .img{ border-radius:3px; overflow:hidden; min-height:150px; }
+  .polaroid .img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .polaroid .cap{font-family:var(--ff-display); font-weight:600; font-size:15px; text-align:center; color:var(--ink);}
+  .tape{position:absolute; width:60px; height:22px; opacity:.9; box-shadow:0 3px 8px rgba(59,50,38,.12);
+    background:repeating-linear-gradient(45deg, var(--peach), var(--peach) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.blue{background:repeating-linear-gradient(45deg, var(--sky), var(--sky) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.sage{background:repeating-linear-gradient(45deg, var(--sage), var(--sage) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.coral{background:repeating-linear-gradient(45deg, var(--coral), var(--coral) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+
+  .stamp{position:relative; display:inline-flex; align-items:center; justify-content:center; width:74px; height:74px;
+    border:2px dashed var(--ink); border-radius:50%; transform:rotate(-9deg); font-family:var(--ff-display); font-size:10.5px;
+    text-align:center; color:var(--ink); background:var(--paper);}
+
+  .chip{display:inline-flex; padding:9px 18px; border-radius:999px; font-size:13.5px; font-weight:600; background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35);}
+  .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px;}
+
+  footer{padding:50px 0 36px; border-top:1px solid rgba(51,66,74,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:24px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
+  .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
+</style>
+<style>
+.cat-tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;}
+.cat-tags span{background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35); border-radius:999px; padding:6px 14px; font-size:12.5px; font-weight:600;}
+.quick-info{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:40px;}
+@media (min-width:700px){.quick-info{grid-template-columns:repeat(4,1fr);}}
+.qi{background:var(--paper); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow-soft); display:flex; flex-direction:column; gap:6px;}
+.qi-label{font-size:12px; font-weight:700; color:var(--coral-deep);}
+.qi-val{font-size:14px; font-weight:600;}
+.guide-grid{display:grid; grid-template-columns:1fr; gap:36px;}
+@media (min-width:900px){.guide-grid{grid-template-columns:2fr 1fr;}}
+.guide-main h2{margin-top:30px; margin-bottom:10px; font-size:20px;}
+.guide-main h3{font-size:17px; margin-bottom:6px;}
+.guide-main p{font-size:15.5px; line-height:1.85; margin-bottom:6px;}
+.tips-list{margin:10px 0; display:flex; flex-direction:column; gap:10px;}
+.tips-list li{font-size:15px; color:var(--ink-soft); padding-right:20px; position:relative; line-height:1.7;}
+.tips-list li::before{content:"✓"; position:absolute; right:0; color:var(--sage); font-weight:700;}
+.tips-list li strong{color:var(--ink);}
+.area-block{display:grid; grid-template-columns:1fr; gap:14px; margin:18px 0; background:var(--paper); border-radius:16px; padding:16px; box-shadow:var(--shadow-soft);}
+@media (min-width:600px){.area-block{grid-template-columns:200px 1fr; align-items:center;}}
+.area-img{border-radius:10px; overflow:hidden; height:150px;}
+.area-img img{width:100%; height:100%; object-fit:cover;}
+.hotel-tiers{display:grid; grid-template-columns:1fr; gap:14px; margin-top:10px;}
+@media (min-width:700px){.hotel-tiers{grid-template-columns:repeat(3,1fr);}}
+.tier{background:var(--paper); border-radius:14px; padding:18px; box-shadow:var(--shadow-soft);}
+.tier h4{font-size:15px; margin-bottom:8px; color:var(--coral-deep);}
+.tier p{font-size:13.5px; line-height:1.7;}
+.budget-table{width:100%; border-collapse:collapse; margin:14px 0; background:var(--paper); border-radius:12px; overflow:hidden; box-shadow:var(--shadow-soft);}
+.budget-table th, .budget-table td{padding:12px 16px; text-align:center; font-size:14px;}
+.budget-table th{background:var(--ink); color:var(--paper); font-weight:700;}
+.budget-table tr:nth-child(odd){background:var(--cream);}
+.map-embed-card{background:var(--paper); border-radius:16px; padding:22px; box-shadow:var(--shadow-soft); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin:14px 0;}
+.me-stats{display:flex; gap:22px;}
+.me-stats div{display:flex; flex-direction:column; align-items:center;}
+.me-stats strong{font-family:var(--ff-display); font-size:22px; color:var(--coral-deep);}
+.me-stats span{font-size:12px; color:var(--ink-soft);}
+.faq{display:flex; flex-direction:column; gap:12px; margin-top:10px;}
+.faq-item{background:var(--paper); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow-soft);}
+.faq-item h4{font-size:14.5px; margin-bottom:6px;}
+.faq-item p{font-size:14px;}
+.gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0;}
+.gallery img{width:100%; height:140px; object-fit:cover; border-radius:10px;}
+.side-card{background:var(--paper); border-radius:16px; padding:22px; box-shadow:var(--shadow-soft); position:sticky; top:100px;}
+.side-card h3{font-size:16px; margin-bottom:14px;}
+.side-link{display:block; font-size:14.5px; font-weight:600; padding:10px 0; border-bottom:1px dashed rgba(51,66,74,.15);}
+.side-link:last-child{border-bottom:none;}
+.cta-strip{margin-top:44px; text-align:center; background:var(--ink); color:var(--paper); border-radius:24px; padding:38px 24px;}
+.cta-strip h3{color:var(--paper); margin-bottom:8px;}
+.cta-strip p{color:rgba(255,253,248,.75); margin-bottom:22px;}
+
+.map-modal{position:fixed; inset:0; background:rgba(30,36,40,.72); z-index:300; display:none; align-items:center; justify-content:center; padding:16px;}
+.map-modal.open{display:flex;}
+.map-modal-inner{position:relative; width:100%; max-width:1100px; height:88vh; background:var(--paper); border-radius:18px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.35);}
+.map-modal-inner iframe{width:100%; height:100%; border:0; display:block;}
+.map-modal-close{position:absolute; top:12px; left:12px; z-index:2; width:38px; height:38px; border-radius:50%; background:var(--paper); border:1.5px solid rgba(51,66,74,.2); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+    <nav class="nav-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="../index.html#plan">خطط رحلتك</a>
+    </nav>
+    <a href="../index.html#plan" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="all-articles.html">دليل السفر</a></li>
+      <li><a href="../index.html#maps">خرائط تفاعلية</a></li>
+      <li><a href="../index.html#plan">خطط رحلتك</a></li>
+      <a href="../index.html#plan" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-top:36px; padding-bottom:16px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">الرئيسية</a><span>/</span><a href="all-articles.html">دليل السفر</a><span>/</span>ألماتي</div>
+    <h1>ألماتي: مدينة التفاح</h1>
+    <p class="narrow" style="margin-top:14px; font-size:16.5px;">مدينة آسيوية ولكن أوروبية الملامح بدون تأشيرة للسعوديين، شعبها أغلبه مسلمين والأكل معظمه حلال ومحاطة بالجبال من كل النواحي. لكن اللي يخليها مختلفة فعلاً هو الخريف، موسم توصل فيه ألماتي لأجمل نسخة منها.</p>
+    <div class="cat-tags">
+      <span>وجهات الخريف</span><span>وجهات عائلية</span><span>وجهات اقتصادية</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0; padding-bottom:20px;">
+  <div class="container">
+    <div class="polaroid hero-photo" style="--rot:0deg; animation:none;">
+      <span class="tape blue" style="top:-8px; right:6%; transform:rotate(-5deg);"></span>
+      <div class="img" style="aspect-ratio:16/9; height:auto; background:var(--cream-2);"><img src="https://jullay-almaty-map.netlify.app/img/cover.jpg" alt="ألماتي في الخريف" style="object-fit:cover;"></div>
+      <span class="cap">ألماتي في الخريف 🍂</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="quick-info">
+      <div class="qi"><span class="qi-label">الفيزا</span><span class="qi-val">بدون فيزا للسعوديين لين 30 يوم</span></div>
+      <div class="qi"><span class="qi-label">العملة</span><span class="qi-val">التنغي الكازاخستاني — الريال ≈ 131 تنغي</span></div>
+      <div class="qi"><span class="qi-label">أفضل وقت</span><span class="qi-val">منتصف سبتمبر لآخر أكتوبر</span></div>
+      <div class="qi"><span class="qi-label">اللغة</span><span class="qi-val">الروسية والكازاخية</span></div>
+    </div>
+
+    <div class="guide-grid">
+      <div class="guide-main">
+        <h2>أفضل وقت لزيارتها؟</h2>
+        <p>هذي أهم نقطة بالمقال كله. موسم الخريف بألماتي يمتد من منتصف سبتمبر لآخر أكتوبر، لكن التوقيت يعتمد على الارتفاع:</p>
+        <ul class="tips-list">
+          <li><strong>أواخر سبتمبر:</strong> الألوان تبدأ من فوق، عند بحيرة ألماتي الكبرى والمرتفعات، بينما المدينة والوديان لسا خضراء.</li>
+          <li><strong>أول أسبوعين من أكتوبر:</strong> ذروة الألوان في غابات محمية إيلي ألاتاو، أجمل فترة للهايكنج والتصوير.</li>
+          <li><strong>منتصف أكتوبر:</strong> الذروة توصل لحدائق المدينة نفسها، حديقة الرئيس الأول والحديقة النباتية وتل كوك توبي.</li>
+          <li><strong>بحلول نوفمبر:</strong> الثلج يبدأ يوصل للقمم العالية، تكفي كطرف الموسم بس مو كبدايته.</li>
+        </ul>
+        <p>يعني لو رحلتكم أسبوع، أفضل وقت هو <strong>من 25 سبتمبر لـ 15 أكتوبر تقريبًا</strong>.</p>
+
+        <h2>المدينة والجبال والرحلات اليومية</h2>
+        <p>ألماتي ثلاث تجارب مختلفة تقدرون تجمعونها براحتكم:</p>
+
+        <div class="area-block">
+          <div class="area-img"><img src="https://jullay-almaty-map.netlify.app/img/city.jpg" alt="حديقة بانفيلوف"></div>
+          <div>
+            <h3>1 · المدينة، الحدائق والتاريخ والأسواق</h3>
+            <p>قلب ألماتي: حديقة بانفيلوف وكاتدرائية زينكوف الخشبية، شارع أربات، السوق الأخضر، والمسجد المركزي. كنيسة خشبية عمرها أكثر من 100 سنة بدون مسمار واحد.</p>
+          </div>
+        </div>
+
+        <div class="area-block">
+          <div class="area-img"><img src="https://jullay-almaty-map.netlify.app/img/mountains.jpg" alt="تلفريك شيمبولاك"></div>
+          <div>
+            <h3>2 · الجبال والتلفريك، ألماتي فوق الغيوم</h3>
+            <p>شيمبولاك وكوك توبي وميديو، تلفريكات ترفعكم من ضجة المدينة لهدوء القمم خلال دقائق. شيمبولاك بالذات تنقلكم من أشجار صفراء لثلوج فوق 3000 متر بنفس الرحلة.</p>
+          </div>
+        </div>
+
+        <div class="area-block">
+          <div class="area-img"><img src="https://jullay-almaty-map.netlify.app/img/lakes.jpg" alt="بحيرة كولساي"></div>
+          <div>
+            <h3>3 · الرحلات اليومية، بحيرات وأودية خارج المدينة</h3>
+            <p>بحيرة كولساي، بحيرة كايندي، ووادي تشارين، كلها رحلات يوم كامل تستاهل. بحيرة ألماتي الكبرى أقرب بكثير (ساعة بالسيارة) وتصلح كنصف يوم.</p>
+          </div>
+        </div>
+
+        <p><strong>كم يكفي؟</strong> يومين للمدينة والجبال القريبة، ويوم أو يومين إضافيين للرحلات البعيدة. يعني 4–5 أيام كافية لتغطية ألماتي بشكل مريح.</p>
+
+        <h2>أبرز الأماكن اللي تستاهل</h2>
+        <p><strong>في المدينة:</strong> حديقة بانفيلوف وكاتدرائية زينكوف، شارع أربات، السوق الأخضر (يغلق الاثنين)، والحديقة النباتية.</p>
+        <p><strong>الجبال:</strong> شيمبولاك (تلفريك 3 مراحل، زيبلاين وتصوير مع الصقور)، كوك توبي (أجمل إطلالة وقت الغروب)، وميديو ودرج الصحة (842 درجة، حلبة التزلج مغلقة للترميم حتى 2027).</p>
+        <p><strong>الرحلات اليومية:</strong> بحيرة كولساي (فيروزية، تحتاج يوم كامل)، بحيرة كايندي (جذوع أشجار غارقة منذ زلزال 1911)، وادي تشارين (الأخ الأصغر لجراند كانيون)، وبحيرة ألماتي الكبرى (خذوا الجواز معكم، فيه نقاط تفتيش).</p>
+
+        <h2>وين تسكنون؟</h2>
+        <div class="hotel-tiers">
+          <div class="tier">
+            <h4>فاخر</h4>
+            <p><strong>الريتز كارلتون</strong> — إطلالات بانورامية على الجبال (1100–1700 ريال). <strong>إنتركونتيننتال</strong> — قرب ساحة الجمهورية (600–950 ريال).</p>
+          </div>
+          <div class="tier">
+            <h4>متوسط (عوائل)</h4>
+            <p><strong>نوفوتيل ليفينج جيتيسو</strong> — شقق فندقية بمطبخ، على بعد 300 متر من أربات (350–550 ريال). <strong>ريزيدنت سيتي هوتيل</strong> (250–400 ريال).</p>
+          </div>
+          <div class="tier">
+            <h4>اقتصادي</h4>
+            <p><strong>إيبيس جيتيسو</strong> — قريب من أربات والمترو (180–280 ريال). <strong>فندق ألماتي</strong> — كل شي حوله مشيًا (200–320 ريال).</p>
+          </div>
+        </div>
+
+        <h2>الأكل</h2>
+        <p><strong>نافات</strong> للأكل الكازاخي الأصيل (45–80 ريال). <strong>سانديك</strong> مطعم يشتغل كمتحف تراثي مع عرض موسيقي حي (90–150 ريال). <strong>زيافت ستيك هاوس</strong> لمحبي اللحوم (120–250 ريال). <strong>بون بون</strong> للإفطار الفرنسي (35–65 ريال).</p>
+
+        <h2>التنقل</h2>
+        <ul class="tips-list">
+          <li>يانديكس جو (Yandex Go) هو التطبيق الأساسي داخل المدينة، رخيص وسريع.</li>
+          <li>للرحلات البعيدة (كولساي، كايندي، تشارين): جولة منظمة أو سائق خاص أفضل من تأجير سيارة.</li>
+          <li>تلفريك شيمبولاك وكوك توبي جزء من التجربة نفسها، ما تحتاجون مواصلات إضافية بعدها.</li>
+        </ul>
+
+        <h2>كم تكلفة الرحلة التقريبية؟</h2>
+        <table class="budget-table">
+          <tr><th>النمط</th><th>السكن</th><th>الأكل</th><th>الإجمالي اليومي</th></tr>
+          <tr><td>اقتصادي</td><td>80–150 ريال</td><td>60–90 ريال</td><td>140–240 ريال</td></tr>
+          <tr><td>متوسط (عوائل)</td><td>200–350 ريال</td><td>100–150 ريال</td><td>300–500 ريال</td></tr>
+          <tr><td>فاخر</td><td>500–900 ريال</td><td>200–300 ريال</td><td>700–1,200 ريال</td></tr>
+        </table>
+        <p>أسبوع كامل بمستوى متوسط ممتاز يطلع بحدود <strong>2,100–3,500 ريال للشخص</strong> بدون الطيران.</p>
+
+        <h2>الخريطة التفاعلية</h2>
+        <p>خريطة تفاعلية تجمع أكثر من 90 مكان موثّق في ألماتي، فيها فلاتر حسب الفئة، بحث بالاسم، وكل مكان بسعره بالريال ورابطه على قوقل مابس.</p>
+        <div class="map-embed-card">
+          <div class="me-stats">
+            <div><strong>90</strong><span>مكان موثّق</span></div>
+            <div><strong>3</strong><span>مناطق</span></div>
+            <div><strong>22</strong><span>فئة</span></div>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="document.getElementById('almatyMapModal').classList.add('open')">لمشاهدة الخريطة التفاعلية ↗</button>
+        </div>
+
+        <h2>أسئلة تجيني كثير</h2>
+        <div class="faq">
+          <div class="faq-item"><h4>هل ألماتي آمنة للعوائل والبنات؟</h4><p>نعم، مدينة آمنة والناس ودودين، مع الاحتياطات المعتادة بأي سفر.</p></div>
+          <div class="faq-item"><h4>هل يحتاج السعودي فيزا لكازاخستان؟</h4><p>لا، الدخول بدون فيزا حتى 30 يوم، بس تأكدوا الجواز ساري 6 شهور.</p></div>
+          <div class="faq-item"><h4>متى بالضبط ذروة ألوان الخريف؟</h4><p>المرتفعات والبحيرات أواخر سبتمبر، الغابات والوديان أول أكتوبر، وحدائق المدينة منتصف أكتوبر تقريبًا.</p></div>
+          <div class="faq-item"><h4>كم يوم يكفي لزيارة ألماتي؟</h4><p>4–5 أيام تكفي لتغطية المدينة والجبال ورحلة يومية واحدة على الأقل براحة.</p></div>
+          <div class="faq-item"><h4>هل الأكل حلال؟</h4><p>أغلبه نعم، الأكل الكازاخي التقليدي حلال بطبيعته، بس الكحول منتشر بالمطاعم فلو تبون مكان بدونه اسألوا قبل الحجز.</p></div>
+          <div class="faq-item"><h4>هل أحتاج سيارة؟</h4><p>داخل المدينة لا، يانديكس يكفي. للرحلات البعيدة الأفضل جولة منظمة أو سائق خاص.</p></div>
+        </div>
+
+        <h2>لقطات من ألماتي</h2>
+        <div class="gallery">
+          <img src="https://jullay-almaty-map.netlify.app/img/g1.jpg" alt="ألماتي — لقطة 1">
+          <img src="https://jullay-almaty-map.netlify.app/img/g2.jpg" alt="ألماتي — لقطة 2">
+          <img src="https://jullay-almaty-map.netlify.app/img/g3.jpg" alt="ألماتي — لقطة 3">
+        </div>
+
+        <h2>الخلاصة</h2>
+        <p>ألماتي مو مجرد محطة عبور لآسيا الوسطى، هي وجهة خريفية مكتملة بحد ذاتها، مدينة أوروبية الطابع، جبال توصلونها بتلفريك من وسط المدينة، وبحيرات فيروزية ما شفتوا شبيهها. جربوها قبل لا تصير على كل قوائم "الوجهات القادمة" وترتفع أسعارها.</p>
+      </div>
+
+      <aside class="guide-side">
+        <div class="side-card">
+          <h3>محتوى مرتبط</h3>
+          <a href="all-articles.html" class="side-link">🍂 وجهات خريفية أخرى</a>
+          <a href="all-articles.html" class="side-link">📚 كل المقالات</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="cta-strip">
+      <h3>عندك رحلة لألماتي قريبًا؟</h3>
+      <p>أقدر أساعدك تخططون رحلتك بالكامل حسب راحتك وميزانيتك.</p>
+      <a href="plan.html" class="btn btn-primary">خطط رحلتك</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+      <p style="margin-top:8px; font-size:14px;">أسافر، أستكشف، أحكي</p>
+    </div>
+    <div class="foot-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="../index.html#plan">خطط رحلتك</a>
+      <a href="../index.html#about">عن جولاي</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+</footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+</script>
+<div class="map-modal" id="almatyMapModal">
+  <div class="map-modal-inner">
+    <button type="button" class="map-modal-close" onclick="document.getElementById('almatyMapModal').classList.remove('open')" aria-label="إغلاق">✕</button>
+    <iframe src="https://jullay-almaty-map.netlify.app/" title="خريطة ألماتي التفاعلية"></iframe>
+  </div>
+</div>
+</body>
+</html>

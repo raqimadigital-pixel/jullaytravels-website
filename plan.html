@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>خطط رحلتك | سافر مع جولاي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#F1F8FC; --cream-2:#E4F1FA; --yellow:#F3D98B; --sky:var(--color-brand); --sage:var(--color-explore);
+    --peach:var(--color-plan); --coral:var(--color-discover); --coral-deep:#E8737A; --ink:var(--color-text); --ink-soft:var(--color-text-secondary);
+    --paper:#FFFFFF; --radius-lg:28px; --radius-md:18px; --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive; --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body); color:var(--ink);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 30%, var(--cream) 62%, var(--cream) 100%);
+    background-attachment:fixed; line-height:1.75; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .narrow{max-width:760px;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--coral-deep); font-weight:700; display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;}
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--coral); display:inline-block; border-radius:2px;}
+  h1,h2,h3,h4{font-family:var(--ff-display); font-weight:700; line-height:1.25; color:var(--color-brand);}
+  h1{font-size:clamp(30px,6vw,52px);}
+  h2{font-size:clamp(24px,4.2vw,36px);}
+  h3{font-size:clamp(18px,3vw,22px);}
+  p{color:var(--ink-soft);}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--coral); color:var(--paper); box-shadow:0 10px 24px rgba(255,173,173,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--peach); color:var(--peach); background:transparent;}
+  .btn-outline:hover{background:var(--peach); color:var(--paper);}
+  .breadcrumb{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap;}
+  .breadcrumb a{font-weight:600; color:var(--coral-deep);}
+  .breadcrumb span{opacity:.5;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(241,248,252,.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(51,66,74,.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .logo .dot{width:9px; height:9px; border-radius:50%; background:var(--coral);}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(51,66,74,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+  .mobile-menu{max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper); border-bottom:1px solid rgba(51,66,74,.08);}
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(51,66,74,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+  @media (min-width:900px){
+    .nav-links{display:flex;} .nav-cta{display:inline-flex;} .burger{display:none;} .mobile-menu{display:none;}
+  }
+
+  section{padding:52px 0;}
+  .section-head{max-width:640px; margin-bottom:40px;}
+
+  /* Polaroid photo component */
+  @keyframes polaroidIn{
+    0%{opacity:0; transform:translateY(28px) scale(.9) rotate(calc(var(--rot,0deg) - 5deg));}
+    65%{opacity:1; transform:translateY(-5px) scale(1.02) rotate(var(--rot,0deg));}
+    100%{opacity:1; transform:translateY(0) scale(1) rotate(var(--rot,0deg));}
+  }
+  @media (prefers-reduced-motion: reduce){ * { animation:none !important; } }
+  .polaroid{
+    --rot:0deg; background:var(--paper); border-radius:6px; padding:10px 10px 16px; box-shadow:var(--shadow-soft);
+    display:flex; flex-direction:column; gap:10px; position:relative; transform:rotate(var(--rot));
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .polaroid .img{ border-radius:3px; overflow:hidden; min-height:150px; }
+  .polaroid .img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .polaroid .cap{font-family:var(--ff-display); font-weight:600; font-size:15px; text-align:center; color:var(--ink);}
+  .tape{position:absolute; width:60px; height:22px; opacity:.9; box-shadow:0 3px 8px rgba(59,50,38,.12);
+    background:repeating-linear-gradient(45deg, var(--peach), var(--peach) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.blue{background:repeating-linear-gradient(45deg, var(--sky), var(--sky) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.sage{background:repeating-linear-gradient(45deg, var(--sage), var(--sage) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.coral{background:repeating-linear-gradient(45deg, var(--coral), var(--coral) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+
+  .stamp{position:relative; display:inline-flex; align-items:center; justify-content:center; width:74px; height:74px;
+    border:2px dashed var(--ink); border-radius:50%; transform:rotate(-9deg); font-family:var(--ff-display); font-size:10.5px;
+    text-align:center; color:var(--ink); background:var(--paper);}
+
+  .chip{display:inline-flex; padding:9px 18px; border-radius:999px; font-size:13.5px; font-weight:600; background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35);}
+  .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px;}
+
+  footer{padding:50px 0 36px; border-top:1px solid rgba(51,66,74,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:24px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
+  .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
+</style>
+<style>
+.plan-compare{display:grid; grid-template-columns:1fr; gap:16px;}
+@media (min-width:700px){.plan-compare{grid-template-columns:1fr 1fr;}}
+.compare-card{border:1.5px dashed rgba(51,66,74,.25); border-radius:18px; padding:22px; background:var(--paper);}
+.compare-card.active{border-color:var(--coral); border-style:solid;}
+.compare-card h4{margin-bottom:6px; font-size:17px;}
+.includes-grid{display:grid; grid-template-columns:1fr; gap:12px;}
+@media (min-width:640px){.includes-grid{grid-template-columns:1fr 1fr;}}
+.inc{background:var(--paper); border-radius:12px; padding:14px 18px; font-size:14.5px; font-weight:600; box-shadow:0 6px 16px rgba(51,66,74,.06);}
+.steps{display:grid; grid-template-columns:1fr; gap:18px;}
+@media (min-width:900px){.steps{grid-template-columns:repeat(4,1fr);}}
+.step{background:var(--paper); border-radius:18px; padding:24px 20px; box-shadow:var(--shadow-soft);}
+.step .num{font-family:var(--ff-display); font-size:30px; color:var(--peach); -webkit-text-stroke:1.2px var(--coral-deep); margin-bottom:10px; display:block;}
+.step h4{font-size:15.5px; margin-bottom:6px;}
+.step p{font-size:13.5px;}
+.request-form{background:var(--paper); border-radius:22px; padding:30px 26px; box-shadow:var(--shadow-soft); display:flex; flex-direction:column; gap:18px; max-width:640px;}
+.f-row{display:flex; flex-direction:column; gap:8px;}
+.f-row label{font-size:14px; font-weight:700;}
+.f-row label span{font-weight:400; color:var(--ink-soft); font-size:12.5px;}
+.f-row input, .f-row textarea{font-family:var(--ff-body); border:1.5px solid rgba(51,66,74,.18); border-radius:12px; padding:12px 14px; font-size:14.5px; background:var(--cream); resize:vertical;}
+.f-row-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+    <nav class="nav-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="maps-all.html">خرائط تفاعلية</a>
+      <a href="plan.html">خطط رحلتك</a>
+    </nav>
+    <a href="plan.html" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="all-articles.html">دليل السفر</a></li>
+      <li><a href="maps-all.html">خرائط تفاعلية</a></li>
+      <li><a href="plan.html">خطط رحلتك</a></li>
+      <a href="plan.html" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-top:36px; padding-bottom:10px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">الرئيسية</a><span>/</span>خطط رحلتك</div>
+    <h1>خطط رحلتك</h1>
+    <p class="narrow" style="margin-top:14px; font-size:16.5px;">هي خدمة مخصصة مدفوعة أساعدك فيها تصمم رحلتك من اختيار الوجهة وحتى يوم العودة. خدمة لتخطيط الرحلة من A إلى Z حسب تفضيلاتك وميزانيتك ومدة رحلتك وأسلوب سفرك.</p>
+  </div>
+</section>
+
+<section style="padding-top:10px;">
+  <div class="container">
+    <div style="margin-bottom:8px;">
+      <a href="services.html" class="btn btn-outline">استكشف كل الخدمات والأسعار بالتفصيل</a>
+    </div>
+    <h2 style="margin:0 0 22px;">مميزات الخدمة</h2>
+    <div class="includes-grid">
+      <span class="inc">✓ فهم تفضيلات المسافر</span>
+      <span class="inc">✓ اختيار الوجهة أو المساعدة فيها</span>
+      <span class="inc">✓ تحديد الأماكن المناسبة</span>
+      <span class="inc">✓ ترتيب الأيام</span>
+      <span class="inc">✓ توزيع الأنشطة</span>
+      <span class="inc">✓ اقتراح المطاعم</span>
+      <span class="inc">✓ تنظيم المواصلات</span>
+      <span class="inc">✓ بناء جدول يومي</span>
+      <span class="inc">✓ إنشاء خريطة تفاعلية</span>
+      <span class="inc">✓ مراعاة الميزانية والمدة</span>
+      <span class="inc">✓ ترشيح أفضل خيارات السكن المناسبة لك وتنفيذ حجوزات الفنادق</span>
+      <span class="inc">✓ ترشيح أفضل رحلات مناسبة لك وتنفيذ حجوزات الطيران</span>
+    </div>
+
+    <h2 style="margin:50px 0 22px;">نموذج طلب التخطيط</h2>
+    <form class="request-form">
+      <div class="f-row">
+        <label>الوجهة <span>(إن كانت محددة)</span></label>
+        <input type="text" placeholder="مثال: اليابان">
+      </div>
+      <div class="f-row-2">
+        <div class="f-row">
+          <label>الشهر المتوقع للسفر</label>
+          <input type="text" placeholder="مثال: مارس 2027">
+        </div>
+        <div class="f-row">
+          <label>عدد الأيام</label>
+          <input type="text" placeholder="مثال: 7 أيام">
+        </div>
+      </div>
+      <div class="f-row">
+        <label>الميزانية التقريبية</label>
+        <input type="text" placeholder="مثال: 8000 ريال">
+      </div>
+      <div class="f-row">
+        <label>اهتماماتك وأسلوب سفرك</label>
+        <textarea rows="4" placeholder="مثال: أحب الطبيعة والأماكن الهادئة، مو مهتم بالتسوق كثير..."></textarea>
+      </div>
+      <a href="services.html" id="startPlanBtn" class="btn btn-primary" style="width:100%; justify-content:center; font-size:16px;">ابدأ تخطيط رحلتي</a>
+    </form>
+
+    <h2 style="margin:50px 0 22px;">خطوات الطلب</h2>
+    <div class="steps">
+      <div class="step"><span class="num">01</span><h4>أرسل تفاصيل رحلتك</h4><p>الشهر، الوجهة إن كانت محددة، عدد الأيام، الميزانية، اهتماماتك وأسلوب سفرك.</p></div>
+      <div class="step"><span class="num">02</span><h4>نصمم لك الخطة</h4><p>نتواصل معك لفهم رغباتك، ثم نرتب لك الرحلة يومًا بيوم بطريقة عملية.</p></div>
+      <div class="step"><span class="num">03</span><h4>استلم جدولك وخريطتك</h4><p>تحصل على جدول السفر والخريطة التفاعلية وكل التفاصيل المتفق عليها.</p></div>
+      <div class="step"><span class="num">04</span><h4>سافر بدون وجع رأس</h4><p>كل شي مرتب أمامك، وأنت عليك الاستمتاع بالرحلة.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+      <p style="margin-top:8px; font-size:14px;">أسافر، أستكشف، أحكي</p>
+    </div>
+    <div class="foot-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="maps-all.html">خرائط تفاعلية</a>
+      <a href="plan.html">خطط رحلتك</a>
+      <a href="about.html">عن جولاي</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+</footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+</script>
+</body>
+</html>

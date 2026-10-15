@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>جدول 7 أيام في ألبانيا وكوسوفو | سافر مع جولاي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#F1F8FC; --cream-2:#E4F1FA; --yellow:#F3D98B; --sky:var(--color-brand); --sage:var(--color-explore);
+    --peach:var(--color-plan); --coral:var(--color-discover); --coral-deep:#E8737A; --ink:var(--color-text); --ink-soft:var(--color-text-secondary);
+    --paper:#FFFFFF; --radius-lg:28px; --radius-md:18px; --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive; --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body); color:var(--ink);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 30%, var(--cream) 62%, var(--cream) 100%);
+    background-attachment:fixed; line-height:1.75; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .narrow{max-width:760px;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--coral-deep); font-weight:700; display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;}
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--coral); display:inline-block; border-radius:2px;}
+  h1,h2,h3,h4{font-family:var(--ff-display); font-weight:700; line-height:1.25; color:var(--color-brand);}
+  h1{font-size:clamp(30px,6vw,52px);}
+  h2{font-size:clamp(24px,4.2vw,36px);}
+  h3{font-size:clamp(18px,3vw,22px);}
+  p{color:var(--ink-soft);}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--coral); color:var(--paper); box-shadow:0 10px 24px rgba(255,173,173,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--peach); color:var(--peach); background:transparent;}
+  .btn-outline:hover{background:var(--peach); color:var(--paper);}
+  .breadcrumb{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap;}
+  .breadcrumb a{font-weight:600; color:var(--coral-deep);}
+  .breadcrumb span{opacity:.5;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(241,248,252,.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(51,66,74,.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .logo .dot{width:9px; height:9px; border-radius:50%; background:var(--coral);}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(51,66,74,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+  .mobile-menu{max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper); border-bottom:1px solid rgba(51,66,74,.08);}
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(51,66,74,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+  @media (min-width:900px){
+    .nav-links{display:flex;} .nav-cta{display:inline-flex;} .burger{display:none;} .mobile-menu{display:none;}
+  }
+
+  section{padding:52px 0;}
+  .section-head{max-width:640px; margin-bottom:40px;}
+
+  /* Polaroid photo component */
+  @keyframes polaroidIn{
+    0%{opacity:0; transform:translateY(28px) scale(.9) rotate(calc(var(--rot,0deg) - 5deg));}
+    65%{opacity:1; transform:translateY(-5px) scale(1.02) rotate(var(--rot,0deg));}
+    100%{opacity:1; transform:translateY(0) scale(1) rotate(var(--rot,0deg));}
+  }
+  @media (prefers-reduced-motion: reduce){ * { animation:none !important; } }
+  .polaroid{
+    --rot:0deg; background:var(--paper); border-radius:6px; padding:10px 10px 16px; box-shadow:var(--shadow-soft);
+    display:flex; flex-direction:column; gap:10px; position:relative; transform:rotate(var(--rot));
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .polaroid .img{ border-radius:3px; overflow:hidden; min-height:150px; }
+  .polaroid .img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .polaroid .cap{font-family:var(--ff-display); font-weight:600; font-size:15px; text-align:center; color:var(--ink);}
+  .tape{position:absolute; width:60px; height:22px; opacity:.9; box-shadow:0 3px 8px rgba(59,50,38,.12);
+    background:repeating-linear-gradient(45deg, var(--peach), var(--peach) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.blue{background:repeating-linear-gradient(45deg, var(--sky), var(--sky) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.sage{background:repeating-linear-gradient(45deg, var(--sage), var(--sage) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.coral{background:repeating-linear-gradient(45deg, var(--coral), var(--coral) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+
+  .stamp{position:relative; display:inline-flex; align-items:center; justify-content:center; width:74px; height:74px;
+    border:2px dashed var(--ink); border-radius:50%; transform:rotate(-9deg); font-family:var(--ff-display); font-size:10.5px;
+    text-align:center; color:var(--ink); background:var(--paper);}
+
+  .chip{display:inline-flex; padding:9px 18px; border-radius:999px; font-size:13.5px; font-weight:600; background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35);}
+  .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px;}
+
+  footer{padding:50px 0 36px; border-top:1px solid rgba(51,66,74,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:24px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
+  .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
+</style>
+<style>
+.cat-tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;}
+.cat-tags span{background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35); border-radius:999px; padding:6px 14px; font-size:12.5px; font-weight:600;}
+.quick-info{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:36px;}
+@media (min-width:700px){.quick-info{grid-template-columns:repeat(4,1fr);}}
+.qi{background:var(--paper); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow-soft); display:flex; flex-direction:column; gap:6px;}
+.qi-label{font-size:12px; font-weight:700; color:var(--coral-deep);}
+.qi-val{font-size:14px; font-weight:600;}
+.route-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:16px;}
+@media (min-width:700px){.route-grid{grid-template-columns:1fr 1fr;}}
+.route-card{background:var(--cream-2); border-radius:14px; padding:18px;}
+.route-card h4{font-size:14.5px; margin-bottom:8px;}
+.route-card p{font-size:13.5px; line-height:1.7;}
+.info-grid{display:grid; grid-template-columns:1fr; gap:14px;}
+@media (min-width:700px){.info-grid{grid-template-columns:repeat(2,1fr);}}
+.info-card{background:var(--paper); border-radius:14px; padding:18px; box-shadow:var(--shadow-soft);}
+.info-card h4{font-size:15px; margin-bottom:6px;}
+.info-card p{font-size:14px; line-height:1.7;}
+.day-filters{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 6px; position:sticky; top:70px; z-index:10; background:var(--cream); padding:8px 0;}
+.day-filters a{background:var(--paper); border:1.5px solid rgba(51,66,74,.15); border-radius:999px; padding:9px 18px; font-size:13.5px; font-weight:700; box-shadow:var(--shadow-soft); transition:background .2s ease, color .2s ease;}
+.day-filters a:hover{background:var(--coral); color:var(--paper); border-color:var(--coral);}
+.days-wrap{display:flex; flex-direction:column; gap:22px; margin-top:16px;}
+.day-block{background:var(--paper); border-radius:18px; padding:22px; box-shadow:var(--shadow-soft); scroll-margin-top:90px;}
+.day-head{display:flex; align-items:center; gap:14px; margin-bottom:14px;}
+.day-num{width:42px; height:42px; border-radius:50%; background:var(--sage); color:var(--paper); display:flex; align-items:center; justify-content:center; font-family:var(--ff-display); font-size:16px; flex-shrink:0;}
+.day-block:nth-child(2n) .day-num{background:var(--coral);}
+.day-block:nth-child(3n) .day-num{background:var(--sky); color:var(--ink);}
+.day-head h3{font-size:17px;}
+.day-head .drive{font-size:13px; color:var(--ink-soft);}
+.stops-grid{display:grid; grid-template-columns:1fr; gap:10px; margin-bottom:14px;}
+@media (min-width:700px){.stops-grid{grid-template-columns:1fr 1fr;}}
+.stop{background:var(--cream); border-radius:10px; padding:12px 14px;}
+.stop h4{font-size:13.5px; margin-bottom:4px;}
+.stop p{font-size:12.5px; line-height:1.6;}
+.food-line{font-size:13.5px; background:var(--cream-2); border-radius:10px; padding:10px 14px; margin-top:4px;}
+.hotel-line{font-size:13px; background:var(--paper); border:1px dashed rgba(51,66,74,.2); border-radius:10px; padding:9px 14px; margin-top:8px; color:var(--ink-soft);}
+.tips-list{padding-right:22px; display:flex; flex-direction:column; gap:8px; margin-top:10px;}
+.tips-list li{font-size:15px; color:var(--ink-soft);}
+.tips-list strong{color:var(--ink);}
+.maps-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px;}
+
+.map-modal{position:fixed; inset:0; background:rgba(30,36,40,.72); z-index:300; display:none; align-items:center; justify-content:center; padding:16px;}
+.map-modal.open{display:flex;}
+.map-modal-inner{position:relative; width:100%; max-width:1100px; height:88vh; background:var(--paper); border-radius:18px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.35);}
+.map-modal-inner iframe{width:100%; height:100%; border:0; display:block;}
+.map-modal-close{position:absolute; top:12px; left:12px; z-index:2; width:38px; height:38px; border-radius:50%; background:var(--paper); border:1.5px solid rgba(51,66,74,.2); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+    <nav class="nav-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="../index.html#plan">خطط رحلتك</a>
+    </nav>
+    <a href="../index.html#plan" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="all-articles.html">دليل السفر</a></li>
+      <li><a href="../index.html#maps">خرائط تفاعلية</a></li>
+      <li><a href="../index.html#plan">خطط رحلتك</a></li>
+      <a href="../index.html#plan" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-top:36px; padding-bottom:16px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">الرئيسية</a><span>/</span><a href="all-articles.html">دليل السفر</a><span>/</span>ألبانيا وكوسوفو</div>
+    <h1>جدول 7 أيام في ألبانيا وكوسوفو</h1>
+    <p class="narrow" style="margin-top:14px; font-size:16.5px;">رحلة برية بسيارة مستأجرة، تبدأ وتنتهي في تيرانا، مع تغيير مسار الذهاب عن مسار العودة لتغطية أكبر عدد من الوجهات: تيرانا، شمال ألبانيا، وكوسوفو.</p>
+    <div class="cat-tags">
+      <span>وجهات الربيع</span><span>وجهات الخريف</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0; padding-bottom:20px;">
+  <div class="container">
+    <div class="polaroid hero-photo" style="--rot:0deg; animation:none;">
+      <span class="tape sage" style="top:-8px; right:6%; transform:rotate(-5deg);"></span>
+      <div class="img" style="aspect-ratio:16/9; height:auto; background:var(--cream-2);"><img src="https://jullay-albania-map.netlify.app/img/cover.jpg" alt="تيرانا" style="object-fit:cover;"></div>
+      <span class="cap">تيرانا وقت الغروب 🌇</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="quick-info">
+      <div class="qi"><span class="qi-label">المدة</span><span class="qi-val">7 أيام</span></div>
+      <div class="qi"><span class="qi-label">المواصلات</span><span class="qi-val">سيارة مستأجرة</span></div>
+      <div class="qi"><span class="qi-label">المسار</span><span class="qi-val">تيرانا، الشمال، كوسوفو</span></div>
+      <div class="qi"><span class="qi-label">أفضل وقت</span><span class="qi-val">مايو - أكتوبر</span></div>
+    </div>
+
+    <h2>مسار الرحلة</h2>
+    <div class="route-grid">
+      <div class="route-card"><h4>مسار الذهاب · الغرب</h4><p>تيرانا ← كرويا ← ليزة ← شكودرا ← بحيرة كوماني (طريق السهل الغربي عبر كرويا)</p></div>
+      <div class="route-card"><h4>مسار العودة · الشرق</h4><p>بريشتينا ← كوكس ← تيرانا (طريق Rruga e Kombit الجبلي عبر نفق كالماش)</p></div>
+    </div>
+    <p style="margin-top:14px;">العبور لكوسوفو من شكودرا نحو معبر مورينا قرب بريزرن، والعودة من بريشتينا مباشرة لتيرانا عبر طريق مختلف تمامًا، فيجتمع بالرحلة الساحل الغربي والجبال الشرقية معًا.</p>
+
+    <div class="info-grid" style="margin-top:20px;">
+      <div class="info-card"><h4>💶 العملة</h4><p>ألبانيا: الليك (اليورو مقبول أحيانًا). كوسوفو: اليورو. الكاش أساسي بالبلدين.</p></div>
+      <div class="info-card"><h4>🛂 عبور الحدود</h4><p>تأكدوا إن تأجير السيارة يسمح بدخول كوسوفو مع البطاقة الخضراء للتأمين.</p></div>
+      <div class="info-card"><h4>🚗 القيادة</h4><p>الطرق الجبلية ضيقة ومتعرجة، القيادة نهارًا أأمن، وطريق Rruga e Kombit معبّد وممتاز.</p></div>
+      <div class="info-card"><h4>☀️ أفضل موسم</h4><p>من مايو إلى أكتوبر، طرق الجبال آمنة والطقس معتدل.</p></div>
+    </div>
+
+    <h2 style="margin-top:44px;">الجدول يوم بيوم</h2>
+    <div class="day-filters">
+      <a href="#day1">اليوم 1</a>
+      <a href="#day2">اليوم 2</a>
+      <a href="#day3">اليوم 3</a>
+      <a href="#day4">اليوم 4</a>
+      <a href="#day5">اليوم 5</a>
+      <a href="#day6">اليوم 6</a>
+      <a href="#day7">اليوم 7</a>
+    </div>
+    <div class="days-wrap">
+      
+      <div class="day-block" id="day1">
+        <div class="day-head"><span class="day-num">1</span><div><h3>الوصول إلى تيرانا العاصمة</h3><span class="drive">🚗 المطار إلى الفندق · 30-40 دقيقة</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>بعد الظهر · مطار تيرانا الدولي</h4><p>استلام السيارة المستأجرة، ثم التوجه للفندق. يفضل حجز فندق قريب من ساحة سكندربيه.</p></div>
+<div class="stop"><h4>العصر · ساحة سكندربيه ومسجد أدهم بيك</h4><p>قلب تيرانا النابض: الساحة الواسعة، تمثال البطل القومي، والمسجد العثماني وبرج الساعة. الدخول مجاني.</p></div>
+<div class="stop"><h4>قبل الغروب · كافيه سكاي كلوب الدوّار</h4><p>بار دوّار بالطابق 18 يكمل دورة كل ساعة بإطلالة 360 درجة، الأجمل قبل الغروب بنصف ساعة.</p></div>
+<div class="stop"><h4>المساء · حي بلوكو</h4><p>أحدث حي في تيرانا، عشرات المقاهي والمطاعم المتجاورة وأجواء حيوية مساءً.</p></div></div>
+        <p class="food-line">🍽️ العشاء: Oda (بيت تراثي، 50-90 ريال) أو مطعم الذوق العربي للحلال. الكافيه: Sky Club (35-70 ريال، للإطلالة قبل الغروب).</p>
+        <p class="hotel-line">🏨 شيكو إمبريال Xheko Imperial (430-700 ريال) أو ذا بلازا The Plaza، أو اقتصادي: Rooftop Tirana (180-320 ريال).</p>
+      </div>
+
+      <div class="day-block" id="day2">
+        <div class="day-head"><span class="day-num">2</span><div><h3>تيرانا كاملة: جبل داجتي والسنتر التاريخي</h3><span class="drive">🚗 تنقلات داخل المدينة فقط</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>9:00 · متحف بنك آرت 1</h4><p>ملجأ نووي من الحقبة الشيوعية تحول لمتحف مذهل، عند محطة التلفريك السفلى مباشرة. ساعة ونصف-ساعتين، تذكرة ~20 ريال.</p></div>
+<div class="stop"><h4>11:30 · تلفريك داجتي إكسبريس</h4><p>أطول تلفريك في البلقان، إطلالة كاملة على تيرانا، في القمة مطاعم ومسارات مشي. ذهاب وعودة ~50 ريال.</p></div>
+<div class="stop"><h4>2:00 · غداء قرب قلعة تيرانا</h4><p>بعد النزول من الجبل، غداء بقلب السنتر قبل جولة المشي.</p></div>
+<div class="stop"><h4>بعد الظهر · هرم تيرانا وبيت الأوراق وبازار الجديد</h4><p>معالم متقاربة سيرًا: الهرم المجدد، متحف House of Leaves (التنصت والمراقبة)، والبازار المسقوف.</p></div>
+<div class="stop"><h4>المساء · مقهى كوميتيتي وعشاء إيرا</h4><p>مقهى بديكور الحقبة الشيوعية من أكثر أماكن تيرانا للتصوير، ثم عشاء بمطعم إيرا الأشهر للأكل الألباني.</p></div></div>
+        <p class="food-line">🍽️ الفطور: Café Momus (40-85 ريال). الغداء: Ceren Ismet Shehu (85-130 ريال، حصص كبيرة). الكافيه: Komiteti (30-60 ريال). العشاء: Restaurant Era (60-110 ريال، احجز مسبقًا). 💎 هيدن جم: بحيرة بوفيلا ومطل جامتي (يحتاج نصف يوم ودفع رباعي).</p>
+        <p class="hotel-line">🏨 نفس فندق الليلة الأولى في تيرانا.</p>
+      </div>
+
+      <div class="day-block" id="day3">
+        <div class="day-head"><span class="day-num">3</span><div><h3>تيرانا ← كرويا ← ليزة ← شكودرا</h3><span class="drive">🚗 حوالي ساعتين ونصف قيادة موزّعة</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>9:00 · قلعة كرويا وبازارها العثماني</h4><p>45 دقيقة شمال تيرانا، رمز المقاومة الألبانية بإطلالة على البحر ومتحف سكندربيرغ، وأسفلها بازار عثماني حجري للسجاد والتحف.</p></div>
+<div class="stop"><h4>1:30 · غداء في ليزة (من المزرعة إلى الطاولة)</h4><p>Mrizi i Zanave، أشهر مطعم بألبانيا، منيو من إنتاج المزرعة، الحجز ضروري. بديل أسرع: مطعم KROI بكرويا.</p></div>
+<div class="stop"><h4>العصر · قلعة روزافا في شكودرا</h4><p>إطلالة أسطورية على التقاء ثلاثة أنهار والبحيرة، أفضل وقت قبل الغروب، تذكرة ~17 ريال.</p></div>
+<div class="stop"><h4>المساء · شارع كوليه إدرومينو</h4><p>شارع المشاة التاريخي بمبانيه الملونة، أجمل شوارع شكودرا للسهرة والعشاء.</p></div></div>
+        <p class="food-line">🍽️ الكافيه: مقاهي بازار كرويا (12-30 ريال). الغداء: Mrizi i Zanave (130-220 ريال، حجز ضروري). العشاء: Vila Bekteshi (40-80 ريال، حلال). الحلا: La Mola Cafe (15-35 ريال). 💎 هيدن جم: جسر ميسي العثماني أو غروب قرية شيروكه.</p>
+        <p class="hotel-line">🏨 كولوسيو آند سبا Colosseo & Spa (300-520 ريال) أو تريبيوت Tribute، أو Shpija e Gjyshit بإطلالة النهر (180-330 ريال).</p>
+      </div>
+
+      <div class="day-block" id="day4">
+        <div class="day-head"><span class="day-num">4</span><div><h3>بحيرة كوماني ونهر شالا (جوهرة الشمال)</h3><span class="drive">🚗 شكودرا إلى ميناء كومان · ساعة ونصف لكل اتجاه</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>6:00 صباحًا · الانطلاق لميناء كومان</h4><p>يوم طويل يستحق بداية مبكرة، طريق جبلي جميل. يفضل حجز العبّارة مسبقًا (غالبًا عبر واتساب).</p></div>
+<div class="stop"><h4>الصباح · عبور بحيرة كوماني</h4><p>من أجمل رحلات القوارب عالميًا، مضيق مائي بين جبال شاهقة يشبه فيوردات النرويج. العبّارة ~43 ريال.</p></div>
+<div class="stop"><h4>الظهر · رحلة قوارب نهر شالا</h4><p>يُلقّب بتايلاند أوروبا، مياه فيروزية صافية ومحطات سباحة. الرحلات المنظمة تشمل الغداء غالبًا.</p></div>
+<div class="stop"><h4>المساء · العودة لشكودرا</h4><p>الرجوع للراحة والعشاء على شارع المشاة أو ضفة البحيرة.</p></div></div>
+        <p class="food-line">🍽️ الغداء: ضمن رحلة نهر شالا (130-215 ريال). العشاء: سمك البحيرة الطازج (60-110 ريال). الكافيه: شارع كوليه إدرومينو (12-30 ريال). 🔁 بديل: المبيت ليلة في ثيث (Theth) قلب جبال الألب الألبانية بدل رحلة كوماني ليوم واحد.</p>
+        <p class="hotel-line">🏨 نفس فندق الليلة السابقة بشكودرا.</p>
+      </div>
+
+      <div class="day-block" id="day5">
+        <div class="day-head"><span class="day-num">5</span><div><h3>شكودرا ← عبور الحدود ← بريزرن (كوسوفو)</h3><span class="drive">🚗 حوالي 3-3.5 ساعة عبر Rruga e Kombit ومعبر مورينا</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>الصباح · الطريق لكوسوفو</h4><p>النزول لملوت ثم Rruga e Kombit شرقًا حتى كوكس فمعبر مورينا. تأكدوا من أوراق السيارة والبطاقة الخضراء للتأمين.</p></div>
+<div class="stop"><h4>الظهر · المدينة القديمة في بريزرن</h4><p>الجسر الحجري القديم، مسجد سنان باشا، ساحة شادِروان، الحمام التركي، وحي مَراش على ضفة النهر.</p></div>
+<div class="stop"><h4>قبل الغروب · قلعة بريزرن</h4><p>صعود قصير لمشاهدة بانوراما المدينة بمآذنها وسطوحها الحمراء، من أجمل مطلات كوسوفو.</p></div>
+<div class="stop"><h4>المساء · ساحة شادِروان</h4><p>أجواء مقاهي ومطاعم على ضفة نهر بريزرينا، قلب المدينة النابض.</p></div></div>
+        <p class="food-line">🍽️ الغداء: Te Syla (20-45 ريال، قبابا بريزرن، كاش فقط). العشاء: Ambient / Marashi (45-90 ريال). الحلا: MISSINI Sweets (15-35 ريال). 🛂 تأكدوا كتابيًا من سماح السيارة بدخول كوسوفو واطلبوا البطاقة الخضراء.</p>
+        <p class="hotel-line">🏨 فندق برايور Prior Hotel (~150-300 ريال) بحي شادِروان.</p>
+      </div>
+
+      <div class="day-block" id="day6">
+        <div class="day-head"><span class="day-num">6</span><div><h3>بريزرن ← جاكوفا ← بيا ← بريشتينا</h3><span class="drive">🚗 حوالي 3 ساعات قيادة موزّعة</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>9:00 · بازار جاكوفا الكبير</h4><p>أقدم وأطول بازار في البلقان، أزقة حجرية ومسجد الحضوم التاريخي. 45 دقيقة من بريزرن.</p></div>
+<div class="stop"><h4>الظهر · بازار بيا ووادي روغوفا</h4><p>جولة سريعة ببازار بيا ومسجدها، ثم صعود لوادي روغوفا بجدرانه الصخرية الشاهقة.</p></div>
+<div class="stop"><h4>بعد الظهر · شلال الدرين الأبيض</h4><p>أجمل شلالات كوسوفو شمال بيا، مكان مثالي للغداء بجانب الماء.</p></div>
+<div class="stop"><h4>المساء · القيادة لبريشتينا</h4><p>حوالي ساعة ونصف للعاصمة، للعشاء والمبيت.</p></div></div>
+        <p class="food-line">🍽️ الفطور: Aurora Bakery ببريزرن (15-30 ريال). الغداء: Resort Ujëvara e Drinit (45-90 ريال، بجانب الشلال). العشاء: Pishat / Liburnia (50-110 ريال). 💎 هيدن جم: شلالات ميروشا، دير البطريركية في بيا (يونسكو)، أو محمية الدببة قرب بريشتينا.</p>
+        <p class="hotel-line">🏨 فندق سيريوس Hotel Sirius (~150-300 ريال) قريب من السنتر.</p>
+      </div>
+
+      <div class="day-block" id="day7">
+        <div class="day-head"><span class="day-num">7</span><div><h3>بريشتينا ← العودة إلى تيرانا والمطار</h3><span class="drive">🚗 حوالي 3-3.5 ساعة عبر Rruga e Kombit (مسار مختلف عن الذهاب)</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>الصباح · وسط بريشتينا مشيًا</h4><p>نصب نيوبورن، ممشى الأم تيريزا، تمثال سكندربيه، المتحف الإثنوغرافي، ومسجد الإمبراطور. الجولة 2.5-3 ساعات.</p></div>
+<div class="stop"><h4>الظهر · القيادة إلى تيرانا</h4><p>طريق العودة يختلف عن الذهاب: يشق الجبال الشرقية عبر Rruga e Kombit ونفق كالماش، مرورًا بكوكس.</p></div>
+<div class="stop"><h4>المساء · الوصول لتيرانا والمطار</h4><p>تسليم السيارة والاستعداد للمغادرة، يفضل الوصول للمطار مبكرًا.</p></div></div>
+        <p class="food-line">🍽️ الفطور: مقاهي ممشى الأم تيريزا (20-45 ريال). غداء الطريق: استراحة كوكس (40-80 ريال). ⏰ نصيحة: لو المغادرة صباحية، بيتوا بتيرانا مساء اليوم السادس بدل بريشتينا حتى يكون اليوم السابع خفيف.</p>
+        <p class="hotel-line">🏨 المغادرة من مطار تيرانا الدولي (TIA).</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:44px;">ملخص واختصارات مفيدة</h2>
+    <ul class="tips-list">
+      <li><strong>تقسيم الأيام:</strong> يومان ونصف بتيرانا والوسط، يومان بشمال ألبانيا، يومان ونصف بكوسوفو.</li>
+      <li><strong>الذهاب غير العودة:</strong> صعود شمالاً عبر السهل الغربي، والعودة من كوسوفو عبر الجبال الشرقية.</li>
+      <li><strong>الحلال:</strong> متوفر بكثرة بالمدينتين، تأكدوا من اللحوم بالمطاعم غير المخصصة.</li>
+      <li><strong>الحجوزات:</strong> عبّارة كوماني، رحلة نهر شالا، ومطعم Mrizi i Zanave تحتاج حجزًا مسبقًا.</li>
+    </ul>
+
+    <h2 style="margin-top:44px;">🗺️ الخرائط التفاعلية</h2>
+    <p style="margin-bottom:16px;">استكشفوا أماكن الرحلة على الخرائط: الفنادق والمطاعم والكافيهات والأنشطة والمعالم بإحداثياتها وأسعارها.</p>
+    <div class="maps-row">
+      <button type="button" class="btn btn-primary" onclick="document.getElementById('albaniaMap').classList.add('open')">🇦🇱 خريطة ألبانيا</button>
+      <button type="button" class="btn btn-primary" onclick="document.getElementById('kosovoMap').classList.add('open')">🇽🇰 خريطة كوسوفو</button>
+    </div>
+
+    <h2 style="margin-top:44px;">الخلاصة</h2>
+    <p>هذا الجدول جدول مقترح قابل للتعديل حسب موعد رحلتكم وعدد الأيام واهتماماتكم. يجمع بين عاصمة نابضة، بازارات عثمانية، طبيعة تشبه فيوردات النرويج، ومدن كوسوفو التاريخية، برحلة برية واحدة لا تكرر نفس الطريق مرتين.</p>
+  </div>
+</section>
+
+<div class="map-modal" id="albaniaMap">
+  <div class="map-modal-inner">
+    <button type="button" class="map-modal-close" onclick="document.getElementById('albaniaMap').classList.remove('open')" aria-label="إغلاق">✕</button>
+    <iframe src="https://jullay-albania-map.netlify.app" title="خريطة ألبانيا التفاعلية"></iframe>
+  </div>
+</div>
+<div class="map-modal" id="kosovoMap">
+  <div class="map-modal-inner">
+    <button type="button" class="map-modal-close" onclick="document.getElementById('kosovoMap').classList.remove('open')" aria-label="إغلاق">✕</button>
+    <iframe src="https://jullay-kosovo-map.netlify.app" title="خريطة كوسوفو التفاعلية"></iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+      <p style="margin-top:8px; font-size:14px;">أسافر، أستكشف، أحكي</p>
+    </div>
+    <div class="foot-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="../index.html#plan">خطط رحلتك</a>
+      <a href="../index.html#about">عن جولاي</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+</footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+</script>
+</body>
+</html>

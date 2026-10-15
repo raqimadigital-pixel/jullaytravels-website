@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>جدول 5 أيام في موسكو | سافر مع جولاي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#F1F8FC; --cream-2:#E4F1FA; --yellow:#F3D98B; --sky:var(--color-brand); --sage:var(--color-explore);
+    --peach:var(--color-plan); --coral:var(--color-discover); --coral-deep:#E8737A; --ink:var(--color-text); --ink-soft:var(--color-text-secondary);
+    --paper:#FFFFFF; --radius-lg:28px; --radius-md:18px; --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive; --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body); color:var(--ink);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 30%, var(--cream) 62%, var(--cream) 100%);
+    background-attachment:fixed; line-height:1.75; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .narrow{max-width:760px;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--coral-deep); font-weight:700; display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;}
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--coral); display:inline-block; border-radius:2px;}
+  h1,h2,h3,h4{font-family:var(--ff-display); font-weight:700; line-height:1.25; color:var(--color-brand);}
+  h1{font-size:clamp(30px,6vw,52px);}
+  h2{font-size:clamp(24px,4.2vw,36px);}
+  h3{font-size:clamp(18px,3vw,22px);}
+  p{color:var(--ink-soft);}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--coral); color:var(--paper); box-shadow:0 10px 24px rgba(255,173,173,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--peach); color:var(--peach); background:transparent;}
+  .btn-outline:hover{background:var(--peach); color:var(--paper);}
+  .breadcrumb{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap;}
+  .breadcrumb a{font-weight:600; color:var(--coral-deep);}
+  .breadcrumb span{opacity:.5;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(241,248,252,.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(51,66,74,.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .logo .dot{width:9px; height:9px; border-radius:50%; background:var(--coral);}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(51,66,74,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+  .mobile-menu{max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper); border-bottom:1px solid rgba(51,66,74,.08);}
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(51,66,74,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+  @media (min-width:900px){
+    .nav-links{display:flex;} .nav-cta{display:inline-flex;} .burger{display:none;} .mobile-menu{display:none;}
+  }
+
+  section{padding:52px 0;}
+  .section-head{max-width:640px; margin-bottom:40px;}
+
+  /* Polaroid photo component */
+  @keyframes polaroidIn{
+    0%{opacity:0; transform:translateY(28px) scale(.9) rotate(calc(var(--rot,0deg) - 5deg));}
+    65%{opacity:1; transform:translateY(-5px) scale(1.02) rotate(var(--rot,0deg));}
+    100%{opacity:1; transform:translateY(0) scale(1) rotate(var(--rot,0deg));}
+  }
+  @media (prefers-reduced-motion: reduce){ * { animation:none !important; } }
+  .polaroid{
+    --rot:0deg; background:var(--paper); border-radius:6px; padding:10px 10px 16px; box-shadow:var(--shadow-soft);
+    display:flex; flex-direction:column; gap:10px; position:relative; transform:rotate(var(--rot));
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .polaroid .img{ border-radius:3px; overflow:hidden; min-height:150px; }
+  .polaroid .img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .polaroid .cap{font-family:var(--ff-display); font-weight:600; font-size:15px; text-align:center; color:var(--ink);}
+  .tape{position:absolute; width:60px; height:22px; opacity:.9; box-shadow:0 3px 8px rgba(59,50,38,.12);
+    background:repeating-linear-gradient(45deg, var(--peach), var(--peach) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.blue{background:repeating-linear-gradient(45deg, var(--sky), var(--sky) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.sage{background:repeating-linear-gradient(45deg, var(--sage), var(--sage) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.coral{background:repeating-linear-gradient(45deg, var(--coral), var(--coral) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+
+  .stamp{position:relative; display:inline-flex; align-items:center; justify-content:center; width:74px; height:74px;
+    border:2px dashed var(--ink); border-radius:50%; transform:rotate(-9deg); font-family:var(--ff-display); font-size:10.5px;
+    text-align:center; color:var(--ink); background:var(--paper);}
+
+  .chip{display:inline-flex; padding:9px 18px; border-radius:999px; font-size:13.5px; font-weight:600; background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35);}
+  .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px;}
+
+  footer{padding:50px 0 36px; border-top:1px solid rgba(51,66,74,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:24px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
+  .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
+</style>
+<style>
+.cat-tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;}
+.cat-tags span{background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35); border-radius:999px; padding:6px 14px; font-size:12.5px; font-weight:600;}
+.quick-info{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:40px;}
+@media (min-width:700px){.quick-info{grid-template-columns:repeat(4,1fr);}}
+.qi{background:var(--paper); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow-soft); display:flex; flex-direction:column; gap:6px;}
+.qi-label{font-size:12px; font-weight:700; color:var(--coral-deep);}
+.qi-val{font-size:14px; font-weight:600;}
+.info-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:16px;}
+@media (min-width:700px){.info-grid{grid-template-columns:repeat(2,1fr);}}
+.info-card{background:var(--paper); border-radius:14px; padding:18px; box-shadow:var(--shadow-soft);}
+.info-card h4{font-size:15px; margin-bottom:6px;}
+.info-card p{font-size:14px; line-height:1.7;}
+.stay-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:16px;}
+@media (min-width:700px){.stay-grid{grid-template-columns:repeat(3,1fr);}}
+.stay-card{background:var(--cream-2); border-radius:14px; padding:18px;}
+.stay-card .kicker{font-weight:700; font-size:14.5px; display:block; margin-bottom:8px;}
+.stay-card p{font-size:13.5px; line-height:1.8;}
+.stay-card a{color:var(--coral-deep); font-weight:700;}
+.day-filters{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 6px; position:sticky; top:70px; z-index:10; background:var(--cream); padding:8px 0;}
+.day-filters a{background:var(--paper); border:1.5px solid rgba(51,66,74,.15); border-radius:999px; padding:9px 18px; font-size:13.5px; font-weight:700; box-shadow:var(--shadow-soft); transition:background .2s ease, color .2s ease;}
+.day-filters a:hover{background:var(--coral); color:var(--paper); border-color:var(--coral);}
+.days-wrap{display:flex; flex-direction:column; gap:22px; margin-top:16px;}
+.day-block{background:var(--paper); border-radius:18px; padding:22px; box-shadow:var(--shadow-soft); scroll-margin-top:90px;}
+.day-head{display:flex; align-items:center; gap:14px; margin-bottom:14px;}
+.day-num{width:42px; height:42px; border-radius:50%; background:var(--sage); color:var(--paper); display:flex; align-items:center; justify-content:center; font-family:var(--ff-display); font-size:16px; flex-shrink:0;}
+.day-block:nth-child(2n) .day-num{background:var(--coral);}
+.day-block:nth-child(3n) .day-num{background:var(--sky); color:var(--ink);}
+.day-head h3{font-size:17px;}
+.day-head .drive{font-size:13px; color:var(--ink-soft);}
+.stops-grid{display:grid; grid-template-columns:1fr; gap:10px; margin-bottom:14px;}
+@media (min-width:700px){.stops-grid{grid-template-columns:1fr 1fr;}}
+.stop{background:var(--cream); border-radius:10px; padding:12px 14px;}
+.stop h4{font-size:13.5px; margin-bottom:4px;}
+.stop p{font-size:12.5px; line-height:1.6;}
+.stop .meta{font-size:11.5px; color:var(--coral-deep); font-weight:700; display:block; margin-top:4px;}
+.food-line{font-size:13.5px; background:var(--cream-2); border-radius:10px; padding:10px 14px; margin-top:4px;}
+.note-line{font-size:13px; background:#FFF3E0; border-radius:10px; padding:10px 14px; margin-top:8px; color:#9a6a1a;}
+.picks-list{padding-right:22px; display:flex; flex-direction:column; gap:8px; margin-top:10px;}
+.picks-list li{font-size:15px; color:var(--ink-soft);}
+.picks-list strong{color:var(--ink);}
+.maps-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px;}
+.summary-table{width:100%; border-collapse:collapse; margin-top:16px; background:var(--paper); border-radius:14px; overflow:hidden; box-shadow:var(--shadow-soft);}
+.summary-table th, .summary-table td{padding:12px 14px; text-align:right; font-size:13.5px; border-bottom:1px solid rgba(51,66,74,.08);}
+.summary-table th{background:var(--cream-2); font-weight:700; color:var(--ink);}
+.summary-table td{color:var(--ink-soft);}
+.summary-table tr:last-child td{border-bottom:none;}
+
+.map-modal{position:fixed; inset:0; background:rgba(30,36,40,.72); z-index:300; display:none; align-items:center; justify-content:center; padding:16px;}
+.map-modal.open{display:flex;}
+.map-modal-inner{position:relative; width:100%; max-width:1100px; height:88vh; background:var(--paper); border-radius:18px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.35);}
+.map-modal-inner iframe{width:100%; height:100%; border:0; display:block;}
+.map-modal-close{position:absolute; top:12px; left:12px; z-index:2; width:38px; height:38px; border-radius:50%; background:var(--paper); border:1.5px solid rgba(51,66,74,.2); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+    <nav class="nav-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="../index.html#plan">خطط رحلتك</a>
+    </nav>
+    <a href="../index.html#plan" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="all-articles.html">دليل السفر</a></li>
+      <li><a href="../index.html#maps">خرائط تفاعلية</a></li>
+      <li><a href="../index.html#plan">خطط رحلتك</a></li>
+      <a href="../index.html#plan" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-top:36px; padding-bottom:16px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">الرئيسية</a><span>/</span><a href="all-articles.html">دليل السفر</a><span>/</span>موسكو</div>
+    <h1>موسكو في 5 أيام 🇷🇺</h1>
+    <p class="narrow" style="margin-top:14px; font-size:16.5px;">رحلة اقتصادية لاكتشاف موسكو لأول مرة، تجمع بين الساحة الحمراء والمناطق التاريخية، Zaryadye، شارع أربات، نهر موسكفا، Vorobyovy Gory، Gorky Park، Lubyanka والسيرك، مع برنامج مرتب حسب المناطق لتقليل التنقل.</p>
+    <div class="cat-tags">
+      <span>وجهات شتوية</span><span>وجهات اقتصادية</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0; padding-bottom:20px;">
+  <div class="container">
+    <div class="polaroid hero-photo" style="--rot:0deg; animation:none;">
+      <span class="tape coral" style="top:-8px; right:6%; transform:rotate(-5deg);"></span>
+      <div class="img" style="aspect-ratio:16/9; height:auto; background:var(--cream-2);"><img src="https://moscow-free-map.netlify.app/img/cover.jpg" alt="موسكو الكلاسيكية، الساحة الحمراء وكاتدرائية القديس باسيل" style="object-fit:cover;"></div>
+      <span class="cap">موسكو الكلاسيكية، الساحة الحمراء وكاتدرائية القديس باسيل</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="quick-info">
+      <div class="qi"><span class="qi-label">المدة</span><span class="qi-val">5 أيام</span></div>
+      <div class="qi"><span class="qi-label">المواصلات</span><span class="qi-val">المترو والمشي</span></div>
+      <div class="qi"><span class="qi-label">السكن</span><span class="qi-val">5 ليالٍ في موسكو</span></div>
+      <div class="qi"><span class="qi-label">الميزانية</span><span class="qi-val">رحلة اقتصادية</span></div>
+    </div>
+
+    <p style="margin-bottom:30px;">موسكو ليست بالضرورة مدينة مكلفة. مع هذا الجدول يمكنك زيارة أشهر معالمها خلال 5 أيام دون قضاء جزء كبير من الرحلة في التنقل، لأن كل يوم مرتب حسب منطقة جغرافية واحدة تقريبًا: الساحة الحمراء، Kitay-Gorod، Arbat، Vorobyovy Gory، وLubyanka.</p>
+
+    <h2>معلومات مهمة قبل السفر</h2>
+    <div class="info-grid">
+      <div class="info-card"><h4>✈️ الوصول من مطار دوموديدوفو (DME)</h4><p>استخدموا قطار Aeroexpress باتجاه محطة Paveletsky، ثم أكملوا بالمترو أو التاكسي حسب موقع الفندق. السعر يبدأ من حوالي 470 روبل (≈21 ريال) للاتجاه الواحد.</p></div>
+      <div class="info-card"><h4>🚇 المترو</h4><p>المترو هو أفضل وسيلة للتنقل داخل موسكو. يمكن استخدام بطاقة Troika، وتعرفة الرحلة الأساسية حوالي 75 روبل (≈3.3 ريال). معظم أيام الرحلة مبنية حول محطات مترو رئيسية.</p></div>
+      <div class="info-card"><h4>💳 الدفع</h4><p>بطاقات Visa وMastercard الصادرة خارج روسيا لا تعمل لدى التجار وأجهزة الصراف داخل روسيا. الأفضل الاحتفاظ بمبلغ نقدي (روبل) كافٍ للرحلة.</p></div>
+    </div>
+
+    <h2 style="margin-top:40px;">أين نسكن في موسكو؟</h2>
+    <p style="margin-bottom:6px;">اخترنا 3 مستويات مختلفة للسكن، بحيث يكون أمامكم خيار يناسب ميزانيتكم وطريقة سفركم.</p>
+    <div class="stay-grid">
+      <div class="stay-card">
+        <span class="kicker">⭐ أفضل قيمة — <a href="https://www.google.com/maps/search/?api=1&query=Izmailovo+Gamma+Hotel+Moscow" target="_blank">Izmailovo Gamma</a></span>
+        <p>750 ريال / 5 ليالٍ (≈150 ريال لليلة). ليس في قلب السنتر، لكنه متصل جيدًا بالمترو عبر محطة Partizanskaya القريبة جدًا منه. الوصول إلى الساحة الحمراء تقريبًا 20 دقيقة بالمترو.</p>
+      </div>
+      <div class="stay-card">
+        <span class="kicker">🏠 أفضل خصوصية — شقة خاصة في Izmailovo</span>
+        <p>حوالي 550 ريال / 5 ليالٍ. مناسبة لمن يفضل مطبخًا خاصًا، مساحة أكبر، خصوصية أكثر، وأنسب للمجموعات. السعر تقريبي وليس ثابتًا.</p>
+      </div>
+      <div class="stay-card">
+        <span class="kicker">💰 أرخص خيار — <a href="https://www.google.com/maps/search/?api=1&query=Hostel+Rus+Aviator+Moscow" target="_blank">Hostel Rus Aviator</a></span>
+        <p>حوالي 265 ريال / 5 ليالٍ للشخص. مناسب للمسافر المنفرد بميزانية محدودة جدًا ولا يمانع مشاركة الغرفة.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:44px;">الجدول يوم بيوم</h2>
+    <div class="day-filters">
+      <a href="#day1">اليوم الأول</a>
+      <a href="#day2">اليوم الثاني</a>
+      <a href="#day3">اليوم الثالث</a>
+      <a href="#day4">اليوم الرابع</a>
+      <a href="#day5">اليوم الخامس</a>
+    </div>
+    <div class="days-wrap">
+
+      <div class="day-block" id="day1">
+        <div class="day-head"><span class="day-num">1</span><div><h3>موسكو الكلاسيكية: الساحة الحمراء وقلب المدينة</h3><span class="drive">🚇 محطة Okhotny Ryad · من الفندق تقريبًا 20 دقيقة بالمترو</span></div></div>
+        <div class="stops-grid">
+          <div class="stop"><h4>🟥 Red Square (الساحة الحمراء)</h4><p>أهم نقطة في موسكو، ومنها يمكنك مشاهدة عدد من أشهر معالم المدينة في مكان واحد. لو الرحلة موسم التزلج: 30-60 ريال إضافية.</p><span class="meta">مجاني · 45-60 دقيقة</span></div>
+          <div class="stop"><h4>⛪ Saint Basil's Cathedral</h4><p>الكنيسة ذات القباب الملونة التي أصبحت رمزًا لموسكو.</p><span class="meta">2000 روبل (≈94 ريال) · 45-60 دقيقة</span></div>
+          <div class="stop"><h4>🛍️ GUM</h4><p>مجمع تسوق تاريخي مباشرة على الساحة الحمراء بمعمار جميل. مفتوح 10:00-22:00.</p><span class="meta">مجاني الدخول · 30-45 دقيقة</span></div>
+          <div class="stop"><h4>🌳 Alexander Garden</h4><p>حديقة جميلة ملاصقة للكرملين، مناسبة لجولة قصيرة بعد الساحة. تبعد 600-800م من GUM (8-10 دقائق مشي).</p><span class="meta">30-45 دقيقة</span></div>
+        </div>
+        <p class="food-line">🍳 الفطور: Grabli — Teatralny Proezd (300-500 روبل، ≈14-24 ريال). ☕ القهوة: Surf Coffee (250-500 روبل، ≈12-24 ريال). 🍽️ العشاء: Lepim i Varim، بيلميني (400-700 روبل، ≈19-33 ريال).</p>
+        <p class="note-line">⭐ اختياري: State Historical Museum (60-90 دقيقة إضافية) على الساحة الحمراء نفسها. 💡 لا تحاولوا إضافة أماكن بعيدة لهذا اليوم، الساحة الحمراء + GUM + Alexander Garden + القهوة + العشاء تكفي.</p>
+      </div>
+
+      <div class="day-block" id="day2">
+        <div class="day-head"><span class="day-num">2</span><div><h3>Kitay-Gorod: الحدائق والجسر الطائر وشارع الكنائس</h3><span class="drive">🚇 محطة Kitay-Gorod · من الفندق تقريبًا 25 دقيقة</span></div></div>
+        <div class="stops-grid">
+          <div class="stop"><h4>🌳 Zaryadye Park</h4><p>واحدة من أجمل الحدائق الحديثة في وسط موسكو.</p><span class="meta">مجاني · 60-75 دقيقة</span></div>
+          <div class="stop"><h4>🌉 Floating Bridge (الجسر الطائر)</h4><p>من أشهر نقاط التصوير في الحديقة، إطلالة جميلة على نهر موسكفا. داخل الحديقة، 5-10 دقائق مشي.</p><span class="meta">مجاني · 20-30 دقيقة</span></div>
+          <div class="stop"><h4>🏛️ Varvarka Street</h4><p>أحد أقدم شوارع موسكو، ملاصق مباشرة لحديقة Zaryadye، ويضم تجمّع كنائس تاريخية صغيرة وملوّنة.</p><span class="meta">مجاني · 45-60 دقيقة</span></div>
+        </div>
+        <p class="food-line">🍳 الفطور: Dizengof99 (700-1200 روبل، ≈33-56 ريال، فطور كبير وفلافل وحمص). ☕ القهوة: Coffee Buro (400-800 روبل، ≈19-38 ريال، عند مخرج محطة Kitay-Gorod). 🍽️ العشاء: Natakhtari، مطعم جورجي (1500-2000 روبل، ≈70-94 ريال).</p>
+        <p class="note-line">⭐ اختياري: Romanov Boyars Chambers (45-60 دقيقة إضافية) على شارع Varvarka نفسه. 💡 من أسهل أيام الرحلة للمشي، أغلب المسار متقارب ولا تحتاجون المترو بين كل معلم وآخر.</p>
+      </div>
+
+      <div class="day-block" id="day3">
+        <div class="day-head"><span class="day-num">3</span><div><h3>Arbat وموسكو الثقافية + رحلة نهرية</h3><span class="drive">🚇 محطة Arbatskaya · من الفندق تقريبًا 18 دقيقة (خط مباشر)</span></div></div>
+        <div class="stops-grid">
+          <div class="stop"><h4>🏘️ Arbat Street</h4><p>أحد أشهر شوارع موسكو للمشي، مقاهي ومتاجر وفنانون.</p><span class="meta">مجاني · 60-90 دقيقة</span></div>
+          <div class="stop"><h4>⛪ Cathedral of Christ the Saviour</h4><p>كاتدرائية ضخمة قريبة من نهر موسكفا، تبعد 1.3-1.6كم من شارع Arbat (18-22 دقيقة).</p><span class="meta">45-60 دقيقة</span></div>
+          <div class="stop"><h4>🌉 Patriarchal Bridge</h4><p>جسر مشاة جميل بإطلالة على الكاتدرائية ونهر موسكفا، 5-10 دقائق من الكاتدرائية.</p><span class="meta">مجاني · 20-30 دقيقة</span></div>
+          <div class="stop"><h4>🚢 Moscow River Cruise</h4><p>رحلة نهرية مناسبة لمشاهدة موسكو من زاوية مختلفة. الرصيف يتحدد حسب شركة الرحلة المختارة.</p><span class="meta">1400-2500 روبل (≈66-118 ريال) · 1.5-2 ساعة</span></div>
+        </div>
+        <p class="food-line">🍳 الفطور: Grabli — Arbat (300-500 روبل، ≈14-24 ريال). ☕ القهوة: Culinary Shop of the Karavaev Brothers (فئة اقتصادية، على شارع Vozdvizhenka). 🍽️ العشاء: The Byk — Arbat، ستيك هاوس بأسعار ثابتة (1200-1500 روبل، ≈56-71 ريال).</p>
+        <p class="note-line">💡 إذا كان الجو باردًا جدًا أو القارب غير مناسب للموسم، يمكن حذف الرحلة النهرية واستغلال الوقت في Arbat والمناطق المحيطة.</p>
+      </div>
+
+      <div class="day-block" id="day4">
+        <div class="day-head"><span class="day-num">4</span><div><h3>Vorobyovy Gory + Gorky Park</h3><span class="drive">🚇 محطة Vorobyovy Gory · من الفندق تقريبًا 35 دقيقة (أبعد يوم)</span></div></div>
+        <div class="stops-grid">
+          <div class="stop"><h4>🔭 Vorobyovy Gory Observation Deck</h4><p>واحدة من أشهر نقاط الإطلالة على موسكو، منظر واسع للمدينة ونهر موسكفا. تبعد 1-1.3كم من مقهى الفطور (15-20 دقيقة).</p><span class="meta">مجاني · 45-60 دقيقة</span></div>
+          <div class="stop"><h4>🚡 Moscow Cable Car</h4><p>المسار من Vorobyovy Gory إلى Luzhniki، تجربة مختلفة للنزول من التلة.</p><span class="meta">30-45 دقيقة مع الانتظار</span></div>
+          <div class="stop"><h4>🌳 Gorky Park</h4><p>حديقة كبيرة للمشي والاسترخاء، تبعد 20-30 دقيقة من Luzhniki حسب المسار.</p><span class="meta">مجاني · 60-90 دقيقة</span></div>
+          <div class="stop"><h4>🎨 Muzeon Park of Arts</h4><p>حديقة نحت مفتوحة رائعة، ملاصقة لـ Gorky Park (700-900م، 10-12 دقيقة).</p><span class="meta">مجاني · 30-45 دقيقة</span></div>
+        </div>
+        <p class="food-line">🍳 الفطور: Lu Cafe (700-1200 روبل، ≈33-56 ريال، قريب من محطة Vorobyovy Gory). ☕ القهوة: Surf Coffee — Gorky Park (300-600 روبل، ≈14-28 ريال، داخل الحديقة).</p>
+        <p class="note-line">⚠️ لا يوجد مطعم عشاء محدد لهذا اليوم حاليًا، يُحدد مطعم قريب من Gorky Park حسب تاريخ الرحلة الفعلي. 💡 خصصوا وقتًا للمشي والاسترخاء بدل محاولة حشر عدد كبير من المعالم في هذا اليوم.</p>
+      </div>
+
+      <div class="day-block" id="day5">
+        <div class="day-head"><span class="day-num">5</span><div><h3>Lubyanka + Kuznetsky Most + سيرك نيكولين</h3><span class="drive">🚇 محطة Lubyanka · من الفندق تقريبًا 20 دقيقة</span></div></div>
+        <div class="stops-grid">
+          <div class="stop"><h4>🏛️ Lubyanka Square</h4><p>استكشفوا ساحة لوبيانكا والمناطق المحيطة بها.</p><span class="meta">مجاني · 20-30 دقيقة</span></div>
+          <div class="stop"><h4>🛍️ Kuznetsky Most</h4><p>من أجمل شوارع وسط موسكو للمشي والتسوق واستكشاف المتاجر والمباني التاريخية.</p><span class="meta">مجاني · 30-45 دقيقة</span></div>
+          <div class="stop"><h4>🎪 Nikulin Circus</h4><p>يفضل حجز سيرك نيكولين مسبقًا، السعر المذكور هنا هو السعر الفعلي المحجوز في جدول الرحلة. يبعد 1.1-1.3كم من Kuznetsky Most (15-18 دقيقة).</p><span class="meta">150 ريال · ~ساعتين و20 دقيقة</span></div>
+        </div>
+        <p class="food-line">🍳 الفطور: PRIME — Kuznetsky Most (400-800 روبل، ≈19-38 ريال، سلسلة كافيهات معروفة). 🍽️ العشاء: Tkemali — Novaya Ploshchad، ختام الرحلة بعشاء جورجي (1500-2000 روبل، ≈70-94 ريال).</p>
+        <p class="note-line">⭐ اختياري: Bolshoi Theatre (20-30 دقيقة إضافية)، أحد أشهر مسارح الأوبرا والباليه بالعالم، قريب جدًا من المسار.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:44px;">⭐ أفضل 5 مطاعم في الرحلة</h2>
+    <ol class="picks-list">
+      <li><strong>Grabli</strong> — أفضل خيار اقتصادي للفطور، فروع قريبة من اليوم الأول والثالث.</li>
+      <li><strong>Natakhtari</strong> — أفضل تجربة مطبخ جورجي (اليوم الثاني).</li>
+      <li><strong>The Byk — Arbat</strong> — أفضل قيمة لعشاء ستيك هاوس بأسعار ثابتة (اليوم الثالث).</li>
+      <li><strong>Dizengof99</strong> — أفضل فطور كبير ومتنوع (اليوم الثاني).</li>
+      <li><strong>Tkemali</strong> — أفضل عشاء ختامي جورجي (اليوم الخامس).</li>
+    </ol>
+
+    <h2 style="margin-top:44px;">🗺️ خريطة موسكو التفاعلية</h2>
+    <p style="margin-bottom:16px;">استكشفوا أماكن الرحلة على الخريطة: الفنادق والمطاعم والمقاهي ومحطات المترو، مقسّمة حسب كل يوم (40 موقعًا).</p>
+    <div class="maps-row">
+      <button type="button" class="btn btn-primary" onclick="document.getElementById('moscowMap').classList.add('open')">🇷🇺 افتح خريطة موسكو</button>
+    </div>
+
+    <h2 style="margin-top:44px;">🗓️ جدول الرحلة المختصر</h2>
+    <div style="overflow-x:auto;">
+      <table class="summary-table">
+        <thead><tr><th>اليوم</th><th>الوجهة</th><th>أبرز الأنشطة</th></tr></thead>
+        <tbody>
+          <tr><td>الأول</td><td>الساحة الحمراء</td><td>Okhotny Ryad، Grabli، Red Square، سانت باسيل، GUM، Alexander Garden</td></tr>
+          <tr><td>الثاني</td><td>Kitay-Gorod</td><td>Dizengof99، Zaryadye Park، الجسر الطائر، شارع Varvarka</td></tr>
+          <tr><td>الثالث</td><td>Arbat</td><td>شارع Arbat، كاتدرائية المسيح المخلص، Patriarchal Bridge، رحلة نهرية، The Byk</td></tr>
+          <tr><td>الرابع</td><td>Vorobyovy Gory</td><td>نقطة الإطلالة، التلفريك إلى Luzhniki، Gorky Park، Muzeon</td></tr>
+          <tr><td>الخامس</td><td>Lubyanka</td><td>Kuznetsky Most، Nikulin Circus (150 ريال)، Tkemali</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin-top:44px;">💡 ملاحظات مهمة</h2>
+    <div class="info-grid">
+      <div class="info-card"><h4>🚶 لا تكثروا التنقل</h4><p>كل يوم يركز على منطقة واحدة تقريبًا، وهذا أفضل من الانتقال من شمال موسكو إلى جنوبها عدة مرات في اليوم.</p></div>
+      <div class="info-card"><h4>⛸️ التزلج</h4><p>نشاط موسمي. إذا كانت الرحلة خارج الموسم، استخدموا الوقت الإضافي لاستكشاف GUM والمنطقة المحيطة.</p></div>
+      <div class="info-card"><h4>🎪 السيرك</h4><p>يفضل حجز سيرك نيكولين مسبقًا. السعر المعتمد: 150 ريال.</p></div>
+      <div class="info-card"><h4>💵 النقد</h4><p>احرصوا على وجود نقد روسي معكم، ولا تجعلوا الرحلة تعتمد بالكامل على البطاقات الأجنبية.</p></div>
+    </div>
+
+    <h2 style="margin-top:44px;">الخلاصة</h2>
+    <p>موسكو ليست بالضرورة مدينة مكلفة. الفرق الحقيقي يصنعه اختيار السكن + استخدام المترو + ترتيب الأماكن جغرافيًا. 5 أيام كافية لرؤية أهم موسكو، بشرط أن يكون ترتيبك ذكيًا.</p>
+  </div>
+</section>
+
+<div class="map-modal" id="moscowMap">
+  <div class="map-modal-inner">
+    <button type="button" class="map-modal-close" onclick="document.getElementById('moscowMap').classList.remove('open')" aria-label="إغلاق">✕</button>
+    <iframe src="https://moscow-free-map.netlify.app/" title="خريطة موسكو التفاعلية"></iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+      <p style="margin-top:8px; font-size:14px;">أسافر، أستكشف، أحكي</p>
+    </div>
+    <div class="foot-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="../index.html#plan">خطط رحلتك</a>
+      <a href="../index.html#about">عن جولاي</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+</footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+</script>
+</body>
+</html>

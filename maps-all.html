@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>خرائط تفاعلية | سافر مع جولاي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#F1F8FC; --cream-2:#E4F1FA; --yellow:#F3D98B; --sky:var(--color-brand); --sage:var(--color-explore);
+    --peach:var(--color-plan); --coral:var(--color-discover); --coral-deep:#E8737A; --ink:var(--color-text); --ink-soft:var(--color-text-secondary);
+    --paper:#FFFFFF; --radius-lg:28px; --radius-md:18px; --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive; --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body); color:var(--ink);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 30%, var(--cream) 62%, var(--cream) 100%);
+    background-attachment:fixed; line-height:1.75; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .narrow{max-width:760px;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--coral-deep); font-weight:700; display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;}
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--coral); display:inline-block; border-radius:2px;}
+  h1,h2,h3,h4{font-family:var(--ff-display); font-weight:700; line-height:1.25; color:var(--color-brand);}
+  h1{font-size:clamp(30px,6vw,52px);}
+  h2{font-size:clamp(24px,4.2vw,36px);}
+  h3{font-size:clamp(18px,3vw,22px);}
+  p{color:var(--ink-soft);}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--coral); color:var(--paper); box-shadow:0 10px 24px rgba(255,173,173,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--peach); color:var(--peach); background:transparent;}
+  .btn-outline:hover{background:var(--peach); color:var(--paper);}
+  .breadcrumb{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap;}
+  .breadcrumb a{font-weight:600; color:var(--coral-deep);}
+  .breadcrumb span{opacity:.5;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(241,248,252,.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(51,66,74,.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .logo .dot{width:9px; height:9px; border-radius:50%; background:var(--coral);}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(51,66,74,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+  .mobile-menu{max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper); border-bottom:1px solid rgba(51,66,74,.08);}
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(51,66,74,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+  @media (min-width:900px){
+    .nav-links{display:flex;} .nav-cta{display:inline-flex;} .burger{display:none;} .mobile-menu{display:none;}
+  }
+
+  section{padding:52px 0;}
+  .section-head{max-width:640px; margin-bottom:40px;}
+
+  /* Polaroid photo component */
+  @keyframes polaroidIn{
+    0%{opacity:0; transform:translateY(28px) scale(.9) rotate(calc(var(--rot,0deg) - 5deg));}
+    65%{opacity:1; transform:translateY(-5px) scale(1.02) rotate(var(--rot,0deg));}
+    100%{opacity:1; transform:translateY(0) scale(1) rotate(var(--rot,0deg));}
+  }
+  @media (prefers-reduced-motion: reduce){ * { animation:none !important; } }
+  .polaroid{
+    --rot:0deg; background:var(--paper); border-radius:6px; padding:10px 10px 16px; box-shadow:var(--shadow-soft);
+    display:flex; flex-direction:column; gap:10px; position:relative; transform:rotate(var(--rot));
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .polaroid .img{ border-radius:3px; overflow:hidden; min-height:150px; }
+  .polaroid .img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .polaroid .cap{font-family:var(--ff-display); font-weight:600; font-size:15px; text-align:center; color:var(--ink);}
+  .tape{position:absolute; width:60px; height:22px; opacity:.9; box-shadow:0 3px 8px rgba(59,50,38,.12);
+    background:repeating-linear-gradient(45deg, var(--peach), var(--peach) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.blue{background:repeating-linear-gradient(45deg, var(--sky), var(--sky) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.sage{background:repeating-linear-gradient(45deg, var(--sage), var(--sage) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.coral{background:repeating-linear-gradient(45deg, var(--coral), var(--coral) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+
+  .stamp{position:relative; display:inline-flex; align-items:center; justify-content:center; width:74px; height:74px;
+    border:2px dashed var(--ink); border-radius:50%; transform:rotate(-9deg); font-family:var(--ff-display); font-size:10.5px;
+    text-align:center; color:var(--ink); background:var(--paper);}
+
+  .chip{display:inline-flex; padding:9px 18px; border-radius:999px; font-size:13.5px; font-weight:600; background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35);}
+  .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px;}
+
+  footer{padding:50px 0 36px; border-top:1px solid rgba(51,66,74,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:24px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
+  .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
+</style>
+<style>
+.maps-grid{display:grid; grid-template-columns:1fr; gap:26px;}
+@media (min-width:700px){.maps-grid{grid-template-columns:1fr 1fr;}}
+.map-product{background:var(--paper); border-radius:14px; box-shadow:var(--shadow-soft); overflow:visible; display:flex; flex-direction:column; position:relative; transition:transform .3s ease, box-shadow .3s ease;}
+.map-product:hover{transform:translateY(-6px); box-shadow:0 20px 34px rgba(51,66,74,.18);}
+.map-product .cover{height:190px; border-radius:14px 14px 0 0; overflow:hidden;}
+.map-product .cover img{width:100%; height:100%; object-fit:cover;}
+.map-product.pro{transform:rotate(-1deg);}
+.map-product.pro:hover{transform:rotate(0) translateY(-6px);}
+.map-product .content{padding:22px 22px 24px; display:flex; flex-direction:column; gap:12px; flex:1;}
+.badge-free{align-self:flex-start; background:var(--sage); color:var(--paper); font-size:12px; font-weight:700; padding:5px 13px; border-radius:999px;}
+.badge-pro{align-self:flex-start; background:var(--coral); color:var(--paper); font-size:12px; font-weight:700; padding:5px 13px; border-radius:999px;}
+.price-tag{font-family:var(--ff-display); font-size:22px; color:var(--coral-deep);}
+.map-viewer{background:var(--paper); border-radius:22px; box-shadow:var(--shadow-soft); padding:20px; margin-bottom:26px;}
+.map-viewer-head h3{font-size:19px; margin-bottom:4px;}
+.map-viewer-head p{font-size:13.5px;}
+.map-viewer-frame{border-radius:14px; overflow:hidden; height:60vh; min-height:360px; background:var(--cream); margin-top:14px;}
+.map-viewer-frame iframe{width:100%; height:100%; border:none; display:block;}
+.map-product[data-map-url]{cursor:pointer;}
+.map-product[data-map-url].selected{outline:2.5px solid var(--coral);}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+    <nav class="nav-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="maps-all.html">خرائط تفاعلية</a>
+      <a href="plan.html">خطط رحلتك</a>
+    </nav>
+    <a href="plan.html" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="all-articles.html">دليل السفر</a></li>
+      <li><a href="maps-all.html">خرائط تفاعلية</a></li>
+      <li><a href="plan.html">خطط رحلتك</a></li>
+      <a href="plan.html" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-top:36px; padding-bottom:16px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">الرئيسية</a><span>/</span>خرائط تفاعلية</div>
+    <h1>خرائط تفاعلية</h1>
+    <p class="narrow" style="margin-top:14px; font-size:16.5px;">رحلتك على الخارطة، كل ما تحتاجه في وجهتك، مرتبًا في مكان واحد. خريطة مجانية مرتبطة بجدول كل وجهة، وخريطة شاملة مدفوعة لتفاصيل وخيارات أكثر.</p>
+  </div>
+</section>
+
+<section style="padding-top:10px;">
+  <div class="container">
+    <h2 id="freeMapsSection" style="margin-bottom:20px;">الخرائط المجانية</h2>
+
+    <div id="mapViewer" class="map-viewer">
+      <div class="map-viewer-head">
+        <h3 id="mapViewerTitle">اختار خريطة من الأسفل</h3>
+        <p id="mapViewerDesc" style="margin:4px 0 0;">اضغط على أي وجهة لعرض خريطتها التفاعلية هنا مباشرة.</p>
+      </div>
+      <div class="map-viewer-frame">
+        <iframe id="mapViewerIframe" title="عرض الخريطة التفاعلية"></iframe>
+      </div>
+    </div>
+
+    <div class="maps-grid">
+      <a href="#mapViewer" class="map-product" data-map-url="https://japan-free-map.netlify.app/" data-map-title="🇯🇵 اليابان" data-map-desc="طوكيو، كيوتو، وأوساكا، مع المعابد، المطاعم، ومحطات القطار المهمة.">
+        <div class="cover"><img src="https://japan-free-map.netlify.app/img/japan%20cover.jpg" alt="خريطة اليابان"></div>
+        <div class="content">
+          <span class="badge-free">مجانية</span>
+          <h3>🇯🇵 اليابان</h3>
+          <p>طوكيو، كيوتو، وأوساكا، مع المعابد، المطاعم، ومحطات القطار المهمة.</p>
+        </div>
+      </a>
+      <a href="#mapViewer" class="map-product" data-map-url="https://jullay-almaty-map.netlify.app/" data-map-title="🇰🇿 ألماتي" data-map-desc="المدينة، البحيرات، والجبال، مع أفضل مسارات ألوان الخريف.">
+        <div class="cover"><img src="https://jullay-almaty-map.netlify.app/img/cover.jpg" alt="خريطة ألماتي"></div>
+        <div class="content">
+          <span class="badge-free">مجانية</span>
+          <h3>🇰🇿 ألماتي</h3>
+          <p>المدينة، البحيرات، والجبال، مع أفضل مسارات ألوان الخريف.</p>
+        </div>
+      </a>
+      <a href="#mapViewer" class="map-product" data-map-url="https://jullay-albania-map.netlify.app" data-map-title="🇦🇱 ألبانيا" data-map-desc="الشمال الجبلي، تيرانا في الوسط، وشواطئ الريفييرا بالجنوب.">
+        <div class="cover"><img src="https://jullay-albania-map.netlify.app/img/cover.jpg" alt="خريطة ألبانيا"></div>
+        <div class="content">
+          <span class="badge-free">مجانية</span>
+          <h3>🇦🇱 ألبانيا</h3>
+          <p>الشمال الجبلي، تيرانا في الوسط، وشواطئ الريفييرا بالجنوب.</p>
+        </div>
+      </a>
+      <a href="#mapViewer" class="map-product" data-map-url="https://jullay-kosovo-map.netlify.app" data-map-title="🇽🇰 كوسوفو" data-map-desc="بريشتينا، بريزرن، ووادي روغوفا الطبيعي.">
+        <div class="cover"><img src="https://jullay-kosovo-map.netlify.app/img/cover.jpg" alt="خريطة كوسوفو"></div>
+        <div class="content">
+          <span class="badge-free">مجانية</span>
+          <h3>🇽🇰 كوسوفو</h3>
+          <p>بريشتينا، بريزرن، ووادي روغوفا الطبيعي.</p>
+        </div>
+      </a>
+      <a href="#mapViewer" class="map-product" data-map-url="https://jullay-montenegro-map.netlify.app" data-map-title="🇲🇪 الجبل الأسود" data-map-desc="كوتور، بودفا، ومنتزه دورميتور الوطني.">
+        <div class="cover"><img src="https://jullay-kosovo-map.netlify.app/img-south/cover-cotor.jpg" alt="خريطة الجبل الأسود" onerror="this.src='https://jullay-kosovo-map.netlify.app/img/cover-cotor.jpg'"></div>
+        <div class="content">
+          <span class="badge-free">مجانية</span>
+          <h3>🇲🇪 الجبل الأسود</h3>
+          <p>كوتور، بودفا، ومنتزه دورميتور الوطني.</p>
+        </div>
+      </a>
+      <a href="#mapViewer" class="map-product" data-map-url="https://shaz-map.netlify.app" data-map-title="🏴 إدنبرة" data-map-desc="البلدة القديمة، القلعة، والمطاعم الاقتصادية.">
+        <div class="cover"><img src="../img/scottland.jpg" alt="خريطة إدنبرة"></div>
+        <div class="content">
+          <span class="badge-free">مجانية</span>
+          <h3>🏴 إدنبرة</h3>
+          <p>البلدة القديمة، القلعة، والمطاعم الاقتصادية.</p>
+        </div>
+      </a>
+      <a href="#mapViewer" class="map-product" data-map-url="https://shaz-glasgow-map.netlify.app" data-map-title="🏴 قلاسكو" data-map-desc="وسط المدينة، المعارض، وأماكن الأكل بميزانية اقتصادية.">
+        <div class="cover"><img src="../img/scottland.jpg" alt="خريطة قلاسكو"></div>
+        <div class="content">
+          <span class="badge-free">مجانية</span>
+          <h3>🏴 قلاسكو</h3>
+          <p>وسط المدينة، المعارض، وأماكن الأكل بميزانية اقتصادية.</p>
+        </div>
+      </a>
+    </div>
+
+    <h2 id="paidMapsSection" style="margin:44px 0 20px;">الخرائط الشاملة</h2>
+    <div class="maps-grid" style="max-width:520px;">
+      <div class="map-product pro" style="cursor:default;">
+        <div class="cover"><img src="https://picsum.photos/seed/moscow-map-pro/560/380" alt="خريطة موسكو الشاملة"></div>
+        <div class="content">
+          <span class="badge-pro">منتج رقمي</span>
+          <h3>🇷🇺 موسكو — الخريطة الشاملة</h3>
+          <p>دليل وجهة تفاعلي كامل: أماكن، مواصلات، مطاعم، إقامة، أسعار، طوارئ، واحتياجات يومية.</p>
+          <div style="margin-top:auto;">
+            <span class="btn btn-outline" style="pointer-events:none;">قريبًا</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+      <p style="margin-top:8px; font-size:14px;">أسافر، أستكشف، أحكي</p>
+    </div>
+    <div class="foot-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="maps-all.html">خرائط تفاعلية</a>
+      <a href="plan.html">خطط رحلتك</a>
+      <a href="about.html">عن جولاي</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+</footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+
+  const mapViewerIframe = document.getElementById('mapViewerIframe');
+  const mapViewerTitle = document.getElementById('mapViewerTitle');
+  const mapViewerDesc = document.getElementById('mapViewerDesc');
+  const mapCards = document.querySelectorAll('.map-product[data-map-url]');
+  mapCards.forEach(card => {
+    card.addEventListener('click', function(ev){
+      ev.preventDefault();
+      mapViewerIframe.src = this.dataset.mapUrl;
+      mapViewerTitle.textContent = this.dataset.mapTitle;
+      mapViewerDesc.textContent = this.dataset.mapDesc;
+      mapCards.forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      document.getElementById('mapViewer').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+</script>
+</body>
+</html>

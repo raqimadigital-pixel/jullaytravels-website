@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>جدول 6 أيام في الجبل الأسود وكوسوفو | سافر مع جولاي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#F1F8FC; --cream-2:#E4F1FA; --yellow:#F3D98B; --sky:var(--color-brand); --sage:var(--color-explore);
+    --peach:var(--color-plan); --coral:var(--color-discover); --coral-deep:#E8737A; --ink:var(--color-text); --ink-soft:var(--color-text-secondary);
+    --paper:#FFFFFF; --radius-lg:28px; --radius-md:18px; --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive; --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body); color:var(--ink);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 30%, var(--cream) 62%, var(--cream) 100%);
+    background-attachment:fixed; line-height:1.75; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .narrow{max-width:760px;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--coral-deep); font-weight:700; display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;}
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--coral); display:inline-block; border-radius:2px;}
+  h1,h2,h3,h4{font-family:var(--ff-display); font-weight:700; line-height:1.25; color:var(--color-brand);}
+  h1{font-size:clamp(30px,6vw,52px);}
+  h2{font-size:clamp(24px,4.2vw,36px);}
+  h3{font-size:clamp(18px,3vw,22px);}
+  p{color:var(--ink-soft);}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--coral); color:var(--paper); box-shadow:0 10px 24px rgba(255,173,173,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--peach); color:var(--peach); background:transparent;}
+  .btn-outline:hover{background:var(--peach); color:var(--paper);}
+  .breadcrumb{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap;}
+  .breadcrumb a{font-weight:600; color:var(--coral-deep);}
+  .breadcrumb span{opacity:.5;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(241,248,252,.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(51,66,74,.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .logo .dot{width:9px; height:9px; border-radius:50%; background:var(--coral);}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(51,66,74,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+  .mobile-menu{max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper); border-bottom:1px solid rgba(51,66,74,.08);}
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(51,66,74,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+  @media (min-width:900px){
+    .nav-links{display:flex;} .nav-cta{display:inline-flex;} .burger{display:none;} .mobile-menu{display:none;}
+  }
+
+  section{padding:52px 0;}
+  .section-head{max-width:640px; margin-bottom:40px;}
+
+  /* Polaroid photo component */
+  @keyframes polaroidIn{
+    0%{opacity:0; transform:translateY(28px) scale(.9) rotate(calc(var(--rot,0deg) - 5deg));}
+    65%{opacity:1; transform:translateY(-5px) scale(1.02) rotate(var(--rot,0deg));}
+    100%{opacity:1; transform:translateY(0) scale(1) rotate(var(--rot,0deg));}
+  }
+  @media (prefers-reduced-motion: reduce){ * { animation:none !important; } }
+  .polaroid{
+    --rot:0deg; background:var(--paper); border-radius:6px; padding:10px 10px 16px; box-shadow:var(--shadow-soft);
+    display:flex; flex-direction:column; gap:10px; position:relative; transform:rotate(var(--rot));
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .polaroid .img{ border-radius:3px; overflow:hidden; min-height:150px; }
+  .polaroid .img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .polaroid .cap{font-family:var(--ff-display); font-weight:600; font-size:15px; text-align:center; color:var(--ink);}
+  .tape{position:absolute; width:60px; height:22px; opacity:.9; box-shadow:0 3px 8px rgba(59,50,38,.12);
+    background:repeating-linear-gradient(45deg, var(--peach), var(--peach) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.blue{background:repeating-linear-gradient(45deg, var(--sky), var(--sky) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.sage{background:repeating-linear-gradient(45deg, var(--sage), var(--sage) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.coral{background:repeating-linear-gradient(45deg, var(--coral), var(--coral) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+
+  .stamp{position:relative; display:inline-flex; align-items:center; justify-content:center; width:74px; height:74px;
+    border:2px dashed var(--ink); border-radius:50%; transform:rotate(-9deg); font-family:var(--ff-display); font-size:10.5px;
+    text-align:center; color:var(--ink); background:var(--paper);}
+
+  .chip{display:inline-flex; padding:9px 18px; border-radius:999px; font-size:13.5px; font-weight:600; background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35);}
+  .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px;}
+
+  footer{padding:50px 0 36px; border-top:1px solid rgba(51,66,74,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:24px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
+  .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
+</style>
+<style>
+.cat-tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;}
+.cat-tags span{background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35); border-radius:999px; padding:6px 14px; font-size:12.5px; font-weight:600;}
+.quick-info{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:40px;}
+@media (min-width:700px){.quick-info{grid-template-columns:repeat(4,1fr);}}
+.qi{background:var(--paper); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow-soft); display:flex; flex-direction:column; gap:6px;}
+.qi-label{font-size:12px; font-weight:700; color:var(--coral-deep);}
+.qi-val{font-size:14px; font-weight:600;}
+.info-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:16px;}
+@media (min-width:700px){.info-grid{grid-template-columns:repeat(2,1fr);}}
+.info-card{background:var(--paper); border-radius:14px; padding:18px; box-shadow:var(--shadow-soft);}
+.info-card h4{font-size:15px; margin-bottom:6px;}
+.info-card p{font-size:14px; line-height:1.7;}
+.stay-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:16px;}
+@media (min-width:700px){.stay-grid{grid-template-columns:1fr 1fr;}}
+.stay-card{background:var(--cream-2); border-radius:14px; padding:18px;}
+.stay-card .kicker{font-weight:700; font-size:14.5px; display:block; margin-bottom:8px;}
+.stay-card p{font-size:14px;}
+.day-filters{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 6px; position:sticky; top:70px; z-index:10; background:var(--cream); padding:8px 0;}
+.day-filters a{background:var(--paper); border:1.5px solid rgba(51,66,74,.15); border-radius:999px; padding:9px 18px; font-size:13.5px; font-weight:700; box-shadow:var(--shadow-soft); scroll-behavior:smooth; transition:background .2s ease, color .2s ease;}
+.day-filters a:hover{background:var(--coral); color:var(--paper); border-color:var(--coral);}
+.days-wrap{display:flex; flex-direction:column; gap:22px; margin-top:16px; scroll-margin-top:90px;}
+.day-block{scroll-margin-top:90px;}
+.day-block{background:var(--paper); border-radius:18px; padding:22px; box-shadow:var(--shadow-soft);}
+.day-head{display:flex; align-items:center; gap:14px; margin-bottom:14px;}
+.day-num{width:42px; height:42px; border-radius:50%; background:var(--sage); color:var(--paper); display:flex; align-items:center; justify-content:center; font-family:var(--ff-display); font-size:16px; flex-shrink:0;}
+.day-block:nth-child(2n) .day-num{background:var(--coral);}
+.day-block:nth-child(3n) .day-num{background:var(--sky); color:var(--ink);}
+.day-head h3{font-size:17px;}
+.day-head .drive{font-size:13px; color:var(--ink-soft);}
+.stops-grid{display:grid; grid-template-columns:1fr; gap:10px; margin-bottom:14px;}
+@media (min-width:700px){.stops-grid{grid-template-columns:1fr 1fr;}}
+.stop{background:var(--cream); border-radius:10px; padding:12px 14px;}
+.stop h4{font-size:13.5px; margin-bottom:4px;}
+.stop p{font-size:12.5px; line-height:1.6;}
+.food-line{font-size:13.5px; background:var(--cream-2); border-radius:10px; padding:10px 14px; margin-top:4px;}
+.picks-list{padding-right:22px; display:flex; flex-direction:column; gap:8px; margin-top:10px;}
+.picks-list li{font-size:15px; color:var(--ink-soft);}
+.picks-list strong{color:var(--ink);}
+.maps-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px;}
+.faq{display:flex; flex-direction:column; gap:12px; margin-top:10px;}
+.faq-item{background:var(--paper); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow-soft);}
+.faq-item h4{font-size:14.5px; margin-bottom:6px;}
+.faq-item p{font-size:14px;}
+
+.map-modal{position:fixed; inset:0; background:rgba(30,36,40,.72); z-index:300; display:none; align-items:center; justify-content:center; padding:16px;}
+.map-modal.open{display:flex;}
+.map-modal-inner{position:relative; width:100%; max-width:1100px; height:88vh; background:var(--paper); border-radius:18px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.35);}
+.map-modal-inner iframe{width:100%; height:100%; border:0; display:block;}
+.map-modal-close{position:absolute; top:12px; left:12px; z-index:2; width:38px; height:38px; border-radius:50%; background:var(--paper); border:1.5px solid rgba(51,66,74,.2); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+    <nav class="nav-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="../index.html#plan">خطط رحلتك</a>
+    </nav>
+    <a href="../index.html#plan" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="all-articles.html">دليل السفر</a></li>
+      <li><a href="../index.html#maps">خرائط تفاعلية</a></li>
+      <li><a href="../index.html#plan">خطط رحلتك</a></li>
+      <a href="../index.html#plan" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-top:36px; padding-bottom:16px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">الرئيسية</a><span>/</span><a href="all-articles.html">دليل السفر</a><span>/</span>الجبل الأسود وكوسوفو</div>
+    <h1>جدول 6 أيام في الجبل الأسود وكوسوفو</h1>
+    <p class="narrow" style="margin-top:14px; font-size:16.5px;">أحلى خط سير بين كوتور وبودفا وبريزرن ووادي روغوفا، يمزج بين الخليج والمدن القديمة والجبال والوديان الطبيعية، بدون تغيير الفندق كل ليلة.</p>
+    <div class="cat-tags">
+      <span>وجهات الربيع</span><span>وجهات الخريف</span><span>وجهات اقتصادية</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0; padding-bottom:20px;">
+  <div class="container">
+    <div class="polaroid hero-photo" style="--rot:0deg; animation:none;">
+      <span class="tape blue" style="top:-8px; right:6%; transform:rotate(-5deg);"></span>
+      <div class="img" style="aspect-ratio:16/9; height:auto; background:var(--cream-2);"><img src="https://jullay-kosovo-map.netlify.app/img/cover-cotor.jpg" alt="خليج كوتور" style="object-fit:cover;"></div>
+      <span class="cap">خليج كوتور من الأعلى 🏔️</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="quick-info">
+      <div class="qi"><span class="qi-label">المدة</span><span class="qi-val">6 أيام</span></div>
+      <div class="qi"><span class="qi-label">المواصلات</span><span class="qi-val">سيارة مستأجرة</span></div>
+      <div class="qi"><span class="qi-label">السكن</span><span class="qi-val">كوتور 3 ليالٍ + بريزرن 3 ليالٍ</span></div>
+      <div class="qi"><span class="qi-label">العملة</span><span class="qi-val">اليورو (€)</span></div>
+    </div>
+
+    <h2>معلومات مهمة قبل السفر</h2>
+    <div class="info-grid">
+      <div class="info-card"><h4>🚗 استئجار سيارة</h4><p>أفضل خيار لهذي الرحلة، يعطيكم مرونة للوصول للمناطق الطبيعية. تأكدوا إن عقد التأجير يسمح بعبور الحدود بين الدولتين.</p></div>
+      <div class="info-card"><h4>💶 العملة والدفع</h4><p>اليورو في البلدين، بس يفضل الاحتفاظ بنقود خصوصًا بالقرى والمطاعم الصغيرة.</p></div>
+      <div class="info-card"><h4>🛂 الحدود</h4><p>عبور الحدود بين الجبل الأسود وكوسوفو باليوم الثالث، احتفظوا بالجواز ووثائق السيارة بمتناول اليد.</p></div>
+      <div class="info-card"><h4>☀️ أفضل وقت للزيارة</h4><p>مايو، يونيو، سبتمبر، وأكتوبر. الطقس معتدل والازدحام أقل من ذروة الصيف.</p></div>
+    </div>
+
+    <h2 style="margin-top:40px;">توزيع السكن</h2>
+    <div class="stay-grid">
+      <div class="stay-card"><span class="kicker">📍 كوتور · 3 ليالٍ</span><p>نقطة انطلاق مثالية لخليج كوتور وبيرست ولوفجين وبودفا، بدون الحاجة للتنقل بين الفنادق.</p></div>
+      <div class="stay-card"><span class="kicker">📍 بريزرن · 3 ليالٍ</span><p>قاعدة ممتازة لاستكشاف بريفالا ووادي روغوفا وبريشتينا، ومعظم معالم المدينة نفسها تُزار سيرًا على الأقدام.</p></div>
+    </div>
+
+    <h2 style="margin-top:44px;">الجدول يوم بيوم</h2>
+    <div class="day-filters">
+      <a href="#day1">اليوم الأول</a>
+      <a href="#day2">اليوم الثاني</a>
+      <a href="#day3">اليوم الثالث</a>
+      <a href="#day4">اليوم الرابع</a>
+      <a href="#day5">اليوم الخامس</a>
+      <a href="#day6">اليوم السادس</a>
+    </div>
+    <div class="days-wrap">
+      
+      <div class="day-block" id="day1">
+        <div class="day-head"><span class="day-num">1</span><div><h3>كوتور وبيرست</h3><span class="drive">🚗 مطار تيفات إلى كوتور · 15 دقيقة</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>الوصول إلى كوتور</h4><p>استلام السيارة من مطار تيفات والتوجه للفندق لتسجيل الدخول، ثم بداية الجولة داخل المدينة.</p></div>
+<div class="stop"><h4>المدينة القديمة في كوتور</h4><p>شوارع حجرية ضيقة وساحات تاريخية، أفضل وقت 9:00–11:30 صباحًا أو بعد 5 مساءً.</p></div>
+<div class="stop"><h4>حصن كوتور</h4><p>أفضل نقطة لمشاهدة الخليج من الأعلى، يتطلب صعود درجات كثيرة، خذوا حذاء مريح وماء.</p></div>
+<div class="stop"><h4>قرية بيرست</h4><p>20 دقيقة عن كوتور، قرية ساحلية تاريخية، أفضل وقت من 3 عصرًا حتى الغروب.</p></div>
+<div class="stop"><h4>جزيرة Our Lady of the Rocks</h4><p>قوارب من ميناء بيرست، فيها كنيسة صغيرة ومتحف وإطلالات جميلة.</p></div></div>
+        <p class="food-line">🍽️ الغداء: BBQ Tanjga (مشويات) أو Ladovina Kitchen. العشاء: Konoba Scala Santa (داخل المدينة القديمة) أو Galion Restaurant (إطلالة على الخليج).</p>
+      </div>
+
+      <div class="day-block" id="day2">
+        <div class="day-head"><span class="day-num">2</span><div><h3>لوفجين وبودفا</h3><span class="drive">🚗 من كوتور إلى منتزه لوفجين · ساعة</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>منتزه لوفجين الوطني</h4><p>طريق جبلي بمنعطفات كثيرة لكنه من أجمل طرق القيادة، أفضل وقت 8-10 صباحًا.</p></div>
+<div class="stop"><h4>ضريح نيغوش</h4><p>داخل المنتزه، إطلالة بانورامية تستحق صعود الدرجات.</p></div>
+<div class="stop"><h4>منصة المشاهدة</h4><p>قبل النزول لبودفا، إطلالة على خليج كوتور والجبال معًا، من أكثر النقاط تصويرًا.</p></div>
+<div class="stop"><h4>المدينة القديمة في بودفا</h4><p>أشهر مدينة ساحلية بالجبل الأسود، تُستكشف سيرًا على الأقدام بالكامل.</p></div>
+<div class="stop"><h4>شاطئ موغرين</h4><p>10 دقائق مشي من المدينة القديمة، من أفضل شواطئ بودفا.</p></div></div>
+        <p class="food-line">🍽️ الغداء: Restaurant Sarajevo أو Jadran Kod Krsta (مأكولات بحرية). العشاء: Kuzina Restaurant أو Porto Restaurant (قرب المارينا).</p>
+      </div>
+
+      <div class="day-block" id="day3">
+        <div class="day-head"><span class="day-num">3</span><div><h3>من كوتور إلى بريزرن عبر شلالات نياجرا</h3><span class="drive">🚗 يوم انتقال بين الدولتين · حوالي 4.5 ساعة قيادة إجمالاً</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>شلالات نياجرا</h4><p>قرب بودغوريتسا، محطة استراحة جميلة (45 دقيقة - ساعة) وليست وجهة نصف يوم.</p></div>
+<div class="stop"><h4>الطريق إلى بريزرن</h4><p>حوالي 3 ساعات قيادة، تعبر خلالها الحدود بين الجبل الأسود وكوسوفو، احتفظوا بجوازاتكم بمتناول اليد.</p></div>
+<div class="stop"><h4>الوصول إلى بريزرن</h4><p>تسجيل الدخول والراحة قبل جولة مسائية.</p></div>
+<div class="stop"><h4>جولة مسائية في شاديرفان</h4><p>الساحة الرئيسية في بريزرن، تنبض بالحياة بعد الغروب، أفضل وقت 6-9 مساءً.</p></div></div>
+        <p class="food-line">🍽️ الغداء: Restaurant Niagara (بجانب الشلال). العشاء: Beska Restaurant أو Tiffany Restaurant.</p>
+      </div>
+
+      <div class="day-block" id="day4">
+        <div class="day-head"><span class="day-num">4</span><div><h3>استكشاف بريزرن ومرتفعات بريفالا</h3><span class="drive">🚗 يوم بدون قيادة طويلة، معظمه مشي</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>حي شاديرفان</h4><p>نقطة انطلاق اليوم، أفضل وقت للتصوير 8:30-10 صباحًا.</p></div>
+<div class="stop"><h4>مسجد سنان باشا</h4><p>من أبرز المعالم العثمانية في كوسوفو، ما زال يُستخدم للصلاة.</p></div>
+<div class="stop"><h4>الجسر الحجري</h4><p>أشهر جسر في بريزرن فوق نهر بريستريتسا، يستحق المرور عليه أكثر من مرة باليوم.</p></div>
+<div class="stop"><h4>مرتفعات بريفالا</h4><p>30 دقيقة عن بريزرن، غابات وهواء بارد حتى بالصيف، مثالية لعشاق الطبيعة.</p></div>
+<div class="stop"><h4>قلعة بريزرن</h4><p>قبل الغروب بساعة، إطلالة كاملة على المدينة والنهر والجبال.</p></div></div>
+        <p class="food-line">🍽️ الغداء: Te Syla Restaurant أو Marashi Restaurant (بجانب النهر). العشاء: Hani i Vjetër (أجواء تراثية) أو Fish House Restaurant.</p>
+      </div>
+
+      <div class="day-block" id="day5">
+        <div class="day-head"><span class="day-num">5</span><div><h3>بيا ووادي روغوفا</h3><span class="drive">🚗 من بريزرن إلى بيا · ساعة ونصف</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>مدينة بيا</h4><p>البوابة الرئيسية لوادي روغوفا، توقفوا لقهوة أو تجولوا بالشارع الرئيسي.</p></div>
+<div class="stop"><h4>شلال الدكتور الأبيض</h4><p>15 دقيقة عن بيا، ارتفاعه 25 مترًا، مناسب لكل أفراد العائلة.</p></div>
+<div class="stop"><h4>وادي روغوفا</h4><p>من أبرز الوجهات الطبيعية في كوسوفو، اختاروا نقطتين أو ثلاث إطلالات واستمتعوا بهدوء.</p></div>
+<div class="stop"><h4>أنشطة اختيارية</h4><p>زيبلاين، ركوب خيل، مسارات جبلية، أو مجرد الجلوس بمقهى مطل على النهر.</p></div></div>
+        <p class="food-line">🍽️ الغداء: Resort Ujëvara e Drinit (بجوار الشلال) أو Restaurant Dukagjini. العشاء: Besimi Beska أو Ambient Restaurant.</p>
+      </div>
+
+      <div class="day-block" id="day6">
+        <div class="day-head"><span class="day-num">6</span><div><h3>بريشتينا وختام الرحلة</h3><span class="drive">🚗 من بريزرن إلى بريشتينا · ساعة و15 دقيقة</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>نصب NEWBORN</h4><p>أشهر معلم في العاصمة، أُنشئ احتفالًا باستقلال كوسوفو 2008.</p></div>
+<div class="stop"><h4>ساحة الأم تيريزا</h4><p>من أكثر الأماكن حيوية بالعاصمة، مقاهي ومطاعم ومتاجر.</p></div>
+<div class="stop"><h4>المتحف الإثنوغرافي</h4><p>لمن يريد التعرف على تاريخ وثقافة كوسوفو التقليدية.</p></div>
+<div class="stop"><h4>Albi Mall</h4><p>أكبر مركز تسوق في كوسوفو، مناسب لتمضية الوقت قبل المطار.</p></div>
+<div class="stop"><h4>مطار بريشتينا الدولي</h4><p>يفضل الوصول قبل الإقلاع بساعتين إلى ثلاث، خصوصًا بالصيف.</p></div></div>
+        <p class="food-line">🍽️ الغداء: Liburnia Restaurant (المطبخ الكوسوفي التقليدي) أو Pishat Restaurant. قهوة أخيرة: Soma Book Station أو Dit' e Nat'.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:44px;">⭐ ترشيحاتي الشخصية (أفضل 5 مطاعم بالرحلة)</h2>
+    <ol class="picks-list">
+      <li><strong>Galion Restaurant</strong> — أفضل إطلالة في كوتور.</li>
+      <li><strong>Jadran Kod Krsta</strong> — أفضل مأكولات بحرية في بودفا.</li>
+      <li><strong>Beska Restaurant</strong> — أفضل تجربة للمطبخ الكوسوفي في بريزرن.</li>
+      <li><strong>Resort Ujëvara e Drinit</strong> — موقع رائع بجوار الشلال في بيا.</li>
+      <li><strong>Liburnia Restaurant</strong> — أفضل خيار للأطباق الكوسوفية في بريشتينا.</li>
+    </ol>
+
+    <h2 style="margin-top:44px;">🗺️ خرائط الرحلة التفاعلية</h2>
+    <p style="margin-bottom:16px;">استكشفوا أماكن الرحلة على الخرائط: الفنادق والمطاعم والكافيهات والأنشطة والمعالم بإحداثياتها وأسعارها.</p>
+    <div class="maps-row">
+      <button type="button" class="btn btn-primary" onclick="document.getElementById('montenegroMap').classList.add('open')">🇲🇪 خريطة الجبل الأسود</button>
+      <button type="button" class="btn btn-primary" onclick="document.getElementById('kosovoMap').classList.add('open')">🇽🇰 خريطة كوسوفو</button>
+    </div>
+
+    <h2 style="margin-top:44px;">❓ الأسئلة الشائعة</h2>
+    <div class="faq">
+      <div class="faq-item"><h4>هل تكفي 6 أيام لهذي الرحلة؟</h4><p>نعم، إذا كان هدفكم زيارة أبرز المعالم بدون استعجال.</p></div>
+      <div class="faq-item"><h4>هل أحتاج سيارة مستأجرة؟</h4><p>نعم، تمنحكم مرونة أكبر للوصول للطبيعة والتنقل بين المدن والدولتين.</p></div>
+      <div class="faq-item"><h4>هل يسمح بعبور الحدود بسيارة مستأجرة؟</h4><p>غالبًا نعم، بس تأكدوا من شركة التأجير قبل الاستلام.</p></div>
+      <div class="faq-item"><h4>هل تناسب الرحلة العائلات؟</h4><p>نعم، البرنامج متوازن وما يعتمد على أنشطة مرهقة أو مشي طويل.</p></div>
+      <div class="faq-item"><h4>هل وادي روغوفا مناسب لغير محبي المغامرات؟</h4><p>بالتأكيد، تكفي القيادة داخل الوادي والتوقف عند نقاط الإطلالة.</p></div>
+      <div class="faq-item"><h4>هل يكفي السكن بفندقين بس؟</h4><p>نعم، وهذا التوزيع يقلل عناء التنقل ويخلي الرحلة أكثر راحة.</p></div>
+    </div>
+
+    <h2 style="margin-top:44px;">الخلاصة</h2>
+    <p>إذا كنتم تبحثون عن رحلة تجمع بين الطبيعة والتاريخ والمدن الهادئة، هذا البرنامج من أفضل خيارات منطقة البلقان. خلال 6 أيام بس، تتنقلون بين خليج كوتور والجبال والقرى التاريخية والوديان الطبيعية، بدون تغيير الفندق كل ليلة أو ساعات طويلة بالقيادة.</p>
+  </div>
+</section>
+
+<div class="map-modal" id="montenegroMap">
+  <div class="map-modal-inner">
+    <button type="button" class="map-modal-close" onclick="document.getElementById('montenegroMap').classList.remove('open')" aria-label="إغلاق">✕</button>
+    <iframe src="https://jullay-montenegro-map.netlify.app" title="خريطة الجبل الأسود التفاعلية"></iframe>
+  </div>
+</div>
+<div class="map-modal" id="kosovoMap">
+  <div class="map-modal-inner">
+    <button type="button" class="map-modal-close" onclick="document.getElementById('kosovoMap').classList.remove('open')" aria-label="إغلاق">✕</button>
+    <iframe src="https://jullay-kosovo-map.netlify.app" title="خريطة كوسوفو التفاعلية"></iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+      <p style="margin-top:8px; font-size:14px;">أسافر، أستكشف، أحكي</p>
+    </div>
+    <div class="foot-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="../index.html#plan">خطط رحلتك</a>
+      <a href="../index.html#about">عن جولاي</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+</footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+</script>
+</body>
+</html>

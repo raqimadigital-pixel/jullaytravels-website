@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>جدول 5 أيام في جنوب ألبانيا | سافر مع جولاي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#F1F8FC; --cream-2:#E4F1FA; --yellow:#F3D98B; --sky:var(--color-brand); --sage:var(--color-explore);
+    --peach:var(--color-plan); --coral:var(--color-discover); --coral-deep:#E8737A; --ink:var(--color-text); --ink-soft:var(--color-text-secondary);
+    --paper:#FFFFFF; --radius-lg:28px; --radius-md:18px; --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive; --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body); color:var(--ink);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 30%, var(--cream) 62%, var(--cream) 100%);
+    background-attachment:fixed; line-height:1.75; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .narrow{max-width:760px;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; color:var(--coral-deep); font-weight:700; display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;}
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--coral); display:inline-block; border-radius:2px;}
+  h1,h2,h3,h4{font-family:var(--ff-display); font-weight:700; line-height:1.25; color:var(--color-brand);}
+  h1{font-size:clamp(30px,6vw,52px);}
+  h2{font-size:clamp(24px,4.2vw,36px);}
+  h3{font-size:clamp(18px,3vw,22px);}
+  p{color:var(--ink-soft);}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--coral); color:var(--paper); box-shadow:0 10px 24px rgba(255,173,173,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--peach); color:var(--peach); background:transparent;}
+  .btn-outline:hover{background:var(--peach); color:var(--paper);}
+  .breadcrumb{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap;}
+  .breadcrumb a{font-weight:600; color:var(--coral-deep);}
+  .breadcrumb span{opacity:.5;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(241,248,252,.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(51,66,74,.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .logo .dot{width:9px; height:9px; border-radius:50%; background:var(--coral);}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(51,66,74,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+  .mobile-menu{max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper); border-bottom:1px solid rgba(51,66,74,.08);}
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(51,66,74,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+  @media (min-width:900px){
+    .nav-links{display:flex;} .nav-cta{display:inline-flex;} .burger{display:none;} .mobile-menu{display:none;}
+  }
+
+  section{padding:52px 0;}
+  .section-head{max-width:640px; margin-bottom:40px;}
+
+  /* Polaroid photo component */
+  @keyframes polaroidIn{
+    0%{opacity:0; transform:translateY(28px) scale(.9) rotate(calc(var(--rot,0deg) - 5deg));}
+    65%{opacity:1; transform:translateY(-5px) scale(1.02) rotate(var(--rot,0deg));}
+    100%{opacity:1; transform:translateY(0) scale(1) rotate(var(--rot,0deg));}
+  }
+  @media (prefers-reduced-motion: reduce){ * { animation:none !important; } }
+  .polaroid{
+    --rot:0deg; background:var(--paper); border-radius:6px; padding:10px 10px 16px; box-shadow:var(--shadow-soft);
+    display:flex; flex-direction:column; gap:10px; position:relative; transform:rotate(var(--rot));
+    animation:polaroidIn .85s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .polaroid .img{ border-radius:3px; overflow:hidden; min-height:150px; }
+  .polaroid .img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .polaroid .cap{font-family:var(--ff-display); font-weight:600; font-size:15px; text-align:center; color:var(--ink);}
+  .tape{position:absolute; width:60px; height:22px; opacity:.9; box-shadow:0 3px 8px rgba(59,50,38,.12);
+    background:repeating-linear-gradient(45deg, var(--peach), var(--peach) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.blue{background:repeating-linear-gradient(45deg, var(--sky), var(--sky) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.sage{background:repeating-linear-gradient(45deg, var(--sage), var(--sage) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+  .tape.coral{background:repeating-linear-gradient(45deg, var(--coral), var(--coral) 7px, rgba(255,255,255,.65) 7px, rgba(255,255,255,.65) 14px);}
+
+  .stamp{position:relative; display:inline-flex; align-items:center; justify-content:center; width:74px; height:74px;
+    border:2px dashed var(--ink); border-radius:50%; transform:rotate(-9deg); font-family:var(--ff-display); font-size:10.5px;
+    text-align:center; color:var(--ink); background:var(--paper);}
+
+  .chip{display:inline-flex; padding:9px 18px; border-radius:999px; font-size:13.5px; font-weight:600; background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35);}
+  .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px;}
+
+  footer{padding:50px 0 36px; border-top:1px solid rgba(51,66,74,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:24px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
+  .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
+</style>
+<style>
+.cat-tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;}
+.cat-tags span{background:#E3E8FF; border:1.5px solid rgba(153,172,255,.35); border-radius:999px; padding:6px 14px; font-size:12.5px; font-weight:600;}
+.quick-info{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:40px;}
+@media (min-width:700px){.quick-info{grid-template-columns:repeat(4,1fr);}}
+.qi{background:var(--paper); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow-soft); display:flex; flex-direction:column; gap:6px;}
+.qi-label{font-size:12px; font-weight:700; color:var(--coral-deep);}
+.qi-val{font-size:14px; font-weight:600;}
+.info-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:16px;}
+@media (min-width:700px){.info-grid{grid-template-columns:repeat(2,1fr);}}
+.info-card{background:var(--paper); border-radius:14px; padding:18px; box-shadow:var(--shadow-soft);}
+.info-card h4{font-size:15px; margin-bottom:6px;}
+.info-card p{font-size:14px; line-height:1.7;}
+.stay-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:16px;}
+@media (min-width:700px){.stay-grid{grid-template-columns:1fr 1fr;}}
+.stay-card{background:var(--cream-2); border-radius:14px; padding:18px;}
+.stay-card .kicker{font-weight:700; font-size:14.5px; display:block; margin-bottom:8px;}
+.stay-card p{font-size:13.5px; line-height:1.8;}
+.day-filters{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 6px; position:sticky; top:70px; z-index:10; background:var(--cream); padding:8px 0;}
+.day-filters a{background:var(--paper); border:1.5px solid rgba(51,66,74,.15); border-radius:999px; padding:9px 18px; font-size:13.5px; font-weight:700; box-shadow:var(--shadow-soft); transition:background .2s ease, color .2s ease;}
+.day-filters a:hover{background:var(--coral); color:var(--paper); border-color:var(--coral);}
+.days-wrap{display:flex; flex-direction:column; gap:22px; margin-top:16px;}
+.day-block{background:var(--paper); border-radius:18px; padding:22px; box-shadow:var(--shadow-soft); scroll-margin-top:90px;}
+.day-head{display:flex; align-items:center; gap:14px; margin-bottom:14px;}
+.day-num{width:42px; height:42px; border-radius:50%; background:var(--sage); color:var(--paper); display:flex; align-items:center; justify-content:center; font-family:var(--ff-display); font-size:16px; flex-shrink:0;}
+.day-block:nth-child(2n) .day-num{background:var(--coral);}
+.day-block:nth-child(3n) .day-num{background:var(--sky); color:var(--ink);}
+.day-head h3{font-size:17px;}
+.day-head .drive{font-size:13px; color:var(--ink-soft);}
+.stops-grid{display:grid; grid-template-columns:1fr; gap:10px; margin-bottom:14px;}
+@media (min-width:700px){.stops-grid{grid-template-columns:1fr 1fr;}}
+.stop{background:var(--cream); border-radius:10px; padding:12px 14px;}
+.stop h4{font-size:13.5px; margin-bottom:4px;}
+.stop p{font-size:12.5px; line-height:1.6;}
+.food-line{font-size:13.5px; background:var(--cream-2); border-radius:10px; padding:10px 14px; margin-top:4px;}
+.picks-list{padding-right:22px; display:flex; flex-direction:column; gap:8px; margin-top:10px;}
+.picks-list li{font-size:15px; color:var(--ink-soft);}
+.picks-list strong{color:var(--ink);}
+.maps-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px;}
+
+.map-modal{position:fixed; inset:0; background:rgba(30,36,40,.72); z-index:300; display:none; align-items:center; justify-content:center; padding:16px;}
+.map-modal.open{display:flex;}
+.map-modal-inner{position:relative; width:100%; max-width:1100px; height:88vh; background:var(--paper); border-radius:18px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.35);}
+.map-modal-inner iframe{width:100%; height:100%; border:0; display:block;}
+.map-modal-close{position:absolute; top:12px; left:12px; z-index:2; width:38px; height:38px; border-radius:50%; background:var(--paper); border:1.5px solid rgba(51,66,74,.2); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+    <nav class="nav-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="../index.html#plan">خطط رحلتك</a>
+    </nav>
+    <a href="../index.html#plan" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="all-articles.html">دليل السفر</a></li>
+      <li><a href="../index.html#maps">خرائط تفاعلية</a></li>
+      <li><a href="../index.html#plan">خطط رحلتك</a></li>
+      <a href="../index.html#plan" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-top:36px; padding-bottom:16px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">الرئيسية</a><span>/</span><a href="all-articles.html">دليل السفر</a><span>/</span>جنوب ألبانيا</div>
+    <h1>جدول 5 أيام في جنوب ألبانيا</h1>
+    <p class="narrow" style="margin-top:14px; font-size:16.5px;">أجمل خط سير بين فلوري وساراندا وكساميل والعين الزرقاء، يجمع بين المدن الساحلية والشواطئ الفيروزية والجبال والقرى الهادئة، بدون تغيير الفندق كل ليلة.</p>
+    <div class="cat-tags">
+      <span>وجهات صيفية</span><span>وجهات الخريف</span><span>وجهات اقتصادية</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0; padding-bottom:20px;">
+  <div class="container">
+    <div class="polaroid hero-photo" style="--rot:0deg; animation:none;">
+      <span class="tape coral" style="top:-8px; right:6%; transform:rotate(-5deg);"></span>
+      <div class="img" style="aspect-ratio:16/9; height:auto; background:var(--cream-2);"><img src="https://jullay-albania-map.netlify.app/img-south/cover.jpg" alt="شواطئ كساميل" style="object-fit:cover;"></div>
+      <span class="cap">شواطئ كساميل الفيروزية 🏝️</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="quick-info">
+      <div class="qi"><span class="qi-label">المدة</span><span class="qi-val">5 أيام</span></div>
+      <div class="qi"><span class="qi-label">المواصلات</span><span class="qi-val">سيارة مستأجرة</span></div>
+      <div class="qi"><span class="qi-label">السكن</span><span class="qi-val">فلوري ليلتان + ساراندا 3 ليالٍ</span></div>
+      <div class="qi"><span class="qi-label">أفضل وقت</span><span class="qi-val">مايو، يونيو، سبتمبر</span></div>
+    </div>
+
+    <h2>معلومات مهمة قبل السفر</h2>
+    <div class="info-grid">
+      <div class="info-card"><h4>🚗 استئجار سيارة</h4><p>الخيار الأفضل لاستكشاف جنوب ألبانيا، الطرق الساحلية جميلة وسهلة، وأغلب الشواطئ يصعب الوصول إليها بالنقل العام.</p></div>
+      <div class="info-card"><h4>💳 الدفع</h4><p>يفضل حمل مبلغ نقدي (كاش)، لا تقبل بعض المطاعم والمقاهي الصغيرة البطاقات.</p></div>
+      <div class="info-card"><h4>☀️ أفضل وقت للزيارة</h4><p>مايو، يونيو، وسبتمبر. يوليو وأغسطس أجواء صيفية حارة والأكثر ازدحامًا خصوصًا بكساميل.</p></div>
+      <div class="info-card"><h4>🛣️ محطات على الطريق</h4><p>ممر لوغارا، شواطئ Palasë وDrymades، قرى Dhërmi وHimarë وQeparo القديمة، وقلعة Porto Palermo. لا داعي لزيارتها كلها، اختاروا حسب وقتكم.</p></div>
+    </div>
+
+    <h2 style="margin-top:40px;">الفنادق المقترحة</h2>
+    <div class="stay-grid">
+      <div class="stay-card">
+        <span class="kicker">📍 فلوري · ليلتان</span>
+        <p><strong>Nobus Hotel</strong> — إطلالة مباشرة على البحر ومسبح خارجي.<br><strong>Maritim Marina Bay Resort & Casino</strong> — شاطئ خاص ومسابح.<br><strong>Hotel Liro</strong> — هادئ بعيد عن ازدحام وسط المدينة.</p>
+      </div>
+      <div class="stay-card">
+        <span class="kicker">📍 ساراندا · 3 ليالٍ</span>
+        <p><strong>San Angelo Resort</strong> — موقع ممتاز بين ساراندا وكساميل.<br><strong>Santa Quaranta Premium Resort</strong> — شاطئ خاص وإطلالات بانورامية.<br><strong>Hotel Butrinti</strong> — على ممشى ساراندا مباشرة.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:44px;">الجدول يوم بيوم</h2>
+    <div class="day-filters">
+      <a href="#day1">اليوم الأول</a>
+      <a href="#day2">اليوم الثاني</a>
+      <a href="#day3">اليوم الثالث</a>
+      <a href="#day4">اليوم الرابع</a>
+      <a href="#day5">اليوم الخامس</a>
+    </div>
+    <div class="days-wrap">
+      
+      <div class="day-block" id="day1">
+        <div class="day-head"><span class="day-num">1</span><div><h3>الوصول إلى فلوري والاستمتاع بالممشى البحري</h3><span class="drive">🚗 مطار تيرانا إلى فلوري · ساعتان و15 دقيقة</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>كورنيش فلوري (Lungomare)</h4><p>القلب النابض للمدينة، ممشى طويل على البحر ومقاهي ومحلات آيس كريم. أفضل وقت قبل الغروب وحتى المساء.</p></div></div>
+        <p class="food-line">🍽️ Bato's Steak & Cocktail (إطلالة على البحر) أو أي من مطاعم ممشى Lungomare (مأكولات بحرية وبيتزا إيطالية).</p>
+      </div>
+
+      <div class="day-block" id="day2">
+        <div class="day-head"><span class="day-num">2</span><div><h3>طريق لوغارا وأجمل شواطئ الريفييرا</h3><span class="drive">🚗 من فلوري إلى ممر لوغارا · 45 دقيقة</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>ممر لوغارا</h4><p>إطلالات بانورامية على البحر الأيوني، من أشهر أماكن التصوير بألبانيا. أفضل وقت الصباح.</p></div>
+<div class="stop"><h4>شاطئ Palasë</h4><p>مياه فيروزية صافية وأجواء هادئة، من 9 صباحًا حتى 12 ظهرًا.</p></div>
+<div class="stop"><h4>شاطئ Drymades (بديل)</h4><p>أكثر حيوية، فيه مطاعم ومقاهي ونوادٍ شاطئية. لا يُنصح بزيارة الشاطئين بنفس اليوم.</p></div></div>
+        <p class="food-line">🍽️ الغداء: Ceren Ismet Shehu (مطبخ ألباني عصري) أو مطاعم ممر لوغارا (لحوم مشوية وسط الجبال).</p>
+      </div>
+
+      <div class="day-block" id="day3">
+        <div class="day-head"><span class="day-num">3</span><div><h3>أجمل طريق ساحلي وصولًا إلى ساراندا</h3><span class="drive">🚗 من فلوري إلى ساراندا · طريق ساحلي بعدة محطات</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>قرية هيمارا</h4><p>شواطئ هادئة ومقاهي مطلة على البحر، ساعة و45 دقيقة من فلوري.</p></div>
+<div class="stop"><h4>قرية كيبارو القديمة</h4><p>قرية حجرية تاريخية على سفح الجبل، أزقة ضيقة وإطلالات ساحرة، 15 دقيقة من هيمارا.</p></div>
+<div class="stop"><h4>قلعة بورتو باليرمو</h4><p>على شبه جزيرة صغيرة بمياه فيروزية محيطة، من أفضل أماكن التصوير، 20-25 دقيقة من كيبارو.</p></div>
+<div class="stop"><h4>الوصول إلى ساراندا</h4><p>50-55 دقيقة، تسجيل دخول ثم ممشى ساراندا البحري.</p></div>
+<div class="stop"><h4>غروب لونغ بيتش</h4><p>ختام اليوم، من أكثر الأماكن هدوءًا حيث تمتزج الجبال بالبحر.</p></div></div>
+        <p class="food-line">🍽️ الغداء: Taverna Labëria (أطباق ألبانية ولحم مشوي) أو Paradise Grill في كيبارو. العشاء: Taverna Del Mare أو Oda e Babës أو Alnes Restaurant.</p>
+      </div>
+
+      <div class="day-block" id="day4">
+        <div class="day-head"><span class="day-num">4</span><div><h3>كساميل… مالديف أوروبا 🇦🇱🏝️</h3><span class="drive">🚗 من ساراندا إلى كساميل · 15-20 دقيقة</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>شاطئ بورا بورا</h4><p>مياه صافية ورمال بيضاء، أفضل وقت 8:30-11 صباحًا قبل الازدحام.</p></div>
+<div class="stop"><h4>الجزر الأربع في كساميل</h4><p>بقارب صغير أو كاياك (5-10 دقائق)، مياه شفافة ممتازة للسباحة والسنوركلينج.</p></div>
+<div class="stop"><h4>أنشطة بحرية بعد الظهر</h4><p>كاياك، قارب بدالات، Paddle Board، أو الاسترخاء بعد الغداء.</p></div></div>
+        <p class="food-line">🍽️ الغداء: Veranda by Apollonia (إطلالة على الجزر) أو Principote Beach Club. سناك: IceRoll (آيس كريم ملفوف). العشاء بساراندا: Haxhi أو Limani Restaurant.</p>
+      </div>
+
+      <div class="day-block" id="day5">
+        <div class="day-head"><span class="day-num">5</span><div><h3>بين التاريخ والطبيعة… بوترينت والعين الزرقاء وقلعة ليكوريسي</h3><span class="drive">🚗 بوترينت، العين الزرقاء، قلعة ليكوريسي</span></div></div>
+        <div class="stops-grid"><div class="stop"><h4>منتزه بوترينت الوطني</h4><p>مدينة أثرية مدرجة باليونسكو، بقايا حضارات إغريقية ورومانية وبيزنطية، ساعة ونصف - ساعتين مشي.</p></div>
+<div class="stop"><h4>العين الزرقاء (Syri i Kaltër)</h4><p>نبع طبيعي بعمق يفوق 50 مترًا بلون أزرق داكن يتدرج فيروزي، ممنوع السباحة بالنبع الرئيسي. أفضل وقت قبل 11 صباحًا.</p></div>
+<div class="stop"><h4>قلعة ليكوريسي</h4><p>قبل الغروب، أفضل نقطة لمشاهدة ساراندا وخليجها وجزيرة كورفو اليونانية.</p></div></div>
+        <p class="food-line">🍽️ الغداء: The Mussel House (بلح البحر) أو Restaurant Shpella. عشاء الوداع: Kalaja e Lëkurësit (داخل القلعة، إطلالة بانورامية) أو Madfish.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:44px;">⭐ أفضل 5 مطاعم في الرحلة</h2>
+    <ol class="picks-list">
+      <li><strong>Taverna Del Mare</strong> — أفضل مأكولات بحرية في ساراندا.</li>
+      <li><strong>Basilico Restaurant</strong> — من أفضل مطاعم كساميل.</li>
+      <li><strong>Maison des Chefs</strong> — أفضل تجربة راقية في فلوري.</li>
+      <li><strong>Taverna Xhakaj</strong> — أفضل مطبخ ألباني تقليدي في فلوري.</li>
+      <li><strong>Kalaja e Lëkurësit</strong> — أفضل عشاء ختام مع إطلالة بانورامية.</li>
+    </ol>
+
+    <h2 style="margin-top:44px;">🗺️ خريطة ألبانيا التفاعلية</h2>
+    <p style="margin-bottom:16px;">استكشفوا أماكن الرحلة على الخريطة: الفنادق والمطاعم والكافيهات والأنشطة والمعالم بإحداثياتها وأسعارها.</p>
+    <div class="maps-row">
+      <button type="button" class="btn btn-primary" onclick="document.getElementById('albaniaMap').classList.add('open')">🇦🇱 افتح خريطة ألبانيا</button>
+    </div>
+
+    <h2 style="margin-top:44px;">💡 ملاحظات مهمة</h2>
+    <div class="info-grid">
+      <div class="info-card"><h4>🏖️ كساميل</h4><p>وصلوا قبل 9 صباحًا خصوصًا بيوليو وأغسطس، احجزوا كراسي الشاطئ فورًا، واحتفظوا بنقود (LEK) لبعض المواقف.</p></div>
+      <div class="info-card"><h4>💙 العين الزرقاء</h4><p>زوروها الصباح الباكر قبل 10-11، ممر مشي 10-15 دقيقة من الموقف، وممنوع السباحة بالنبع الرئيسي.</p></div>
+      <div class="info-card"><h4>🏛️ بوترينت</h4><p>خصصوا ساعة ونصف لساعتين، أحذية مريحة، وابدأوا صباحًا لتجنب حر الظهيرة.</p></div>
+      <div class="info-card"><h4>🚗 نصائح عامة</h4><p>احتفظوا بنقود دائمًا، عبّئوا الوقود قبل الرحلات الطويلة، واحملوا ملابس سباحة ومنشفة بالسيارة.</p></div>
+    </div>
+
+    <h2 style="margin-top:44px;">الخلاصة</h2>
+    <p>جنوب ألبانيا يجمع بين شواطئ فيروزية تنافس أجمل الوجهات العالمية، وتاريخ عريق في بوترينت، وطريق ساحلي من أجمل الطرق بأوروبا. خلال 5 أيام بس تجربون فلوري وساراندا وكساميل بوتيرة مريحة وبميزانية اقتصادية مقارنة بباقي أوروبا.</p>
+  </div>
+</section>
+
+<div class="map-modal" id="albaniaMap">
+  <div class="map-modal-inner">
+    <button type="button" class="map-modal-close" onclick="document.getElementById('albaniaMap').classList.remove('open')" aria-label="إغلاق">✕</button>
+    <iframe src="https://jullay-albania-map.netlify.app" title="خريطة ألبانيا التفاعلية"></iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="../index.html" class="logo"><img src="../img/julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+      <p style="margin-top:8px; font-size:14px;">أسافر، أستكشف، أحكي</p>
+    </div>
+    <div class="foot-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="../index.html#maps">خرائط تفاعلية</a>
+      <a href="../index.html#plan">خطط رحلتك</a>
+      <a href="../index.html#about">عن جولاي</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+</footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+</script>
+</body>
+</html>
