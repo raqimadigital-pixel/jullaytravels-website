@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>روسيا الشتوية: موسكو ومورمانسك | سافر مع جولاي</title>
+<meta name="description" content="رحلة نسائية من 6 إلى 15 يناير 2027 تجمع بين موسكو في الشتاء والقطب الشمالي في مورمانسك: الشفق القطبي، الحيتان، الهاسكي وكوخ زجاجي.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-brand:#25A9D6;
+    --color-background:#F1F8FC;
+    --color-discover:#FF9FA3;
+    --color-plan:#D49BE8;
+    --color-explore:#99acff;
+    --color-text:#263746;
+    --color-text-secondary:#667783;
+    --color-surface:#FFFFFF;
+    --cream:#F1F8FC; --cream-2:#E4F1FA; --yellow:#F3D98B; --sky:var(--color-brand); --sage:var(--color-explore);
+    --peach:var(--color-plan); --coral:var(--color-discover); --coral-deep:#E8737A; --ink:var(--color-text); --ink-soft:var(--color-text-secondary);
+    --paper:#FFFFFF; --radius-lg:28px; --radius-md:18px; --shadow-soft:0 14px 34px rgba(59,50,38,0.10);
+    --ff-display:'Lemonada', cursive; --ff-body:'Tajawal', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body); color:var(--ink);
+    background:linear-gradient(180deg, #dcf0fb 0%, var(--color-background) 30%, var(--cream) 62%, var(--cream) 100%);
+    background-attachment:fixed; line-height:1.75; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 20px;}
+  .narrow{max-width:760px;}
+  h1,h2,h3,h4{font-family:var(--ff-display); font-weight:700; line-height:1.25; color:var(--color-brand);}
+  h1{font-size:clamp(30px,6vw,48px);}
+  h2{font-size:clamp(22px,4vw,30px);}
+  h3{font-size:clamp(18px,3vw,22px);}
+  p{color:var(--ink-soft);}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; border:2px solid transparent; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-primary{background:var(--coral); color:var(--paper); box-shadow:0 10px 24px rgba(255,173,173,.4);}
+  .btn-primary:hover{background:#f57e7e;}
+  .btn-outline{border-color:var(--peach); color:var(--peach); background:transparent;}
+  .btn-outline:hover{background:var(--peach); color:var(--paper);}
+  .breadcrumb{font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap;}
+  .breadcrumb a{font-weight:600; color:var(--coral-deep);}
+  .breadcrumb span{opacity:.5;}
+
+  header{position:sticky; top:0; z-index:50; background:rgba(241,248,252,.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(51,66,74,.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{font-family:var(--ff-display); font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px;}
+  .nav-links{display:none; align-items:center; gap:34px; font-weight:500; font-size:15px;}
+  .nav-cta{display:none;}
+  .burger{width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(51,66,74,.2); display:flex; align-items:center; justify-content:center; background:none; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative;}
+  .burger span::before, .burger span::after{content:""; position:absolute; width:18px; height:2px; background:var(--ink); right:0;}
+  .burger span::before{top:-6px;} .burger span::after{top:6px;}
+  .mobile-menu{max-height:0; overflow:hidden; transition:max-height .4s ease; background:var(--paper); border-bottom:1px solid rgba(51,66,74,.08);}
+  .mobile-menu.open{max-height:340px;}
+  .mobile-menu ul{padding:10px 20px 22px; display:flex; flex-direction:column; gap:4px;}
+  .mobile-menu a{padding:12px 4px; font-weight:600; border-bottom:1px dashed rgba(51,66,74,.12);}
+  .mobile-menu .btn{margin-top:14px; width:100%; justify-content:center;}
+  @media (min-width:900px){
+    .nav-links{display:flex;} .nav-cta{display:inline-flex;} .burger{display:none;} .mobile-menu{display:none;}
+  }
+
+  section{padding:50px 0;}
+
+  footer{padding:50px 0 36px; border-top:1px solid rgba(51,66,74,.1);}
+  .foot-grid{display:flex; flex-direction:column; gap:24px;}
+  @media (min-width:800px){.foot-grid{flex-direction:row; justify-content:space-between; align-items:flex-start;}}
+  .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
+  .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
+
+  /* russia trip page */
+  .trip-hero{position:relative; border-radius:var(--radius-lg); overflow:hidden; min-height:380px; display:flex; align-items:flex-end; box-shadow:var(--shadow-soft); background:#263746;}
+  .trip-hero img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .trip-hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(38,55,70,.15) 0%, rgba(38,55,70,.88) 100%);}
+  .trip-hero .inner{position:relative; z-index:2; padding:34px 28px; color:#fff; width:100%;}
+  .trip-hero h1{color:#fff; margin:10px 0 14px;}
+  .trip-hero p{color:rgba(255,255,255,.92); font-size:16.5px; max-width:680px;}
+  .chips{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip-pill{display:inline-flex; align-items:center; gap:6px; padding:7px 16px; border-radius:999px; font-size:13.5px; font-weight:700; background:rgba(255,255,255,.18); color:#fff; backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.35);}
+  .chip-pill.accent{background:var(--coral); border-color:var(--coral);}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:22px;}
+  .stat{background:var(--paper); border-radius:var(--radius-md); padding:18px 12px; text-align:center; box-shadow:var(--shadow-soft);}
+  .stat b{display:block; font-family:var(--ff-display); font-size:clamp(22px,4vw,30px); color:var(--color-brand); line-height:1.2;}
+  .stat span{font-size:13px; color:var(--ink-soft);}
+  .sec-title{display:flex; align-items:center; gap:10px; margin-bottom:18px;}
+  .sec-title .bar{width:6px; height:28px; border-radius:6px; background:var(--coral);}
+  .inc-grid{display:grid; grid-template-columns:1fr; gap:12px;}
+  @media (min-width:640px){.inc-grid{grid-template-columns:1fr 1fr;}}
+  @media (min-width:960px){.inc-grid{grid-template-columns:repeat(3,1fr);}}
+  .inc{background:var(--paper); border-radius:var(--radius-md); padding:16px 18px; display:flex; align-items:center; gap:14px; box-shadow:var(--shadow-soft); font-weight:500; color:var(--ink); font-size:15px;}
+  .inc .ic{width:44px; height:44px; flex-shrink:0; border-radius:14px; background:var(--cream-2); display:flex; align-items:center; justify-content:center; font-size:22px;}
+  .price-card{background:var(--paper); border-radius:var(--radius-lg); padding:32px 28px; box-shadow:var(--shadow-soft); border:2.5px solid var(--coral); text-align:center; position:relative;}
+  .price-card .big{font-family:var(--ff-display); font-size:clamp(38px,8vw,58px); color:var(--coral-deep); line-height:1.1; margin:8px 0 4px;}
+  .price-card .big small{font-size:.38em; color:var(--ink-soft); font-family:var(--ff-body); font-weight:500; margin-right:6px;}
+  .price-card .sub{font-size:14.5px; color:var(--ink-soft);}
+  .supp{display:flex; flex-direction:column; gap:12px; margin-top:22px; text-align:right;}
+  .supp li{background:var(--cream-2); border-radius:14px; padding:14px 18px; font-size:14.5px; color:var(--ink); line-height:1.8;}
+  .supp li strong{color:var(--coral-deep); font-family:var(--ff-display); font-size:16px; white-space:nowrap;}
+  .exc{display:flex; flex-direction:column; gap:10px;}
+  .exc li{background:var(--paper); border-radius:14px; padding:13px 18px; font-size:14.5px; color:var(--ink-soft); display:flex; gap:12px; align-items:center; box-shadow:var(--shadow-soft);}
+  .exc li::before{content:"\2715"; width:26px; height:26px; flex-shrink:0; border-radius:50%; background:#FFE9EA; color:var(--coral-deep); font-weight:700; font-size:13px; display:flex; align-items:center; justify-content:center;}
+  .note-box{background:#FFF3E0; border-radius:var(--radius-md); padding:20px 22px; display:flex; gap:14px; align-items:flex-start;}
+  .note-box .ic{font-size:26px;}
+  .note-box h3{color:#9a6a1a; font-family:var(--ff-body); font-size:17px; margin-bottom:4px;}
+  .note-box p{color:#8a6a2a; font-size:14.5px;}
+  .cta-band{background:linear-gradient(135deg, var(--color-brand) 0%, #1e8fb8 100%); color:#fff; border-radius:var(--radius-lg); padding:40px 28px; text-align:center; box-shadow:var(--shadow-soft);}
+  .cta-band h2{color:#fff; margin-bottom:10px;}
+  .cta-band p{color:rgba(255,255,255,.92); margin-bottom:22px;}
+  .cta-band .btn-primary{background:#fff; color:var(--color-brand); box-shadow:0 10px 24px rgba(0,0,0,.18);}
+  .cta-band .btn-primary:hover{background:var(--cream-2);}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="index.html" class="logo"><img src="julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+    <nav class="nav-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="index.html#maps">خرائط تفاعلية</a>
+      <a href="plan.html">خطط رحلتك</a>
+    </nav>
+    <a href="plan.html" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="all-articles.html">دليل السفر</a></li>
+      <li><a href="index.html#maps">خرائط تفاعلية</a></li>
+      <li><a href="plan.html">خطط رحلتك</a></li>
+      <a href="plan.html" class="btn btn-primary">خطط رحلتك</a>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-top:36px; padding-bottom:20px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>/</span><a href="all-articles.html">دليل السفر</a><span>/</span>روسيا الشتوية</div>
+    <div class="trip-hero">
+      <img src="aurora.jpeg" alt="الشفق القطبي في مورمانسك">
+      <div class="inner">
+        <div class="chips"><span class="chip-pill accent">🇷🇺 رحلة نسائية</span><span class="chip-pill">6 إلى 15 يناير 2027</span><span class="chip-pill">10 أيام / 9 ليالي</span></div>
+        <h1>روسيا الشتوية | موسكو ومورمانسك</h1>
+        <p>رحلة مختلفة تجمع بين سحر موسكو في الشتاء ومغامرات القطب الشمالي في مورمانسك؛ من الساحة الحمراء والرحلة النهرية، إلى الشفق القطبي، الحيتان، الهاسكي، غزلان الرنة وليلة مميزة في كوخ زجاجي.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>10</b><span>أيام</span></div>
+      <div class="stat"><b>9</b><span>ليالي</span></div>
+      <div class="stat"><b>5★</b><span>فنادق مع الإفطار</span></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px; padding-bottom:20px;">
+  <div class="container">
+    <div class="sec-title"><span class="bar"></span><h2>✨ يشمل البكج</h2></div>
+    <ul class="inc-grid">
+        <li class="inc"><span class="ic">✈️</span><span>الطيران الدولي والداخلي</span></li>
+        <li class="inc"><span class="ic">🏨</span><span>فنادق 5 نجوم مع الإفطار</span></li>
+        <li class="inc"><span class="ic">🏡</span><span>ليلة في كوخ زجاجي</span></li>
+        <li class="inc"><span class="ic">🚐</span><span>الاستقبال والتوديع والتنقلات المذكورة في البرنامج</span></li>
+        <li class="inc"><span class="ic">🌌</span><span>مطاردة الشفق القطبي</span></li>
+        <li class="inc"><span class="ic">🐋</span><span>رحلة بحرية لمشاهدة الحيتان في تيريبيركا</span></li>
+        <li class="inc"><span class="ic">🐺</span><span>ركوب عربات الهاسكي</span></li>
+        <li class="inc"><span class="ic">🦌</span><span>ركوب عربات غزلان الرنة</span></li>
+        <li class="inc"><span class="ic">🏔️</span><span>رحلة قرية الشعب السامي وجبل خيبيني</span></li>
+        <li class="inc"><span class="ic">🚡</span><span>تلفريك جبل خيبيني</span></li>
+        <li class="inc"><span class="ic">🎪</span><span>تذكرة السيرك</span></li>
+        <li class="inc"><span class="ic">🚠</span><span>تلفريك موسكو والزحليقة</span></li>
+        <li class="inc"><span class="ic">🌊</span><span>رحلة نهرية في موسكو</span></li>
+        <li class="inc"><span class="ic">👩🏻‍🦰</span><span>مرافقة مرشدة سعودية طوال الرحلة</span></li>
+    </ul>
+  </div>
+</section>
+
+<section style="padding-top:20px; padding-bottom:20px;">
+  <div class="container narrow">
+    <div class="price-card">
+      <div class="sub">💰 السعر</div>
+      <div class="big">13,000 <small>ريال للشخص</small></div>
+      <div class="sub">بالغرفة المزدوجة، شامل ضريبة القيمة المضافة</div>
+      <ul class="supp">
+        <li>في حال رغبة العميلة بحجز غرفة مفردة، تضاف رسوم <strong>2,200 ريال</strong> إلى قيمة الرحلة.</li>
+        <li>في حال رغبة العميلة بحجز كوخ مفرد، تضاف رسوم <strong>1,300 ريال</strong> إلى قيمة الرحلة.</li>
+      </ul>
+      <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B1%D8%AD%D9%84%D8%A9%20%D9%85%D9%88%D8%B3%D9%83%D9%88%20%D8%A7%D9%84%D8%B4%D9%81%D9%82%20%D8%A7%D9%84%D9%82%D8%B7%D8%A8%D9%8A%20%D8%A7%D9%84%D9%86%D8%B3%D8%A7%D8%A6%D9%8A%D8%A9" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:22px;">💬 للاستفسار عبر واتساب</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px; padding-bottom:20px;">
+  <div class="container narrow">
+    <div class="sec-title"><span class="bar"></span><h2>❌ لا يشمل البكج</h2></div>
+    <ul class="exc">
+        <li>رسوم التأشيرة</li>
+        <li>التأمين الصحي وتأمين السفر</li>
+        <li>الوجبات والمشروبات غير المذكورة في البرنامج</li>
+        <li>المصاريف الشخصية والمشتريات والإكراميات</li>
+        <li>أي فعاليات اختيارية غير مدرجة في البرنامج</li>
+    </ul>
+  </div>
+</section>
+
+<section style="padding-top:20px; padding-bottom:20px;">
+  <div class="container narrow">
+    <div class="note-box">
+      <span class="ic">🌌</span>
+      <div>
+        <h3>ملاحظة مهمة</h3>
+        <p>الشفق القطبي ومشاهدة الحيتان من الظواهر الطبيعية التي تعتمد على الطقس والظروف، لذلك لا يمكن ضمان ظهورها، ويتم اختيار أفضل الأوقات والمواقع الممكنة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px; padding-bottom:60px;">
+  <div class="container narrow">
+    <div class="cta-band">
+      <h2>🇷🇺 موسكو + مورمانسك</h2>
+      <p>10 أيام من أجمل التجارب الشتوية في رحلة واحدة.<br>المقاعد محدودة.</p>
+      <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B1%D8%AD%D9%84%D8%A9%20%D9%85%D9%88%D8%B3%D9%83%D9%88%20%D8%A7%D9%84%D8%B4%D9%81%D9%82%20%D8%A7%D9%84%D9%82%D8%B7%D8%A8%D9%8A%20%D8%A7%D9%84%D9%86%D8%B3%D8%A7%D8%A6%D9%8A%D8%A9" target="_blank" rel="noopener" class="btn btn-primary">للحجز والاستفسار: تواصلي معنا عبر واتساب</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="index.html" class="logo"><img src="julaylogo.svg" alt="سافر مع جولاي" style="height:36px; width:auto; display:block;"></a>
+      <p style="margin-top:8px; font-size:14px;">أسافر، أستكشف، أحكي</p>
+    </div>
+    <div class="foot-links">
+      <a href="all-articles.html">دليل السفر</a>
+      <a href="index.html#maps">خرائط تفاعلية</a>
+      <a href="plan.html">خطط رحلتك</a>
+      <a href="index.html#about">عن جولاي</a>
+      <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A5%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%B3%D8%A7%D9%81%D8%B1%20%D9%85%D8%B9%20%D8%AC%D9%88%D9%84%D8%A7%D9%8A" target="_blank" rel="noopener">تواصل معنا</a>
+    </div>
+  </div>
+  <p class="foot-bottom">© سافر مع جولاي</p>
+</footer>
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+</script>
+</body>
+</html>
