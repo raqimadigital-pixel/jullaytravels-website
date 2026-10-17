@@ -163,16 +163,26 @@
       <span class="chip" data-filter="autumn">وجهات الخريف</span>
       <span class="chip" data-filter="family">وجهات عائلية</span>
       <span class="chip" data-filter="budget">وجهات اقتصادية</span>
+      <span class="chip" data-filter="women">رحلات نسائية</span>
+      <span class="chip" data-filter="shopping">مشترياتي للسفر</span>
     </div>
-    <p id="noResults" style="display:none; color:var(--ink-soft); font-size:15px; margin-bottom:20px;">ما فيه وجهات بهذا التصنيف بعد، ترقبوها قريبًا.</p>
+    <p id="noResults" style="display:none; color:var(--ink-soft); font-size:15px; margin-bottom:20px;">ما فيه مقالات بهذا التصنيف بعد، ترقبوها قريبًا.</p>
 
     <div class="art-grid">
-      <a href="russia-winter-trip.html" class="art-card" data-cats="winter">
+      <a href="russia-winter-trip.html" class="art-card" data-cats="winter women">
         <div class="thumb" style="background: radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent), radial-gradient(1px 1px at 90px 70px,#fff,transparent), radial-gradient(1.5px 1.5px at 140px 20px,#fff,transparent), radial-gradient(1px 1px at 60px 100px,#fff,transparent), radial-gradient(ellipse at 20% 35%, rgba(90,225,175,.55), transparent 55%), radial-gradient(ellipse at 75% 22%, rgba(160,125,255,.5), transparent 55%), radial-gradient(ellipse at 50% 65%, rgba(37,169,214,.45), transparent 60%), linear-gradient(180deg,#0f2233 0%,#263746 100%); background-size:160px 120px,160px 120px,160px 120px,160px 120px,auto,auto,auto,auto; display:flex; align-items:center; justify-content:center; font-size:46px;">🌌</div>
         <div class="body">
           <span class="tag alt">رحلة جماعية</span>
           <h3>رحلتنا النسائية الشتوية إلى موسكو والقطب الشمالي</h3>
           <p>رحلة نسائية من 6 إلى 15 يناير 2027: الشفق القطبي، الحيتان، الهاسكي، وليلة في كوخ زجاجي.</p>
+        </div>
+      </a>
+      <a href="shein-arctic-clothes.html" class="art-card" data-cats="winter shopping">
+        <div class="thumb"><img src="shein-5996dea7.png" alt="ملابسي في رحلتي للقطب الشمالي" style="object-fit:cover;"></div>
+        <div class="body">
+          <span class="tag alt">مشترياتي للسفر</span>
+          <h3>ملابسي في رحلتي للقطب الشمالي | ترشيحات شي إن ❄️</h3>
+          <p>الملابس الحرارية، الجاكيتات، البناطيل، الأحذية، القفازات والإكسسوارات الشتوية مع روابط الشراء.</p>
         </div>
       </a>
       <a href="moscow-5-days.html" class="art-card" data-cats="winter budget">
@@ -290,6 +300,9 @@
       noResults.style.display = visibleCount === 0 ? 'block' : 'none';
     });
   });
+  const h = decodeURIComponent(location.hash.slice(1));
+  const target = h && document.querySelector('.chip[data-filter="'+h+'"]');
+  if(target) target.click();
 </script>
 </body>
 </html>

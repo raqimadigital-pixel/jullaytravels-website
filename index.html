@@ -90,6 +90,10 @@
   .btn-outline:hover{background:var(--color-plan); color:var(--paper);}
   .btn-green{background:var(--color-explore); color:#fff; box-shadow:0 10px 24px rgba(153,172,255,.4);}
   .btn-green:hover{background:#6683ff;}
+  .btn-brand-solid{background:var(--color-brand); color:#fff; box-shadow:0 10px 24px rgba(37,169,214,.4);}
+  .btn-brand-solid:hover{background:#1e8fb8;}
+  .btn-sun-solid{background:#F3C24D; color:#fff; box-shadow:0 10px 24px rgba(243,194,77,.45);}
+  .btn-sun-solid:hover{background:#e8b232;}
   .btn-ghost{border-color:rgba(59,50,38,.25); color:var(--ink);}
 
   /* Reveal on scroll */
@@ -234,6 +238,10 @@
   .cat-polaroid .img.c3{background:linear-gradient(150deg,var(--peach),var(--coral));}
   .cat-polaroid .img.c4{background:linear-gradient(150deg,var(--sage),#6E9A66);}
   .cat-polaroid .img.c5{background:linear-gradient(150deg,var(--coral),var(--coral-deep));}
+  .cat-polaroid.r7{--rot:-2deg; animation-delay:.65s;} .cat-polaroid.r8{--rot:2.5deg; animation-delay:.75s;}
+  .cat-polaroid .img.c7{background:linear-gradient(150deg,var(--peach),var(--sky));}
+  .cat-polaroid .img.c8{background:linear-gradient(150deg,var(--coral),var(--yellow));}
+  .cat-polaroid .img.emoji{display:flex; align-items:center; justify-content:center; font-size:64px;}
   .cat-polaroid .img.c6{background:linear-gradient(150deg,var(--cream-2),var(--sky));}
 
   /* ===== DESTINATION SPOTLIGHT (Japan) ===== */
@@ -406,6 +414,8 @@
         <a href="all-articles.html" class="btn btn-primary">اكتشف دليل السفر</a>
         <a href="services.html" class="btn btn-purple-solid">خطط رحلتك</a>
         <a href="#maps" class="btn btn-green">خرائط تفاعلية</a>
+        <a href="all-articles.html#women" class="btn btn-brand-solid">رحلات نسائية</a>
+        <a href="all-articles.html#shopping" class="btn btn-sun-solid">مشترياتي للسفر</a>
 </div>
     </div>
     <div class="hero-visual reveal">
@@ -479,29 +489,37 @@
     </div>
 
     <div class="cat-grid reveal">
-      <a href="all-articles.html" class="cat-polaroid r1">
+      <a href="all-articles.html#winter" class="cat-polaroid r1">
         <span class="tape blue" style="top:-10px; right:16px; transform:rotate(-5deg);"></span>
         <div class="img c1"><img src="winter.jpg" alt="وجهات شتوية" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات شتوية</span>
       </a>
-      <a href="all-articles.html" class="cat-polaroid r2">
+      <a href="all-articles.html#summer" class="cat-polaroid r2">
         <span class="tape" style="top:-10px; left:16px; transform:rotate(4deg);"></span>
         <div class="img c2"><img src="summer.jpg" alt="وجهات صيفية" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات صيفية</span>
       </a>
-      <a href="all-articles.html" class="cat-polaroid r3">
+      <a href="all-articles.html#spring" class="cat-polaroid r3">
         <span class="tape coral" style="top:-10px; right:20px; transform:rotate(3deg);"></span>
         <div class="img c3"><img src="spring.jpg" alt="وجهات الربيع" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات الربيع</span>
       </a>
-      <a href="all-articles.html" class="cat-polaroid r4">
+      <a href="all-articles.html#autumn" class="cat-polaroid r4">
         <span class="tape sage" style="top:-10px; left:20px; transform:rotate(-4deg);"></span>
         <div class="img c4"><img src="autumn.jpg" alt="وجهات الخريف" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات الخريف</span>
       </a>
-      <a href="all-articles.html" class="cat-polaroid r5">
+      <a href="all-articles.html#family" class="cat-polaroid r5">
         <span class="tape coral" style="top:-10px; right:14px; transform:rotate(5deg);"></span>
         <div class="img c5"><img src="family.jpg" alt="وجهات عائلية" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات عائلية</span>
       </a>
-      <a href="all-articles.html" class="cat-polaroid r6">
+      <a href="all-articles.html#budget" class="cat-polaroid r6">
         <span class="tape blue" style="top:-10px; left:14px; transform:rotate(-3deg);"></span>
         <div class="img c6"><img src="economy.jpg" alt="وجهات اقتصادية" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:3px;"></div><span class="cap">وجهات اقتصادية</span>
+      </a>
+      <a href="all-articles.html#women" class="cat-polaroid r7">
+        <span class="tape sage" style="top:-10px; right:18px; transform:rotate(4deg);"></span>
+        <div class="img c7 emoji">👭</div><span class="cap">رحلات نسائية</span>
+      </a>
+      <a href="all-articles.html#shopping" class="cat-polaroid r8">
+        <span class="tape blue" style="top:-10px; left:18px; transform:rotate(-4deg);"></span>
+        <div class="img c8 emoji">🧳</div><span class="cap">مشترياتي للسفر</span>
       </a>
     </div>
   </div>
