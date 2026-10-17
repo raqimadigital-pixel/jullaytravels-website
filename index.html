@@ -153,8 +153,10 @@
   .hero-grid{display:grid; gap:34px;}
   .hero-copy{}
   .hero-copy p.lead{font-size:18px; max-width:480px; margin:20px 0 30px;}
-  .hero-actions{display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch;}
+  .hero-actions{display:flex; flex-wrap:wrap; gap:10px; padding-bottom:4px;}
+  .hero-copy, .hero-grid > *, .hero-grid-v2 > *{min-width:0; max-width:100%;}
   .hero-actions .btn{padding:12px 18px; font-size:13.5px; white-space:nowrap; flex:0 0 auto;}
+  @media (max-width:420px){ .hero-actions .btn{padding:11px 14px; font-size:13px;} }
   @media (min-width:640px){ .hero-actions .btn{padding:14px 28px; font-size:15px;} }
   .btn-purple-solid{background:var(--color-plan); color:#fff; box-shadow:0 10px 24px rgba(212,155,232,.4);}
   .btn-purple-solid:hover{background:#cf8ce6;}
@@ -362,6 +364,9 @@
   .foot-bottom{margin-top:34px; font-size:13px; color:var(--ink-soft); text-align:center;}
   /* featured trip */
   .trip-feature{position:relative; border-radius:36px; overflow:hidden; padding:56px 28px; color:#fff; box-shadow:0 18px 40px rgba(38,55,70,.22); background: radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent), radial-gradient(1px 1px at 90px 70px,#fff,transparent), radial-gradient(1.5px 1.5px at 140px 20px,#fff,transparent), radial-gradient(1px 1px at 60px 100px,#fff,transparent), radial-gradient(ellipse at 20% 35%, rgba(90,225,175,.55), transparent 55%), radial-gradient(ellipse at 75% 22%, rgba(160,125,255,.5), transparent 55%), radial-gradient(ellipse at 50% 65%, rgba(37,169,214,.45), transparent 60%), linear-gradient(180deg,#0f2233 0%,#263746 100%); background-size:160px 120px,160px 120px,160px 120px,160px 120px,auto,auto,auto,auto;}
+  .trip-feature picture, .trip-feature picture img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+  .trip-feature::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,34,51,.35) 0%, rgba(15,34,51,.85) 100%); z-index:1;}
+  .trip-feature > *:not(picture){position:relative; z-index:2;}
   .trip-feature .tf-chips{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px;}
   .trip-feature .tf-chip{padding:7px 16px; border-radius:999px; font-size:13.5px; font-weight:700; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35); backdrop-filter:blur(6px);}
   .trip-feature .tf-chip.accent{background:var(--coral); border-color:var(--coral);}
@@ -445,6 +450,7 @@
 <section id="trip" style="padding-top:20px;">
   <div class="container">
     <div class="trip-feature reveal">
+      <picture><source media="(min-width:700px)" srcset="aurora-cover-desktop.jpg"><img src="aurora-cover-mobile.jpg" alt="الشفق القطبي" style="object-position:center 30%;"></picture>
       <div class="tf-chips"><span class="tf-chip accent">🇷🇺 رحلة نسائية</span><span class="tf-chip">6 إلى 15 يناير 2027</span><span class="tf-chip">10 أيام / 9 ليالي</span></div>
       <h2>رحلتنا النسائية الشتوية إلى موسكو والقطب الشمالي</h2>
       <p>رحلة تجمع بين سحر موسكو في الشتاء ومغامرات القطب الشمالي في مورمانسك: الشفق القطبي، الحيتان، الهاسكي، غزلان الرنة وليلة مميزة في كوخ زجاجي.</p>
