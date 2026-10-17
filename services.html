@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<title>خدمات تصميم وتخطيط الرحلات | سافر مع جولاي</title>
+<title>خطط رحلتك | سافر مع جولاي</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,6 +74,17 @@
   .foot-links{display:flex; flex-wrap:wrap; gap:20px; font-weight:600; font-size:14px;}
   .foot-bottom{margin-top:28px; font-size:12.5px; color:var(--ink-soft); text-align:center;}
 
+  /* request form */
+  .request-form{background:var(--paper); border-radius:22px; padding:30px 26px; box-shadow:var(--shadow-soft); display:flex; flex-direction:column; gap:18px; max-width:680px;}
+  .f-row{display:flex; flex-direction:column; gap:8px;}
+  .f-row label{font-size:14px; font-weight:700; color:var(--ink);}
+  .f-row label span{font-weight:400; color:var(--ink-soft); font-size:12.5px;}
+  .f-row input, .f-row textarea{font-family:var(--ff-body); border:1.5px solid rgba(51,66,74,.18); border-radius:12px; padding:12px 14px; font-size:14.5px; background:var(--cream); resize:vertical; color:var(--ink);}
+  .f-row input:focus, .f-row textarea:focus{outline:none; border-color:var(--color-brand);}
+  .f-row-2{display:grid; grid-template-columns:1fr; gap:16px;}
+  @media (min-width:600px){.f-row-2{grid-template-columns:1fr 1fr;}}
+  .req-btn{width:100%; justify-content:center; font-size:16px; border:none; font-family:var(--ff-body);}
+  .form-note{font-size:12.5px; color:var(--ink-soft); text-align:center;}
   /* service cards */
   .services-grid{display:flex; flex-direction:column; gap:22px; margin-top:10px;}
   .service-card{background:var(--paper); border-radius:22px; padding:28px; box-shadow:var(--shadow-soft); display:flex; flex-direction:column; gap:16px;}
@@ -111,26 +122,64 @@
     <nav class="nav-links">
       <a href="all-articles.html">دليل السفر</a>
       <a href="index.html#maps">خرائط تفاعلية</a>
-      <a href="plan.html">خطط رحلتك</a>
+      <a href="services.html">خطط رحلتك</a>
     </nav>
-    <a href="plan.html" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <a href="services.html" class="btn btn-primary nav-cta">خطط رحلتك</a>
     <button class="burger" id="burgerBtn" aria-label="فتح القائمة"><span></span></button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="all-articles.html">دليل السفر</a></li>
       <li><a href="index.html#maps">خرائط تفاعلية</a></li>
-      <li><a href="plan.html">خطط رحلتك</a></li>
-      <a href="plan.html" class="btn btn-primary">خطط رحلتك</a>
+      <li><a href="services.html">خطط رحلتك</a></li>
+      <a href="services.html" class="btn btn-primary">خطط رحلتك</a>
     </ul>
   </div>
 </header>
 
 <section style="padding-top:36px; padding-bottom:16px;">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>/</span><a href="plan.html">خطط رحلتك</a><span>/</span>خدماتنا</div>
-    <h1>خدمات تصميم وتخطيط الرحلات</h1>
+    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>/</span>خطط رحلتك</div>
+    <h1>خطط رحلتك</h1>
     <p class="narrow" style="margin-top:14px; font-size:16.5px;">بدلًا من قضاء ساعات طويلة في البحث بين الوجهات والفنادق والأنشطة والمطاعم ووسائل النقل، يتم إعداد خطة سفر متكاملة وفق تفاصيل رحلتك وتفضيلاتك. يتم اختيار وترتيب الخيارات بعناية، بحيث تكون الخطة واضحة وعملية وسهلة التطبيق أثناء السفر.</p>
+  </div>
+</section>
+
+<section id="request" style="padding-top:10px; padding-bottom:20px;">
+  <div class="container">
+    <h2 style="margin:0 0 22px;">نموذج طلب التخطيط</h2>
+    <form class="request-form" id="planForm">
+      <div class="f-row">
+        <label for="fDest">الوجهة <span>(إن كانت محددة)</span></label>
+        <input type="text" id="fDest" placeholder="مثال: اليابان">
+      </div>
+      <div class="f-row-2">
+        <div class="f-row">
+          <label for="fMonth">الشهر المتوقع للسفر</label>
+          <input type="text" id="fMonth" placeholder="مثال: مارس 2027">
+        </div>
+        <div class="f-row">
+          <label for="fDays">عدد الأيام</label>
+          <input type="text" id="fDays" placeholder="مثال: 7 أيام">
+        </div>
+      </div>
+      <div class="f-row">
+        <label for="fBudget">الميزانية التقريبية</label>
+        <input type="text" id="fBudget" placeholder="مثال: 8000 ريال">
+      </div>
+      <div class="f-row">
+        <label for="fNotes">الاهتمامات وأسلوب السفر</label>
+        <textarea id="fNotes" rows="4" placeholder="مثال: الطبيعة والأماكن الهادئة، دون الاهتمام الكبير بالتسوق"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary req-btn">أرسل طلب التخطيط عبر واتساب</button>
+      <p class="form-note">سيتم فتح واتساب برسالة جاهزة تحتوي على تفاصيل طلبك.</p>
+    </form>
+  </div>
+</section>
+
+<section style="padding-top:30px; padding-bottom:10px;">
+  <div class="container">
+    <h2>خدماتنا</h2>
   </div>
 </section>
 
@@ -155,7 +204,7 @@
           <li>إضافة المعلومات الأساسية التي يحتاجها المسافر أثناء الرحلة</li>
         </ul>
         <p class="fit-line"><strong>مناسبة لمن:</strong> يرغب في الحصول على خطة واضحة ومخصصة للرحلة، مع تولي الحجوزات بشكل مستقل.</p>
-        <a href="https://salla.sa/jullay-travel/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%AC%D8%AF%D9%88%D9%84-%D8%B1%D8%AD%D9%84%D8%A9-%D9%85%D8%AE%D8%B5%D8%B5/p230378573" target="_blank" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
+        <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%B7%D9%84%D8%A8%20%D8%AE%D8%AF%D9%85%D8%A9%20%D8%A7%D9%84%D8%AC%D8%AF%D9%88%D9%84%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%20%D8%A7%D9%84%D9%85%D8%AE%D8%B5%D8%B5" target="_blank" rel="noopener" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
       </div>
 
       <div class="service-card">
@@ -174,7 +223,7 @@
           <li>ربط الخريطة بخطة الرحلة لتسهيل معرفة أماكن الزيارة اليومية</li>
         </ul>
         <p class="fit-line"><strong>مناسبة لمن:</strong> لديه برنامج أو خطة سفر ويرغب في تنظيم جميع المواقع على خريطة تفاعلية سهلة الاستخدام.</p>
-        <a href="https://salla.sa/jullay-travel/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%AE%D8%B1%D9%8A%D8%B7%D8%A9-%D8%AA%D9%81%D8%A7%D8%B9%D9%84%D9%8A%D8%A9/p1045020092" target="_blank" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
+        <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%B7%D9%84%D8%A8%20%D8%AE%D8%AF%D9%85%D8%A9%20%D8%A7%D9%84%D8%AE%D8%B1%D9%8A%D8%B7%D8%A9%20%D8%A7%D9%84%D8%AA%D9%81%D8%A7%D8%B9%D9%84%D9%8A%D8%A9" target="_blank" rel="noopener" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
       </div>
 
       <div class="service-card featured">
@@ -194,7 +243,7 @@
           <li>تنظيم الخريطة بما يتوافق مع برنامج الرحلة</li>
         </ul>
         <p class="fit-line"><strong>الخيار الأنسب لمن:</strong> يرغب في تجربة تخطيط متكاملة، تبدأ من إعداد البرنامج اليومي وتنتهي بخريطة عملية يمكن استخدامها أثناء الرحلة.</p>
-        <a href="https://salla.sa/jullay-travel/%D8%AA%D8%AE%D8%B7%D9%8A%D8%B7-%D8%A7%D9%84%D8%AC%D8%AF%D9%88%D9%84-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%A7%D9%84%D8%AE%D8%B1%D9%8A%D8%B7%D8%A9-%D8%A7%D9%84%D8%AA%D9%81%D8%A7%D8%B9%D9%84%D9%8A%D8%A9/p973358116" target="_blank" class="btn btn-primary" style="align-self:flex-start;">اطلب الباقة</a>
+        <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%B7%D9%84%D8%A8%20%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%AC%D8%AF%D9%88%D9%84%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%20%D9%88%D8%A7%D9%84%D8%AE%D8%B1%D9%8A%D8%B7%D8%A9%20%D8%A7%D9%84%D8%AA%D9%81%D8%A7%D8%B9%D9%84%D9%8A%D8%A9" target="_blank" rel="noopener" class="btn btn-primary" style="align-self:flex-start;">اطلب الباقة</a>
       </div>
 
       <div class="service-card">
@@ -204,14 +253,14 @@
         </div>
         <p>ثلاثة خيارات مختارة بدلًا من عشرات النتائج. اختيار الفندق المناسب لا يعتمد على السعر فقط، لذلك يتم البحث وفق احتياجات الرحلة وتفضيلات العميل، ثم اختصار الخيارات في أفضل 3 فنادق مناسبة.</p>
         <ol class="steps-mini">
-          <li><strong>1. دراسة الاحتياج</strong> — تحديد الميزانية، الموقع المفضل، مستوى الفندق، وأهم التفضيلات.</li>
-          <li><strong>2. البحث والمقارنة</strong> — من حيث الموقع، المستوى، التقييمات، والسعر مقابل القيمة.</li>
-          <li><strong>3. ترشيح أفضل 3 خيارات</strong> — مع توضيح أبرز الفروقات والمزايا لكل خيار.</li>
-          <li><strong>4. اختيار الفندق</strong> — يختار العميل الخيار الأنسب من بين الترشيحات.</li>
-          <li><strong>5. تنفيذ الحجز</strong> — بعد اعتماد الخيار المختار.</li>
+          <li><strong>1. دراسة الاحتياج</strong>: تحديد الميزانية، الموقع المفضل، مستوى الفندق، وأهم التفضيلات.</li>
+          <li><strong>2. البحث والمقارنة</strong>: من حيث الموقع، المستوى، التقييمات، والسعر مقابل القيمة.</li>
+          <li><strong>3. ترشيح أفضل 3 خيارات</strong>: مع توضيح أبرز الفروقات والمزايا لكل خيار.</li>
+          <li><strong>4. اختيار الفندق</strong>: يختار العميل الخيار الأنسب من بين الترشيحات.</li>
+          <li><strong>5. تنفيذ الحجز</strong>: بعد اعتماد الخيار المختار.</li>
         </ol>
         <p class="note-line">الرسوم تشمل البحث والترشيح وتنفيذ الحجز، ولا تشمل قيمة الإقامة.</p>
-        <a href="https://salla.sa/jullay-travel/%D8%AD%D8%AC%D9%88%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%AF%D9%82/p1410743216" target="_blank" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
+        <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%B7%D9%84%D8%A8%20%D8%AE%D8%AF%D9%85%D8%A9%20%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1%20%D9%88%D8%AD%D8%AC%D8%B2%20%D8%A7%D9%84%D9%81%D9%86%D8%AF%D9%82" target="_blank" rel="noopener" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
       </div>
 
       <div class="service-card">
@@ -221,14 +270,14 @@
         </div>
         <p>أفضل 3 خيارات بناءً على احتياجات الرحلة. بدلًا من عرض عدد كبير من الرحلات وترك مهمة المقارنة للعميل، يتم البحث عن الخيارات المناسبة واختصارها في أفضل 3 خيارات وفق السعر، أوقات الرحلات، مدة السفر، الترانزيت، الأمتعة وغيرها من العوامل المهمة.</p>
         <ol class="steps-mini">
-          <li><strong>1. تحديد متطلبات الرحلة</strong> — مواعيد السفر، الوجهة، الميزانية، الأمتعة وأي تفضيلات أخرى.</li>
-          <li><strong>2. البحث والمقارنة</strong> — بين الرحلات والمسارات وشركات الطيران المتاحة.</li>
-          <li><strong>3. ترشيح أفضل 3 خيارات</strong> — مع توضيح الفروقات الرئيسية بينها.</li>
-          <li><strong>4. اختيار الرحلة</strong> — يختار العميل الخيار الأنسب لاحتياجاته.</li>
-          <li><strong>5. تنفيذ الحجز</strong> — بعد اعتماد الخيار المختار.</li>
+          <li><strong>1. تحديد متطلبات الرحلة</strong>: مواعيد السفر، الوجهة، الميزانية، الأمتعة وأي تفضيلات أخرى.</li>
+          <li><strong>2. البحث والمقارنة</strong>: بين الرحلات والمسارات وشركات الطيران المتاحة.</li>
+          <li><strong>3. ترشيح أفضل 3 خيارات</strong>: مع توضيح الفروقات الرئيسية بينها.</li>
+          <li><strong>4. اختيار الرحلة</strong>: يختار العميل الخيار الأنسب لاحتياجاته.</li>
+          <li><strong>5. تنفيذ الحجز</strong>: بعد اعتماد الخيار المختار.</li>
         </ol>
         <p class="note-line">الرسوم تشمل البحث والترشيح وتنفيذ الحجز، ولا تشمل قيمة تذكرة الطيران.</p>
-        <a href="https://salla.sa/jullay-travel/%D8%AD%D8%AC%D9%88%D8%B2%D8%A7%D8%AA-%D8%A7%D9%84%D8%B7%D9%8A%D8%B1%D8%A7%D9%86/p1105992146" target="_blank" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
+        <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%B7%D9%84%D8%A8%20%D8%AE%D8%AF%D9%85%D8%A9%20%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1%20%D9%88%D8%AD%D8%AC%D8%B2%20%D8%A7%D9%84%D8%B7%D9%8A%D8%B1%D8%A7%D9%86" target="_blank" rel="noopener" class="btn btn-primary" style="align-self:flex-start;">اطلب الخدمة</a>
       </div>
 
     </div>
@@ -238,11 +287,11 @@
       <table class="summary-table">
         <thead><tr><th>الخدمة</th><th>السعر</th></tr></thead>
         <tbody>
-          <tr><td>الجدول السياحي المخصص — حتى 7 أيام</td><td>249 ريال</td></tr>
+          <tr><td>الجدول السياحي المخصص، حتى 7 أيام</td><td>249 ريال</td></tr>
           <tr><td>يوم إضافي للجدول</td><td>30 ريال</td></tr>
-          <tr><td>الخريطة التفاعلية — حتى 7 أيام</td><td>149 ريال</td></tr>
+          <tr><td>الخريطة التفاعلية، حتى 7 أيام</td><td>149 ريال</td></tr>
           <tr><td>يوم إضافي للخريطة</td><td>20 ريال</td></tr>
-          <tr><td>الجدول + الخريطة — حتى 7 أيام</td><td>349 ريال</td></tr>
+          <tr><td>الجدول + الخريطة، حتى 7 أيام</td><td>349 ريال</td></tr>
           <tr><td>اختيار وحجز الفندق</td><td>99 ريال / حجز</td></tr>
           <tr><td>اختيار وحجز الطيران</td><td>99 ريال / حجز</td></tr>
         </tbody>
@@ -265,17 +314,28 @@
     <div class="foot-links">
       <a href="all-articles.html">دليل السفر</a>
       <a href="index.html#maps">خرائط تفاعلية</a>
-      <a href="plan.html">خطط رحلتك</a>
+      <a href="services.html">خطط رحلتك</a>
       <a href="index.html#about">عن جولاي</a>
-      <a href="#">تواصل معنا</a>
+      <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A5%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%B3%D8%A7%D9%81%D8%B1%20%D9%85%D8%B9%20%D8%AC%D9%88%D9%84%D8%A7%D9%8A" target="_blank" rel="noopener">تواصل معنا</a>
     </div>
   </div>
-  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+  <p class="foot-bottom">سافر مع جولاي، نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
 </footer>
 <script>
   const burgerBtn = document.getElementById('burgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if(burgerBtn){ burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open')); }
+  const planForm = document.getElementById('planForm');
+  if(planForm){
+    planForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const v = id => document.getElementById(id).value.trim();
+      const rows = [['الوجهة', v('fDest')], ['الشهر المتوقع للسفر', v('fMonth')], ['عدد الأيام', v('fDays')], ['الميزانية التقريبية', v('fBudget')], ['الاهتمامات وأسلوب السفر', v('fNotes')]];
+      let msg = 'مرحبًا، أرغب بطلب تخطيط رحلة.';
+      rows.forEach(r => { if(r[1]) msg += '\n' + r[0] + ': ' + r[1]; });
+      window.open('https://wa.me/966503652034?text=' + encodeURIComponent(msg), '_blank');
+    });
+  }
 </script>
 </body>
 </html>

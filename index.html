@@ -352,6 +352,18 @@
   .socials{display:flex; gap:12px; margin-top:16px;}
   .socials a{width:38px; height:38px; border-radius:50%; border:1.5px solid rgba(59,50,38,.2); display:flex; align-items:center; justify-content:center; font-size:13px;}
   .foot-bottom{margin-top:34px; font-size:13px; color:var(--ink-soft); text-align:center;}
+  /* featured trip */
+  .trip-feature{position:relative; border-radius:36px; overflow:hidden; padding:56px 28px; color:#fff; box-shadow:0 18px 40px rgba(38,55,70,.22); background: radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent), radial-gradient(1px 1px at 90px 70px,#fff,transparent), radial-gradient(1.5px 1.5px at 140px 20px,#fff,transparent), radial-gradient(1px 1px at 60px 100px,#fff,transparent), radial-gradient(ellipse at 20% 35%, rgba(90,225,175,.55), transparent 55%), radial-gradient(ellipse at 75% 22%, rgba(160,125,255,.5), transparent 55%), radial-gradient(ellipse at 50% 65%, rgba(37,169,214,.45), transparent 60%), linear-gradient(180deg,#0f2233 0%,#263746 100%); background-size:160px 120px,160px 120px,160px 120px,160px 120px,auto,auto,auto,auto;}
+  .trip-feature .tf-chips{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px;}
+  .trip-feature .tf-chip{padding:7px 16px; border-radius:999px; font-size:13.5px; font-weight:700; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35); backdrop-filter:blur(6px);}
+  .trip-feature .tf-chip.accent{background:var(--coral); border-color:var(--coral);}
+  .trip-feature h2{color:#fff; font-size:clamp(26px,5vw,40px); max-width:760px; margin-bottom:14px;}
+  .trip-feature p{color:rgba(255,255,255,.92); max-width:640px; font-size:16.5px;}
+  .trip-feature .tf-price{margin:18px 0 26px; font-size:15px; color:rgba(255,255,255,.9);}
+  .trip-feature .tf-price b{font-family:var(--ff-display); font-size:26px; color:#fff; margin-left:6px;}
+  .trip-feature .tf-actions{display:flex; flex-wrap:wrap; gap:14px;}
+  .trip-feature .btn-ghost{border-color:rgba(255,255,255,.7); color:#fff; background:transparent;}
+  .trip-feature .btn-ghost:hover{background:#fff; color:var(--color-brand);}
 </style>
 </head>
 <body>
@@ -364,17 +376,17 @@
     <nav class="nav-links">
       <a href="#guide">دليل السفر</a>
       <a href="#maps">خرائط تفاعلية</a>
-      <a href="#plan">خطط رحلتك</a>
+      <a href="services.html">خطط رحلتك</a>
     </nav>
-    <a href="#plan" class="btn btn-primary nav-cta">خطط رحلتك</a>
+    <a href="services.html" class="btn btn-primary nav-cta">خطط رحلتك</a>
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="#guide">دليل السفر</a></li>
       <li><a href="#maps">خرائط تفاعلية</a></li>
-      <li><a href="#plan">خطط رحلتك</a></li>
+      <li><a href="services.html">خطط رحلتك</a></li>
       <li><a href="#about">عن جولاي</a></li>
-      <a href="#plan" class="btn btn-primary">خطط رحلتك</a>
+      <a href="services.html" class="btn btn-primary">خطط رحلتك</a>
     </ul>
   </div>
 </header>
@@ -392,7 +404,7 @@
       <p class="lead">رحلات ووجهات وتجارب أشاركها بطريقتي، مع جداول وأدوات تساعدك تخطط رحلتك من الألف إلى الياء.</p>
       <div class="hero-actions">
         <a href="all-articles.html" class="btn btn-primary">اكتشف دليل السفر</a>
-        <a href="#plan" class="btn btn-purple-solid">خطط رحلتك</a>
+        <a href="services.html" class="btn btn-purple-solid">خطط رحلتك</a>
         <a href="#maps" class="btn btn-green">خرائط تفاعلية</a>
 </div>
     </div>
@@ -414,6 +426,45 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED TRIP -->
+<section id="trip" style="padding-top:20px;">
+  <div class="container">
+    <div class="trip-feature reveal">
+      <div class="tf-chips"><span class="tf-chip accent">🇷🇺 رحلة نسائية</span><span class="tf-chip">6 إلى 15 يناير 2027</span><span class="tf-chip">10 أيام / 9 ليالي</span></div>
+      <h2>رحلتنا النسائية الشتوية إلى موسكو والقطب الشمالي</h2>
+      <p>رحلة تجمع بين سحر موسكو في الشتاء ومغامرات القطب الشمالي في مورمانسك: الشفق القطبي، الحيتان، الهاسكي، غزلان الرنة وليلة مميزة في كوخ زجاجي.</p>
+      <div class="tf-price"><b>13,000 ريال</b> للشخص بالغرفة المزدوجة</div>
+      <div class="tf-actions">
+        <a href="russia-winter-trip.html" class="btn btn-primary">تفاصيل الرحلة</a>
+        <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B1%D8%AD%D9%84%D8%A9%20%D9%85%D9%88%D8%B3%D9%83%D9%88%20%D8%A7%D9%84%D8%B4%D9%81%D9%82%20%D8%A7%D9%84%D9%82%D8%B7%D8%A8%D9%8A%20%D8%A7%D9%84%D9%86%D8%B3%D8%A7%D8%A6%D9%8A%D8%A9" target="_blank" rel="noopener" class="btn btn-ghost">للاستفسار عبر واتساب</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <div class="container">
+    <div class="plan-wrap reveal">
+      <div class="section-head" style="margin-bottom:8px; position:relative;">
+        <h2>خطط رحلتك</h2>
+        <p style="margin-top:10px;">أساعدك تصمم رحلتك من اختيار الوجهة وحتى يوم العودة. خدمة نخطط فيها رحلتك من A إلى Z حسب تفضيلاتك وميزانيتك ومدة رحلتك وأسلوب سفرك.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step"><span class="num">01</span><h4>أرسل تفاصيل رحلتك</h4><p>الشهر، الوجهة إن كانت محددة، عدد الأيام، الميزانية، اهتماماتك وأسلوب سفرك.</p></div>
+        <div class="step"><span class="num">02</span><h4>نصمم لك الخطة</h4><p>نتواصل معك لفهم رغباتك، ثم نرتب لك الرحلة يومًا بيوم بطريقة عملية.</p></div>
+        <div class="step"><span class="num">03</span><h4>استلم جدولك وخريطتك</h4><p>تحصل على جدول السفر والخريطة التفاعلية وكل التفاصيل المتفق عليها.</p></div>
+        <div class="step"><span class="num">04</span><h4>سافر بدون وجع رأس</h4><p>كل شيء مرتب أمامك، وأنت عليك الاستمتاع بالرحلة.</p></div>
+      </div>
+
+      <div style="text-align:center; margin-top:38px;">
+        <a href="services.html" class="btn btn-primary">ابدأ تخطيط رحلتي</a>
       </div>
     </div>
   </div>
@@ -480,7 +531,7 @@
         <div class="cover"><img src="https://picsum.photos/seed/moscow-map-pro/560/380" alt="خريطة موسكو" style="width:100%; height:100%; object-fit:cover;"></div>
         <div class="content">
           <span class="badge-pro">منتج رقمي</span>
-          <h3>🇷🇺 موسكو — الخريطة الشاملة</h3>
+          <h3>🇷🇺 موسكو، الخريطة الشاملة</h3>
           <p>دليل وجهة تفاعلي كامل داخل خريطة واحدة، مبني على طبقات:</p>
           <div class="layer-list">
             <span>🗺️ أماكن وتجارب</span><span>🚆 مواصلات</span><span>🍜 مطاعم ومقاهي</span>
@@ -494,29 +545,6 @@
     </div>
     <div style="text-align:center; margin-top:34px;">
       <a href="maps-all.html" class="btn btn-outline">مشاهدة كل الخرائط</a>
-    </div>
-  </div>
-</section>
-
-<!-- PLAN -->
-<section id="plan">
-  <div class="container">
-    <div class="plan-wrap reveal">
-      <div class="section-head" style="margin-bottom:8px; position:relative;">
-        <h2>خطط رحلتك</h2>
-        <p style="margin-top:10px;">أساعدك تصمم رحلتك من اختيار الوجهة وحتى يوم العودة. خدمة نخطط فيها رحلتك من A إلى Z حسب تفضيلاتك وميزانيتك ومدة رحلتك وأسلوب سفرك.</p>
-      </div>
-
-      <div class="steps">
-        <div class="step"><span class="num">01</span><h4>أرسل تفاصيل رحلتك</h4><p>الشهر، الوجهة إن كانت محددة، عدد الأيام، الميزانية، اهتماماتك وأسلوب سفرك.</p></div>
-        <div class="step"><span class="num">02</span><h4>نصمم لك الخطة</h4><p>نتواصل معك لفهم رغباتك، ثم نرتب لك الرحلة يومًا بيوم بطريقة عملية.</p></div>
-        <div class="step"><span class="num">03</span><h4>استلم جدولك وخريطتك</h4><p>تحصل على جدول السفر والخريطة التفاعلية وكل التفاصيل المتفق عليها.</p></div>
-        <div class="step"><span class="num">04</span><h4>سافر بدون وجع رأس</h4><p>كل شيء مرتب أمامك، وأنت عليك الاستمتاع بالرحلة.</p></div>
-      </div>
-
-      <div style="text-align:center; margin-top:38px;">
-        <a href="plan.html" class="btn btn-primary">ابدأ تخطيط رحلتي</a>
-      </div>
     </div>
   </div>
 </section>
@@ -547,7 +575,7 @@
       <p>اكتشف وجهتك، أو خل التخطيط عليّ.</p>
       <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
         <a href="#guide" class="btn btn-primary">دليل السفر</a>
-        <a href="#plan" class="btn btn-outline">خطط رحلتك</a>
+        <a href="services.html" class="btn btn-outline">خطط رحلتك</a>
       </div>
     </div>
   </div>
@@ -567,12 +595,12 @@
     <div class="foot-links">
       <a href="#guide">دليل السفر</a>
       <a href="#maps">خرائط تفاعلية</a>
-      <a href="#plan">خطط رحلتك</a>
+      <a href="services.html">خطط رحلتك</a>
       <a href="#about">عن جولاي</a>
-      <a href="#">تواصل معنا</a>
+      <a href="https://wa.me/966503652034?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A5%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%B3%D8%A7%D9%81%D8%B1%20%D9%85%D8%B9%20%D8%AC%D9%88%D9%84%D8%A7%D9%8A" target="_blank" rel="noopener">تواصل معنا</a>
     </div>
   </div>
-  <p class="foot-bottom">سافر مع جولاي — نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
+  <p class="foot-bottom">سافر مع جولاي، نسخة تصميم أولية، جميع الأسماء والأسعار تجريبية.</p>
 </footer>
 
 <script>
